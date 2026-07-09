@@ -1,193 +1,187 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Catedral · Red Neural de Memoria</title>
-    <style>
-        :root {
-            --catedral-bg: #0a0a0f;
-            --catedral-negro: #12121a;
-            --catedral-oro: #d4af37;
-            --catedral-oro-brillante: #ffd700;
-            --catedral-oro-tenue: #b8860b;
-            --catedral-pergamino: #f3e5ab;
-            --catedral-vitral-rojo: #8b0000;
-            --catedral-vitral-azul: #1a1a6e;
-            --catedral-vitral-verde: #0d4d0d;
-            --catedral-gris: #2a2a35;
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>La Catedral - Red Neural de Memoria</title><script src="https://d3js.org/d3.v7.min.js"></script><style>:root{--bg:#0a0a0f;--negro:#12121a;--oro:#d4af37;--oro-br:#ffd700;--oro-ten:#b8860b;--pergamino:#f3e5ab;--gris:#2a2a35;--rojo:#8b0000;--verde:#0d4d0d;--azul:#1a1a6e;--nodo-memoria:#d4af37;--nodo-mistake:#8b0000;--nodo-outcome:#2e7d32;--nodo-skill:#00bcd4;--nodo-procedure:#7b1fa2;}*{margin:0;padding:0;box-sizing:border-box}body{background:radial-gradient(ellipse at top,#1a1a2e 0%,#0a0a0f 60%);color:var(--pergamino);font-family:Georgia,serif;overflow:hidden;min-height:100vh}#grafo{position:fixed;top:0;left:0;width:100%;height:100vh;z-index:0}.panel{position:fixed;top:20px;right:20px;width:320px;max-height:90vh;overflow-y:auto;background:rgba(18,18,26,0.92);border:1px solid var(--oro-ten);border-radius:8px;padding:20px;z-index:10;backdrop-filter:blur(10px)}.panel h1{font-size:1.4rem;color:var(--oro);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}.panel h2{font-size:0.8rem;color:var(--oro-ten);font-weight:normal;letter-spacing:2px;margin-bottom:16px}.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}.stat-card{background:rgba(42,42,53,0.5);border:1px solid rgba(212,175,55,0.2);border-radius:6px;padding:10px;text-align:center}.stat-card .val{font-size:1.6rem;color:var(--oro-br);font-weight:bold}.stat-card .lbl{font-size:0.65rem;color:var(--oro-ten);text-transform:uppercase;letter-spacing:1px}.section{margin-bottom:16px}.section h3{font-size:0.75rem;color:var(--oro);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase}.tag-cloud{display:flex;flex-wrap:wrap;gap:4px}.tag-item{padding:2px 8px;border-radius:12px;font-size:0.7rem;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--pergamino)}.entry-item{padding:8px;border-bottom:1px solid rgba(212,175,55,0.1);font-size:0.75rem;cursor:pointer}.entry-item:hover{background:rgba(212,175,55,0.05)}.entry-item .vip{color:var(--oro-br);font-weight:bold;float:right}.mistake-item{padding:6px;border-left:3px solid var(--rojo);margin-bottom:4px;font-size:0.7rem;background:rgba(139,0,0,0.1)}.outcome-item{padding:6px;border-left:3px solid var(--verde);margin-bottom:4px;font-size:0.7rem;background:rgba(13,77,13,0.1)}.legend{position:fixed;bottom:20px;left:20px;display:flex;gap:16px;z-index:10}.legend-item{display:flex;align-items:center;gap:6px;font-size:0.7rem;color:var(--pergamino)}.legend-dot{width:12px;height:12px;border-radius:50%}.tooltip{position:fixed;padding:10px 14px;background:rgba(18,18,26,0.95);border:1px solid var(--oro);border-radius:6px;font-size:0.75rem;color:var(--pergamino);max-width:300px;z-index:100;pointer-events:none;opacity:0;transition:opacity 0.2s}.search-bar{position:fixed;top:20px;left:20px;z-index:10}.search-bar input{background:rgba(18,18,26,0.92);border:1px solid var(--oro-ten);color:var(--pergamino);padding:8px 14px;border-radius:6px;font-size:0.85rem;width:280px}.search-bar input:focus{outline:none;border-color:var(--oro)}</style></head><body><svg id="grafo"></svg><div class="search-bar"><input type="text" id="searchInput" placeholder="Buscar en la red..." /></div><div class="panel"><h1>La Catedral</h1><h2>Red Neural de Memoria</h2><div class="stat-grid"><div class="stat-card"><div class="val">17</div><div class="lbl">Memorias</div></div><div class="stat-card"><div class="val">0</div><div class="lbl">Conexiones</div></div><div class="stat-card"><div class="val">64</div><div class="lbl">Tags</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Errores</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Outcomes</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Procedimientos</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Exitos</div></div><div class="stat-card"><div class="val">0</div><div class="lbl">Fallos</div></div></div><div class="section"><h3>Top VIP</h3><div class="entry-item"><span class="vip">21</span>El espejo 241 tiene replica MySQL nativa</div><div class="entry-item"><span class="vip">18</span>MySQL commands: SINGLE LINE, `;` termina</div><div class="entry-item"><span class="vip">18</span>LEY ABSOLUTA: Cero cambios sin permiso e</div><div class="entry-item"><span class="vip">18</span>User uses 'memoria' to mean DISK SPACE, </div><div class="entry-item"><span class="vip">18</span>User expects automated QA (qa-playbook-s</div></div><div class="section"><h3>Tags Activos</h3><div class="tag-cloud"><span class="tag-item">backup (6)</span><span class="tag-item">staging (6)</span><span class="tag-item">espejo-241 (5)</span><span class="tag-item">bache (4)</span><span class="tag-item">mysql (4)</span><span class="tag-item">produccion (4)</span><span class="tag-item">cron (4)</span><span class="tag-item">vault (4)</span><span class="tag-item">all (4)</span><span class="tag-item">contract_fees (3)</span><span class="tag-item">telegram (3)</span><span class="tag-item">epem (3)</span><span class="tag-item">pipeline (3)</span><span class="tag-item">replica (2)</span><span class="tag-item">api (2)</span><span class="tag-item">monitor (2)</span><span class="tag-item">cause (1)</span><span class="tag-item">root (1)</span><span class="tag-item">sql_log_bin (1)</span><span class="tag-item">bot (1)</span></div></div><div class="section"><h3>Errores Aprendidos</h3><div class="mistake-item">Asumi que staging .99 tenia datos completos pero tiene 32M vs 156M del espejo</div></div><div class="section"><h3>Outcomes</h3><div class="outcome-item">Corregido bache 24/06 con 871 UPDATEs al espejo 241</div></div><div class="section"><h3>Skills</h3><div class="entry-item">apple-notes</div><div class="entry-item">apple-reminders</div><div class="entry-item">findmy</div><div class="entry-item">imessage</div><div class="entry-item">claude-code</div><div class="entry-item">codex</div><div class="entry-item">hermes-agent</div><div class="entry-item">opencode</div><div class="entry-item">computer-use</div><div class="entry-item">architecture-diagram</div></div></div><div class="legend"><div class="legend-item"><div class="legend-dot" style="background:var(--nodo-memoria)"></div>Memoria</div><div class="legend-item"><div class="legend-dot" style="background:var(--nodo-mistake)"></div>Error</div><div class="legend-item"><div class="legend-dot" style="background:var(--nodo-outcome)"></div>Outcome</div><div class="legend-item"><div class="legend-dot" style="background:var(--nodo-skill)"></div>Skill</div></div><div class="tooltip" id="tooltip"></div><script>const DATA = {"meta": {"generated_at": "2026-07-09T17:53:08.641043", "db_path": "/home/vm-hermes/.hermes/memory-deep/db/memory.db", "agent_name": "Hermes", "system": "La Catedral"}, "entries": [{"id": 1, "category": "infraestructura", "tags": "bache,backup,cause,contract_fees,espejo-241,mysql,produccion,replica,root,sql_log_bin", "content": "El espejo 241 tiene replica MySQL nativa desde 250 con lag=0s. ROOT CAUSE de baches: production batch jobs usan sql_log_bin=0", "title": "El espejo 241 tiene replica MySQL nativa desde 250 con lag=0s. ROOT CAUSE de bac", "importance": 8, "source": "user_stated_confirmed", "created_at": "2026-07-09T17:52:53.819484", "access_count": 1, "vip_score": 21}, {"id": 11, "category": "infraestructura", "tags": "line,mysql,single", "content": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.", "title": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 12, "category": "operaciones", "tags": "absoluta,config,cron,ley,todo", "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presentar, esperar 'si'/'dale'/'autorizado'. Silencio != aprobacion. Aplica a TODO: scripts, configs, crons, deploys, UPDATEs, INSERTs, scp, rm. Sin excepciones.", "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presenta", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 13, "category": "infraestructura", "tags": "auto-run,disk,pipeline,ram,space,staging", "content": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authorized at 21:00.", "title": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authori", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 14, "category": "operaciones", "tags": "all,pipeline,qa-playbook-shell,validation", "content": "User expects automated QA (qa-playbook-shell.sh) on ALL pipeline scripts before trusting them. Zero FAILs required. User was very upset about typo bugs: 'Es inadmisible que tengamos estos errores'.", "title": "User expects automated QA (qa-playbook-shell.sh) on ALL pipeline scripts before ", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 15, "category": "infraestructura", "tags": "backup,espejo-241,produccion,staging", "content": "User tests new operational patterns on .99 ('conejo de indias') before rolling to .250 and .241.", "title": "User tests new operational patterns on .99 ('conejo de indias') before rolling t", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 16, "category": "infraestructura", "tags": "all,monitor,staging,telegram,vault", "content": "Emmanuel V. Vault update on credential share. Bot @Staging99Bot. Private: 8846593692. Group 'svr - monitor': -1003771914699. ALL reports to group, not just private.", "title": "Emmanuel V. Vault update on credential share. Bot @Staging99Bot. Private: 884659", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 17, "category": "infraestructura", "tags": "all,and,api,clean,examples,html,max,monitor,monitor-restore,only", "content": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO metrics/parens/jargon in title. Detail in table | Métrica | Valor | MAX detail. Summary | Sistema | Estado | Detalle |. NO bullets. EXAMPLES before approving. ALL reports to group AND private. Tablas nativas grupo: `sendRichMessage` Bot API 10.1 (monitor-restore-99-v5.py). NO sendMessage Markdown. NO HTML pre monospace (RECHAZADO). Persist on native rendering.", "title": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO met", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 2, "category": "infraestructura", "tags": "telegram,cron,bot", "content": "Telegram bot @Staging99Bot envia reportes al grupo svr-monitor. Tablas nativas con sendRichMessage Bot API 10.1", "title": "Telegram bot @Staging99Bot envia reportes al grupo svr-monitor. Tablas nativas c", "importance": 7, "source": "confirmed", "created_at": "2026-07-09T17:52:53.888046", "access_count": 0, "vip_score": 17}, {"id": 3, "category": "infraestructura", "tags": "backup,bloqueado,cli,espejo-241,explicit,produccion,rdp,remoto,sudo", "content": "User: espanol, CLI real. Servers: 43, 250, 241, 240, backup(.50). SUDO REMOTO BLOQUEADO. Destructive ops require EXPLICIT OK.", "title": "User: espanol, CLI real. Servers: 43, 250, 241, 240, backup(.50). SUDO REMOTO BL", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 4, "category": "general", "tags": "analyze,analyze-first,first", "content": "User wants ANALYZE-FIRST before action. Said 'vamos a hacer todas las averiguaciones y analisis antes de tomar una decision'. Present findings, wait explicit authorization.", "title": "User wants ANALYZE-FIRST before action. Said 'vamos a hacer todas las averiguaci", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 5, "category": "infraestructura", "tags": "bache,backup,epem,mysql,not,pipeline,restore,staging,zip", "content": "Staging .99: Ubuntu 26.04, MySQL 8.4.10. Pipeline restores epem from ZIP .50 at 21:00. NOT authoritative for July 2026+ (backup lag).", "title": "Staging .99: Ubuntu 26.04, MySQL 8.4.10. Pipeline restores epem from ZIP .50 at ", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 6, "category": "infraestructura", "tags": "bache,backup,contract_fees,corrected,cron,espejo-241,fully,mysql,produccion,replica", "content": "Espejo (241): MySQL native replica from 250 (lag=0s). Baches por sql_log_bin=0. Jun 2026 FULLY CORRECTED 09/07: 1,087 UPDATEs total. Diff final +2 (normal). Cron nativo 241 daily 09:00 Telegram. Rastrillaje: solo contract_fees tiene baches reales.", "title": "Espejo (241): MySQL native replica from 250 (lag=0s). Baches por sql_log_bin=0. ", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 7, "category": "infraestructura", "tags": "antes,count,json,staging,vault", "content": "User exige revisar scripts por errores comunes (COUNT vs COUNT(*), escapes JSON, token ***, errores silenciosos curl>/dev/null) ANTES de deploy. Leccion .99: notificaciones erronas por bugs de script. Siempre validar con prueba real. scp requiere autorizacion explicita.", "title": "User exige revisar scripts por errores comunes (COUNT vs COUNT(*), escapes JSON,", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 8, "category": "infraestructura", "tags": "admin-epem,all,api,bache,backup,chat_id,contract_fees,cron,detector_datos_desactualizados_espejo,epem", "content": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens). Detail in table. ALL reports via `sendRichMessage` Bot API 10.1 (POST {chat_id:-1003771914699, rich_message:{markdown:raw}}). NO pipes, NO HTML pre, NO sendMessage, NO \n→\n\n normalization. Token: Hermes→/proc/$(pgrep -f \"gateway run\")/environ; .99→/home/admin-epem/.tg_token. .99 MySQL: SSH only (contract_fees ~25s/query, timeout=45s). Scripts: monitor-restore-99-v5.py, verificar-backup-50.sh, detector_datos_desactu", "title": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 9, "category": "infraestructura", "tags": "espejo-241,staging,telegram,vault", "content": "Bot token real guardado en vault Hermes + .99 + .241 (chmod 600). Antes enmascarado ***.", "title": "Bot token real guardado en vault Hermes + .99 + .241 (chmod 600). Antes enmascar", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 10, "category": "seguridad", "tags": "auto-deploy,deep-memory-system,epem,grupoepem-bi-team,memory-deep,vault,wal", "content": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_hermes_95, Vercel auto-deploy. DB ~/.hermes/memory-deep/db/memory.db (10 tablas WAL+FTS5). Skill deep-memory-system. Fase 1 motor pendiente. Token GitHub pendiente rotar.", "title": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}], "relationships": [], "tags": [{"name": "backup", "count": 6}, {"name": "staging", "count": 6}, {"name": "espejo-241", "count": 5}, {"name": "bache", "count": 4}, {"name": "mysql", "count": 4}, {"name": "produccion", "count": 4}, {"name": "cron", "count": 4}, {"name": "vault", "count": 4}, {"name": "all", "count": 4}, {"name": "contract_fees", "count": 3}, {"name": "telegram", "count": 3}, {"name": "epem", "count": 3}, {"name": "pipeline", "count": 3}, {"name": "replica", "count": 2}, {"name": "api", "count": 2}, {"name": "monitor", "count": 2}, {"name": "cause", "count": 1}, {"name": "root", "count": 1}, {"name": "sql_log_bin", "count": 1}, {"name": "bot", "count": 1}, {"name": "bloqueado", "count": 1}, {"name": "cli", "count": 1}, {"name": "explicit", "count": 1}, {"name": "rdp", "count": 1}, {"name": "remoto", "count": 1}, {"name": "sudo", "count": 1}, {"name": "analyze", "count": 1}, {"name": "analyze-first", "count": 1}, {"name": "first", "count": 1}, {"name": "not", "count": 1}, {"name": "restore", "count": 1}, {"name": "zip", "count": 1}, {"name": "corrected", "count": 1}, {"name": "fully", "count": 1}, {"name": "antes", "count": 1}, {"name": "count", "count": 1}, {"name": "json", "count": 1}, {"name": "admin-epem", "count": 1}, {"name": "chat_id", "count": 1}, {"name": "detector_datos_desactualizados_espejo", "count": 1}, {"name": "auto-deploy", "count": 1}, {"name": "deep-memory-system", "count": 1}, {"name": "grupoepem-bi-team", "count": 1}, {"name": "memory-deep", "count": 1}, {"name": "wal", "count": 1}, {"name": "line", "count": 1}, {"name": "single", "count": 1}, {"name": "absoluta", "count": 1}, {"name": "config", "count": 1}, {"name": "ley", "count": 1}], "grafo_hist": [{"fecha": "2026-07-09", "nodos": 17, "aristas": 0, "densidad": 0.0}], "mistakes": [{"id": 1, "entry_id": 1, "mistake_type": "wrong_assumption", "description": "Asumi que staging .99 tenia datos completos pero tiene 32M vs 156M del espejo", "user_reaction": "Usuario corrigio: staging no es copia completa", "correction": "Usar espejo como autoritativo para datos recientes", "created_at": "2026-07-09T17:52:54.088402", "access_count": 0}], "outcomes": [{"id": 1, "entry_id": 1, "action_summary": "Corregido bache 24/06 con 871 UPDATEs al espejo 241", "outcome_status": "success", "user_verdict": "Usuario aprobo", "next_action": "Monitorear proximos baches", "session_id": null, "created_at": "2026-07-09T17:52:54.130101", "closed_at": "2026-07-09T17:52:54.130101"}], "procedures": [{"id": 1, "skill_name": "nightly_sync", "procedure_name": "volcar", "version": "1.0.0", "content": "1. Backup DB 2. Integrity check 3. Leer MEMORY.md 4. Insertar entries 5. Recalcular VIP 6. OPTIMIZE FTS5", "tags": "cron,backup,nightly", "last_tested": "2026-07-09T17:52:54.175249", "test_result": "ok", "status": "active"}], "sync_log": [{"id": 1, "fecha": "2026-07-09T17:53:03.776398", "tipo": "memory_auto", "entradas": 15, "duplicados_skip": 0, "errores": null, "backup_path": "/home/vm-hermes/.hermes/memory-deep/backups/memory-BACKUP-20260709-175303.db"}], "skills": [{"name": "apple-notes", "description": "Manage Apple Notes via memo CLI: create, search, edit.", "category": "apple"}, {"name": "apple-reminders", "description": "Apple Reminders via remindctl: add, list, complete.", "category": "apple"}, {"name": "findmy", "description": "Track Apple devices/AirTags via FindMy.app on macOS.", "category": "apple"}, {"name": "imessage", "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.", "category": "apple"}, {"name": "claude-code", "description": "Delegate coding to Claude Code CLI (features, PRs).", "category": "autonomous-ai-agents"}, {"name": "codex", "description": "Delegate coding to OpenAI Codex CLI (features, PRs).", "category": "autonomous-ai-agents"}, {"name": "hermes-agent", "description": "Configure, extend, or contribute to Hermes Agent.", "category": "autonomous-ai-agents"}, {"name": "opencode", "description": "Delegate coding to OpenCode CLI (features, PR review).", "category": "autonomous-ai-agents"}, {"name": "computer-use", "description": "|", "category": "computer-use"}, {"name": "architecture-diagram", "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.", "category": "creative"}, {"name": "ascii-art", "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.", "category": "creative"}, {"name": "ascii-video", "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.", "category": "creative"}, {"name": "baoyu-infographic", "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).", "category": "creative"}, {"name": "claude-design", "description": "Design one-off HTML artifacts (landing, deck, prototype).", "category": "creative"}, {"name": "comfyui", "description": "Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter injection. Uses the official comfy-cli for lifecycle and direct REST/WebSocket API f", "category": "creative"}, {"name": "design-md", "description": "Author/validate/export Google's DESIGN.md token spec files.", "category": "creative"}, {"name": "excalidraw", "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).", "category": "creative"}, {"name": "humanizer", "description": "Humanize text: strip AI-isms and add real voice.", "category": "creative"}, {"name": "manim-video", "description": "Manim CE animations: 3Blue1Brown math/algo videos.", "category": "creative"}, {"name": "p5js", "description": "p5.js sketches: gen art, shaders, interactive, 3D.", "category": "creative"}, {"name": "popular-web-designs", "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.", "category": "creative"}, {"name": "pretext", "description": "Use when building creative browser demos with @chenglou/pretext — DOM-free text layout for ASCII art, typographic flow around obstacles, text-as-geometry games, kinetic typography, and text-powered ge", "category": "creative"}, {"name": "sketch", "description": "Throwaway HTML mockups: 2-3 design variants to compare.", "category": "creative"}, {"name": "songwriting-and-ai-music", "description": "Songwriting craft and Suno AI music prompts.", "category": "creative"}, {"name": "touchdesigner-mcp", "description": "Control a running TouchDesigner instance via twozero MCP — create operators, set parameters, wire connections, execute Python, build real-time visuals. 36 native tools.", "category": "creative"}, {"name": "jupyter-live-kernel", "description": "Iterative Python via live Jupyter kernel (hamelnb).", "category": "data-science"}, {"name": "actualizacion-espejo-241", "description": "Pipeline de actualizacion espejo 241 (192.168.0.241). MySQL espejo con replicacion automatica desde produccion (250). Topologia, sync, monitoreo y diferencias con staging 240.", "category": "devops"}, {"name": "actualizacion-staging-240", "description": "Pipeline diario de actualizacion staging (192.168.0.240 legado y 192.168.0.99 nuevo). Topologia, cronjobs, sync hibrido epem_temp -> epem, logs y monitoreo.", "category": "devops"}, {"name": "bitacora-240", "description": "Agente de bitacora para servidor 192.168.0.240 (srv-mysql2 / test-sistema). Registra todo lo realizado en cada sesion para referencia futura.", "category": "devops"}, {"name": "centralizar-logs-99", "description": "", "category": "devops"}, {"name": "deep-memory-system", "description": "Sistema de memoria profunda para Hermes: SQLite + FTS5 + VIP scoring + mistakes/outcomes + dashboard visual. Arquitectura, schema unificado, scripts CLI, crons, y deploy a Vercel.", "category": "devops"}, {"name": "espejo-241-ops-log", "description": "Operational record for Espejo 241: drift fix, monitoring, pipeline deprecation.", "category": "devops"}, {"name": "mysql-cross-server-comparison", "description": "Compare row counts, daily aggregates, and specific column values between two MySQL servers to detect data drift, missing replication windows, or sync issues.", "category": "devops"}, {"name": "mysql-replication-audit", "description": "Detect replication gaps between MySQL master and slave without stressing servers. Generates sync SQLs.", "category": "devops"}, {"name": "mysql-restore-pipelines", "description": ">", "category": "devops"}, {"name": "mysql-staging-restore", "description": "Restore completo de MySQL en staging 192.168.0.240. Pre-flight checks, collation fix + functional index removal (MySQL 8.0→5.7), restore, monitoreo, e incremental sync epem_temp → epem", "category": "devops"}, {"name": "ops-playbooks", "description": "AI-executable runbooks for staging/prod operations with IF/ELSE decision trees, phase-based logs, and Vault credential integration", "category": "devops"}, {"name": "qa-playbook-validation", "description": "Validacion automatica de playbooks bash antes de deploy. Detecta bugs silenciosos como captura de $? despues de asignacion, mysql_exec que oculta errores, y sleep sin retry loops.", "category": "devops"}, {"name": "server-diagnostics-hub", "description": "Patron de hub de diagnostico remoto: recolectar estado 360 (sistema, MySQL, logs, config) desde servidores via SSH, almacenar en snapshots timestamped, detectar incidencias automaticamente, limpiar po", "category": "devops"}, {"name": "staging-99-restore-guide", "description": "Guia completa en espanol no tecnico para el restore del Staging .99 (192.168.0.99). Incluye pasos para LLM y para usuario humano, playbooks con rollback, plan de contingencia, monitoreo por Telegram y", "category": "devops"}, {"name": "staging-99-restore-pipeline", "description": "Pipeline diario de restore de epem en Staging .99 (192.168.0.99) con lecciones aprendidas, troubleshooting y mejoras.", "category": "devops"}, {"name": "status-240", "description": "Resumen completo de servidores staging 192.168.0.240 y 192.168.0.99 cuando el usuario pide status", "category": "devops"}, {"name": "telegram-reportes-staging-99", "description": "Formato estandarizado de reportes operativos para Telegram del pipeline Staging .99. Define estructura visual, emojis, tablas Markdown y librerias Bash/Python reutilizables.", "category": "devops"}, {"name": "dogfood", "description": "Exploratory QA of web apps: find bugs, evidence, reports.", "category": "dogfood"}, {"name": "himalaya", "description": "Himalaya CLI: IMAP/SMTP email from terminal.", "category": "email"}, {"name": "codebase-inspection", "description": "Inspect codebases w/ pygount: LOC, languages, ratios.", "category": "github"}, {"name": "github-auth", "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.", "category": "github"}, {"name": "github-code-review", "description": "Review PRs: diffs, inline comments via gh or REST.", "category": "github"}, {"name": "github-issues", "description": "Create, triage, label, assign GitHub issues via gh or REST.", "category": "github"}, {"name": "github-pr-workflow", "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.", "category": "github"}, {"name": "github-repo-management", "description": "Clone/create/fork repos; manage remotes, releases.", "category": "github"}, {"name": "gif-search", "description": "Search/download GIFs from Tenor via curl + jq.", "category": "media"}, {"name": "heartmula", "description": "HeartMuLa: Suno-like song generation from lyrics + tags.", "category": "media"}, {"name": "songsee", "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.", "category": "media"}, {"name": "youtube-content", "description": "YouTube transcripts to summaries, threads, blogs.", "category": "media"}, {"name": "huggingface-hub", "description": "HuggingFace hf CLI: search/download/upload models, datasets.", "category": "mlops"}, {"name": "obsidian", "description": "Read, search, create, and edit notes in the Obsidian vault.", "category": "note-taking"}, {"name": "airtable", "description": "Airtable REST API via curl. Records CRUD, filters, upserts.", "category": "productivity"}, {"name": "google-workspace", "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.", "category": "productivity"}, {"name": "index-system", "description": "Sistema de indices tematicos para organizar conocimiento del agente en estantes con INDEX.md jerarquico.", "category": "productivity"}, {"name": "maps", "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.", "category": "productivity"}, {"name": "nano-pdf", "description": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).", "category": "productivity"}, {"name": "notion", "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.", "category": "productivity"}, {"name": "ocr-and-documents", "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).", "category": "productivity"}, {"name": "petdex", "description": "Install and select animated petdex mascots for Hermes.", "category": "productivity"}, {"name": "powerpoint", "description": "Create, read, edit .pptx decks, slides, notes, templates.", "category": "productivity"}, {"name": "teams-meeting-pipeline", "description": "Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscriptions.", "category": "productivity"}, {"name": "arxiv", "description": "Search arXiv papers by keyword, author, category, or ID.", "category": "research"}, {"name": "blogwatcher", "description": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.", "category": "research"}, {"name": "llm-wiki", "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.", "category": "research"}, {"name": "polymarket", "description": "Query Polymarket: markets, prices, orderbooks, history.", "category": "research"}, {"name": "research-paper-writing", "description": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.", "category": "research"}, {"name": "openhue", "description": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.", "category": "smart-home"}, {"name": "xurl", "description": "X/Twitter via xurl CLI: post, search, DM, media, v2 API.", "category": "social-media"}, {"name": "hermes-agent-skill-authoring", "description": "Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles.", "category": "software-development"}, {"name": "node-inspect-debugger", "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.", "category": "software-development"}, {"name": "plan", "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution. Bite-sized tasks, exact paths, complete code.", "category": "software-development"}, {"name": "python-debugpy", "description": "Debug Python: pdb REPL + debugpy remote (DAP).", "category": "software-development"}, {"name": "requesting-code-review", "description": "Pre-commit review: security scan, quality gates, auto-fix.", "category": "software-development"}, {"name": "simplify-code", "description": "Parallel 3-agent cleanup of recent code changes.", "category": "software-development"}, {"name": "spike", "description": "Throwaway experiments to validate an idea before build.", "category": "software-development"}, {"name": "systematic-debugging", "description": "4-phase root cause debugging: understand bugs before fixing.", "category": "software-development"}, {"name": "test-driven-development", "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.", "category": "software-development"}, {"name": "vault", "description": "Patron de agente de gestion segura de credenciales con matriz de permisos, auditoria, auto-deteccion y redaccion automatica. Aplicable a cualquier sistema multi-agente que necesite centralizar secreto", "category": "vault"}, {"name": "yuanbao", "description": "Yuanbao (元宝) groups: @mention users, query info/members.", "category": "yuanbao"}], "stats": {"total_entries": 17, "total_relationships": 0, "total_tags": 64, "total_mistakes": 1, "total_outcomes": 1, "total_procedures": 1, "vip_avg": 17.176470588235293, "outcomes_success": 1, "outcomes_failure": 0, "outcomes_pending": 0}};
+    // === Red Neural con D3.js ===
+    const svg = d3.select("#grafo");
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    svg.attr("viewBox", [0, 0, width, height]);
+
+    // Tooltip
+    const tooltip = d3.select("#tooltip");
+
+    // Construir nodos desde entries
+    const nodes = DATA.entries.map(e => ({
+        id: e.id,
+        title: e.title,
+        category: e.category,
+        vip: e.vip_score,
+        importance: e.importance,
+        type: "memoria",
+        tags: e.tags
+    }));
+
+    // Agregar mistakes como nodos
+    DATA.mistakes.forEach(m => {
+        nodes.push({
+            id: "M" + m.id,
+            title: (m.description || "").slice(0, 60),
+            category: m.mistake_type,
+            vip: 5,
+            importance: 8,
+            type: "mistake",
+            tags: ""
+        });
+    });
+
+    // Agregar outcomes como nodos
+    DATA.outcomes.forEach(o => {
+        nodes.push({
+            id: "O" + o.id,
+            title: (o.action_summary || "").slice(0, 60),
+            category: o.outcome_status,
+            vip: 3,
+            importance: 5,
+            type: "outcome",
+            tags: ""
+        });
+    });
+
+    // Agregar skills como nodos
+    DATA.skills.forEach(s => {
+        nodes.push({
+            id: "S" + s.name,
+            title: s.name,
+            category: s.category,
+            vip: 2,
+            importance: 3,
+            type: "skill",
+            tags: ""
+        });
+    });
+
+    // Construir links desde relationships
+    const links = DATA.relationships.map(r => ({
+        source: r.source,
+        target: r.target,
+        strength: r.strength
+    }));
+
+    // Agregar links por tags compartidos
+    const tagMap = {};
+    DATA.entries.forEach(e => {
+        if (e.tags) {
+            e.tags.split(",").forEach(tag => {
+                tag = tag.trim().toLowerCase();
+                if (!tag) return;
+                if (!tagMap[tag]) tagMap[tag] = [];
+                tagMap[tag].push(e.id);
+            });
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a0f 60%);
-            color: var(--catedral-pergamino);
-            font-family: 'Georgia', 'Times New Roman', serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+    });
+    Object.values(tagMap).forEach(ids => {
+        for (let i = 0; i < ids.length; i++) {
+            for (let j = i + 1; j < ids.length; j++) {
+                if (!links.find(l => (l.source === ids[i] && l.target === ids[j]) || (l.source === ids[j] && l.target === ids[i]))) {
+                    links.push({ source: ids[i], target: ids[j], strength: 0.5 });
+                }
+            }
         }
-        .vitrales {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .vitrales::before, .vitrales::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 100vh;
-            top: 0;
-            background: linear-gradient(180deg,
-                transparent 0%,
-                rgba(139,0,0,0.08) 20%,
-                rgba(26,26,110,0.08) 40%,
-                rgba(13,77,13,0.08) 60%,
-                rgba(139,0,0,0.08) 80%,
-                transparent 100%);
-            filter: blur(40px);
-        }
-        .vitrales::before { left: -100px; }
-        .vitrales::after { right: -100px; }
-        .container {
-            z-index: 1;
-            text-align: center;
-            max-width: 600px;
-            padding: 2rem;
-        }
-        .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 2rem;
-            border: 3px solid var(--catedral-oro);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            background: radial-gradient(circle, #1a1a2e 0%, #0a0a0f 100%);
-            box-shadow: 0 0 30px rgba(212,175,55,0.3), inset 0 0 20px rgba(212,175,55,0.1);
-            animation: glowPulse 3s ease-in-out infinite;
-        }
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(212,175,55,0.3), inset 0 0 20px rgba(212,175,55,0.1); }
-            50% { box-shadow: 0 0 50px rgba(255,215,0,0.5), inset 0 0 30px rgba(212,175,55,0.2); }
-        }
-        h1 {
-            font-family: 'Georgia', serif;
-            font-size: 2.5rem;
-            color: var(--catedral-oro);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 20px rgba(212,175,55,0.4);
-        }
-        h2 {
-            font-size: 1.1rem;
-            color: var(--catedral-oro-tenue);
-            font-weight: normal;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-        }
-        .status {
-            background: var(--catedral-negro);
-            border: 1px solid var(--catedral-oro-tenue);
-            border-radius: 8px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        .status h3 {
-            color: var(--catedral-oro);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-        .status-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .status-table td {
-            padding: 8px 12px;
-            border-bottom: 1px solid rgba(212,175,55,0.1);
-            font-size: 0.9rem;
-        }
-        .status-table td:first-child {
-            color: var(--catedral-oro-tenue);
-            text-align: left;
-        }
-        .status-table td:last-child {
-            color: var(--catedral-pergamino);
-            text-align: right;
-        }
-        .status-badge {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            background: rgba(13,77,13,0.3);
-            border: 1px solid #0d4d0d;
-            color: #4caf50;
-        }
-        .sparkle {
-            position: fixed;
-            width: 3px;
-            height: 3px;
-            background: var(--catedral-oro-brillante);
-            border-radius: 50%;
-            opacity: 0;
-            z-index: 0;
-            animation: floatUp 8s linear infinite;
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.4; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
-        .footer {
-            margin-top: 3rem;
-            font-size: 0.8rem;
-            color: var(--catedral-oro-tenue);
-            opacity: 0.5;
-        }
-    </style>
-</head>
-<body>
-    <div class="vitrales"></div>
-    <div id="sparkles"></div>
-    <div class="container">
-        <div class="logo">&#9961;</div>
-        <h1>La Catedral</h1>
-        <h2>Red Neural de Memoria</h2>
-        <div class="status">
-            <h3>Estado del Sistema</h3>
-            <table class="status-table">
-                <tr><td>Sistema</td><td>Hermes Deep Memory v1.0</td></tr>
-                <tr><td>Estado</td><td><span class="status-badge">Inicializando</span></td></tr>
-                <tr><td>Motor de memoria</td><td>En construccion</td></tr>
-                <tr><td>Dashboard visual</td><td>Pendiente</td></tr>
-                <tr><td>Deploy</td><td>Vercel + GitHub</td></tr>
-                <tr><td>Ultima actualizacion</td><td>2026-07-09</td></tr>
-            </table>
-        </div>
-        <div class="footer">
-            La Catedral &middot; Grupo EPEM &middot; Hermes Agent
-        </div>
-    </div>
-    <script>
-        // Generar particulas doradas
-        const sparkles = document.getElementById('sparkles');
-        for (let i = 0; i < 20; i++) {
-            const s = document.createElement('div');
-            s.className = 'sparkle';
-            s.style.left = Math.random() * 100 + 'vw';
-            s.style.animationDelay = Math.random() * 8 + 's';
-            s.style.animationDuration = (6 + Math.random() * 4) + 's';
-            sparkles.appendChild(s);
-        }
-    </script>
-</body>
-</html>
+    });
+
+    // Color por tipo
+    const colorMap = {
+        memoria: "#d4af37",
+        mistake: "#8b0000",
+        outcome: "#2e7d32",
+        skill: "#00bcd4",
+        procedure: "#7b1fa2"
+    };
+
+    // Radio del nodo proporcional a VIP
+    const radius = d => Math.max(4, Math.sqrt(d.vip || 1) * 2.5);
+
+    // Force simulation
+    const simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(d => 80 + (1 - d.strength) * 60))
+        .force("charge", d3.forceManyBody().strength(-120))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius(d => radius(d) + 4));
+
+    // Links
+    const link = svg.append("g")
+        .selectAll("line")
+        .data(links)
+        .join("line")
+        .attr("stroke", "rgba(212,175,55,0.15)")
+        .attr("stroke-width", d => Math.max(0.5, d.strength * 2))
+        .attr("stroke-opacity", 0.6);
+
+    // Nodes
+    const node = svg.append("g")
+        .selectAll("circle")
+        .data(nodes)
+        .join("circle")
+        .attr("r", radius)
+        .attr("fill", d => colorMap[d.type] || "#666")
+        .attr("stroke", "rgba(255,255,255,0.2)")
+        .attr("stroke-width", 1)
+        .style("cursor", "pointer")
+        .on("mouseover", function(event, d) {
+            d3.select(this).attr("stroke", "#ffd700").attr("stroke-width", 3).attr("r", radius(d) * 1.5);
+            tooltip.style("opacity", 1)
+                .html(`<b>${d.title}</b><br/>Tipo: ${d.type}<br/>VIP: ${d.vip}<br/>Categoria: ${d.category}<br/>Tags: ${d.tags || "sin tags"}`)
+                .style("left", (event.pageX + 12) + "px")
+                .style("top", (event.pageY + 12) + "px");
+        })
+        .on("mouseout", function(event, d) {
+            d3.select(this).attr("stroke", "rgba(255,255,255,0.2)").attr("stroke-width", 1).attr("r", radius(d));
+            tooltip.style("opacity", 0);
+        })
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+
+    // Labels (solo para nodos grandes)
+    const label = svg.append("g")
+        .selectAll("text")
+        .data(nodes.filter(n => n.vip >= 8))
+        .join("text")
+        .text(d => d.title.slice(0, 25))
+        .attr("font-size", "9px")
+        .attr("fill", "rgba(243,229,171,0.6)")
+        .attr("text-anchor", "middle")
+        .attr("pointer-events", "none");
+
+    // Tick
+    simulation.on("tick", () => {
+        link.attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y);
+        node.attr("cx", d => d.x)
+            .attr("cy", d => d.y);
+        label.attr("x", d => d.x)
+            .attr("y", d => d.y - radius(d) - 4);
+    });
+
+    function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+    }
+    function dragged(event, d) {
+        d.fx = event.x; d.fy = event.y;
+    }
+    function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null; d.fy = null;
+    }
+
+    // Search
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", function() {
+        const q = this.value.toLowerCase();
+        node.attr("opacity", d => d.title.toLowerCase().includes(q) || (d.tags || "").toLowerCase().includes(q) ? 1 : 0.15);
+        link.attr("opacity", 0.15);
+    });
+    </script></body></html>
