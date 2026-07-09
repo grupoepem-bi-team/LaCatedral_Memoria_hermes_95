@@ -1,166 +1,395 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>La Catedral - Red Neural</title><script src="https://d3js.org/d3.v7.min.js"></script><style>:root{--bg:#0a0a0f;--bg2:#12121a;--oro:#d4af37;--oro-br:#ffd700;--oro-ten:#b8860b;--pergamino:#f3e5ab;--gris:#2a2a35;--rojo:#c62828;--verde:#2e7d32;--azul:#1565c0;--morado:#6a1b9a;--cyan:#00838f;--srv-250:#d4af37;--srv-241:#7b1fa2;--srv-240:#1565c0;--srv-99:#00838f;--srv-50:#c62828;--srv-43:#ef6c00;}*{margin:0;padding:0;box-sizing:border-box}html,body{width:100vw;height:100vh;overflow:hidden;margin:0;padding:0}body{background:radial-gradient(ellipse at top,#1a1a2e 0%,#0a0a0f 70%);color:var(--pergamino);font-family:Georgia,serif}#grafo{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0}.topbar{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(10,10,15,0.92);border-bottom:1px solid var(--oro-ten);display:flex;align-items:center;padding:0 20px;z-index:20;backdrop-filter:blur(8px)}.topbar h1{font-size:1.1rem;color:var(--oro);letter-spacing:3px;text-transform:uppercase}.topbar .sub{font-size:0.7rem;color:var(--oro-ten);margin-left:8px;letter-spacing:1px}.topbar .search{margin-left:auto;margin-right:12px}.topbar .search input{background:rgba(18,18,26,0.9);border:1px solid var(--oro-ten);color:var(--pergamino);padding:6px 12px;border-radius:4px;font-size:0.8rem;width:240px}.topbar .search input:focus{outline:none;border-color:var(--oro)}.topbar .btn{background:rgba(18,18,26,0.9);border:1px solid var(--oro-ten);color:var(--oro);padding:6px 14px;border-radius:4px;font-size:0.75rem;cursor:pointer;font-family:Georgia,serif;letter-spacing:1px}.topbar .btn:hover{background:rgba(212,175,55,0.15)}.panel{position:fixed;top:56px;right:0;width:300px;height:calc(100vh - 56px);background:rgba(10,10,15,0.92);border-left:1px solid var(--oro-ten);overflow-y:auto;z-index:15;backdrop-filter:blur(8px);transition:transform 0.3s}.panel.hidden{transform:translateX(300px)}.panel-section{padding:14px 16px;border-bottom:1px solid rgba(212,175,55,0.08)}.panel-section h3{font-size:0.7rem;color:var(--oro);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}.stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}.stat-card{background:rgba(42,42,53,0.4);border:1px solid rgba(212,175,55,0.12);border-radius:4px;padding:8px 4px;text-align:center}.stat-card .val{font-size:1.3rem;color:var(--oro-br);font-weight:bold}.stat-card .lbl{font-size:0.55rem;color:var(--oro-ten);text-transform:uppercase;letter-spacing:0.5px}.srv-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:0.75rem;cursor:pointer}.srv-row:hover{color:var(--oro-br)}.srv-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}.srv-name{flex:1}.srv-count{color:var(--oro-ten);font-size:0.7rem}.entry-row{padding:5px 0;border-bottom:1px solid rgba(212,175,55,0.06);font-size:0.72rem;cursor:pointer}.entry-row:hover{background:rgba(212,175,55,0.06)}.entry-row .vip{color:var(--oro-br);font-weight:bold;float:right;font-size:0.65rem}.entry-row .cat{color:var(--oro-ten);font-size:0.6rem}.mistake-row{padding:5px 8px;border-left:3px solid var(--rojo);margin-bottom:4px;font-size:0.7rem;background:rgba(198,40,40,0.08);border-radius:0 4px 4px 0}.outcome-row{padding:5px 8px;border-left:3px solid var(--verde);margin-bottom:4px;font-size:0.7rem;background:rgba(46,125,50,0.08);border-radius:0 4px 4px 0}.outcome-row.fail{border-color:var(--rojo);background:rgba(198,40,40,0.08)}.outcome-row.pending{border-color:var(--oro);background:rgba(212,175,55,0.08)}.tag-cloud{display:flex;flex-wrap:wrap;gap:4px}.tag-pill{padding:2px 7px;border-radius:10px;font-size:0.65rem;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);color:var(--pergamino)}.tooltip{position:fixed;padding:10px 14px;background:rgba(10,10,15,0.96);border:1px solid var(--oro);border-radius:6px;font-size:0.72rem;color:var(--pergamino);max-width:320px;z-index:100;pointer-events:none;opacity:0;transition:opacity 0.15s}.tooltip h4{color:var(--oro-br);margin-bottom:4px;font-size:0.8rem}.tooltip .meta{color:var(--oro-ten);font-size:0.65rem;margin-bottom:4px}.tooltip .body{color:var(--pergamino);font-size:0.7rem;line-height:1.4}.legend{position:fixed;bottom:16px;left:16px;display:flex;gap:14px;z-index:10;background:rgba(10,10,15,0.8);padding:6px 12px;border-radius:6px;border:1px solid var(--oro-ten)}.legend-item{display:flex;align-items:center;gap:5px;font-size:0.65rem;color:var(--pergamino)}.legend-dot{width:10px;height:10px;border-radius:50%}.node-label{font-size:10px;fill:var(--pergamino);pointer-events:none;text-anchor:middle;text-shadow:0 1px 3px rgba(0,0,0,0.9),0 0 6px rgba(0,0,0,0.7)}.srv-label{font-size:13px;fill:var(--oro-br);pointer-events:none;text-anchor:middle;font-weight:bold;text-shadow:0 1px 4px rgba(0,0,0,0.9),0 0 8px rgba(0,0,0,0.8)}</style></head><body><svg id="grafo"></svg><div class="topbar"><h1>La Catedral</h1><span class="sub">Red Neural de Memoria</span><div class="search"><input type="text" id="searchInput" placeholder="Buscar..." /></div><button class="btn" id="togglePanel">Panel</button></div><div class="panel" id="panel"><div class="panel-section"><h3>Estado</h3><div class="stat-grid"><div class="stat-card"><div class="val">17</div><div class="lbl">Memorias</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Errores</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Outcomes</div></div><div class="stat-card"><div class="val">0</div><div class="lbl">Conex.</div></div><div class="stat-card"><div class="val">64</div><div class="lbl">Tags</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Procs.</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">OK</div></div><div class="stat-card"><div class="val">0</div><div class="lbl">Fail</div></div><div class="stat-card"><div class="val">17.2</div><div class="lbl">VIP avg</div></div></div></div><div class="panel-section"><h3>Servidores</h3><div class="srv-row"><div class="srv-dot" style="background:#00838f"></div><span class="srv-name">Staging .99</span><span class="srv-count">6</span></div><div class="srv-row"><div class="srv-dot" style="background:#666"></div><span class="srv-name">General</span><span class="srv-count">5</span></div><div class="srv-row"><div class="srv-dot" style="background:#d4af37"></div><span class="srv-name">Prod .250</span><span class="srv-count">4</span></div><div class="srv-row"><div class="srv-dot" style="background:#7b1fa2"></div><span class="srv-name">Espejo .241</span><span class="srv-count">2</span></div></div><div class="panel-section"><h3>Top Memorias</h3><div class="entry-row" onclick="focusNode(1)"><span class="vip">VIP 21</span><span class="cat">prod-250/mysql</span><br>El espejo 241 tiene replica MySQL nativa desde 250</div><div class="entry-row" onclick="focusNode(11)"><span class="vip">VIP 18</span><span class="cat">general/mysql</span><br>MySQL commands: SINGLE LINE, `;` terminator, no li</div><div class="entry-row" onclick="focusNode(12)"><span class="vip">VIP 18</span><span class="cat">general/cron</span><br>LEY ABSOLUTA: Cero cambios sin permiso explicito d</div><div class="entry-row" onclick="focusNode(13)"><span class="vip">VIP 18</span><span class="cat">staging-99/pipeline</span><br>User uses 'memoria' to mean DISK SPACE, never RAM.</div><div class="entry-row" onclick="focusNode(14)"><span class="vip">VIP 18</span><span class="cat">general/pipeline</span><br>User expects automated QA (qa-playbook-shell.sh) o</div><div class="entry-row" onclick="focusNode(15)"><span class="vip">VIP 18</span><span class="cat">prod-250/validation</span><br>User tests new operational patterns on .99 ('conej</div><div class="entry-row" onclick="focusNode(16)"><span class="vip">VIP 18</span><span class="cat">staging-99/telegram</span><br>Emmanuel V. Vault update on credential share. Bot </div><div class="entry-row" onclick="focusNode(17)"><span class="vip">VIP 18</span><span class="cat">staging-99/pipeline</span><br>Report titles CLEAN: emoji [#n] Service | YYYY-MM-</div></div><div class="panel-section"><h3>Errores Aprendidos</h3><div class="mistake-row">Asumi que staging .99 tenia datos completos pero tiene 32M vs 156M del espejo</div></div><div class="panel-section"><h3>Outcomes</h3><div class="outcome-row ">Corregido bache 24/06 con 871 UPDATEs al espejo 241</div></div><div class="panel-section"><h3>Tags</h3><div class="tag-cloud"><span class="tag-pill">backup (6)</span><span class="tag-pill">staging (6)</span><span class="tag-pill">espejo-241 (5)</span><span class="tag-pill">bache (4)</span><span class="tag-pill">mysql (4)</span><span class="tag-pill">produccion (4)</span><span class="tag-pill">cron (4)</span><span class="tag-pill">vault (4)</span><span class="tag-pill">all (4)</span><span class="tag-pill">contract_fees (3)</span><span class="tag-pill">telegram (3)</span><span class="tag-pill">epem (3)</span><span class="tag-pill">pipeline (3)</span><span class="tag-pill">replica (2)</span><span class="tag-pill">api (2)</span><span class="tag-pill">monitor (2)</span><span class="tag-pill">cause (1)</span><span class="tag-pill">root (1)</span><span class="tag-pill">sql_log_bin (1)</span><span class="tag-pill">bot (1)</span><span class="tag-pill">bloqueado (1)</span><span class="tag-pill">cli (1)</span><span class="tag-pill">explicit (1)</span><span class="tag-pill">rdp (1)</span><span class="tag-pill">remoto (1)</span></div></div></div><div class="legend"><div class="legend-item"><div class="legend-dot" style="background:#d4af37"></div>Memoria</div><div class="legend-item"><div class="legend-dot" style="background:#c62828"></div>Error</div><div class="legend-item"><div class="legend-dot" style="background:#2e7d32"></div>Outcome</div><div class="legend-item"><div class="legend-dot" style="background:#fff;border:2px solid #d4af37"></div>Servidor</div></div><div class="tooltip" id="tooltip"></div><script>const DATA = {"meta": {"generated_at": "2026-07-09T18:18:54.006849", "db_path": "/home/vm-hermes/.hermes/memory-deep/db/memory.db", "agent_name": "Hermes", "system": "La Catedral"}, "entries": [{"id": 1, "category": "prod-250/mysql", "parent": "prod-250", "subtema": "mysql", "tags": "auditoria,bache,backup-50,cause,espejo-241,mysql,prod-250,replica,root,sql_log_bin", "content": "El espejo 241 tiene replica MySQL nativa desde 250 con lag=0s. ROOT CAUSE de baches: production batch jobs usan sql_log_bin=0", "title": "El espejo 241 tiene replica MySQL nativa desde 250 con lag=0s. ROOT CAUSE de bac", "importance": 8, "source": "user_stated_confirmed", "created_at": "2026-07-09T17:52:53.819484", "access_count": 1, "vip_score": 21}, {"id": 11, "category": "general/mysql", "parent": "general", "subtema": "mysql", "tags": "line,mysql,single", "content": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.", "title": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 12, "category": "general/cron", "parent": "general", "subtema": "cron", "tags": "absoluta,config,cron,ley,security,todo", "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presentar, esperar 'si'/'dale'/'autorizado'. Silencio != aprobacion. Aplica a TODO: scripts, configs, crons, deploys, UPDATEs, INSERTs, scp, rm. Sin excepciones.", "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presenta", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 13, "category": "staging-99/pipeline", "parent": "staging-99", "subtema": "pipeline", "tags": "auto-run,disk,pipeline,ram,space,staging-99", "content": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authorized at 21:00.", "title": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authori", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 14, "category": "general/pipeline", "parent": "general", "subtema": "pipeline", "tags": "all,pipeline,qa-playbook-shell,validation", "content": "User expects automated QA (qa-playbook-shell.sh) on ALL pipeline scripts before trusting them. Zero FAILs required. User was very upset about typo bugs: 'Es inadmisible que tengamos estos errores'.", "title": "User expects automated QA (qa-playbook-shell.sh) on ALL pipeline scripts before ", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 15, "category": "prod-250/validation", "parent": "prod-250", "subtema": "validation", "tags": "backup-50,espejo-241,prod-250,staging-99,validation", "content": "User tests new operational patterns on .99 ('conejo de indias') before rolling to .250 and .241.", "title": "User tests new operational patterns on .99 ('conejo de indias') before rolling t", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 16, "category": "staging-99/telegram", "parent": "staging-99", "subtema": "telegram", "tags": "all,auditoria,monitor,staging-99,telegram,vault", "content": "Emmanuel V. Vault update on credential share. Bot @Staging99Bot. Private: 8846593692. Group 'svr - monitor': -1003771914699. ALL reports to group, not just private.", "title": "Emmanuel V. Vault update on credential share. Bot @Staging99Bot. Private: 884659", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 17, "category": "staging-99/pipeline", "parent": "staging-99", "subtema": "pipeline", "tags": "all,and,api,auditoria,clean,examples,html,max,monitor,monitor-restore,only,pipeline", "content": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO metrics/parens/jargon in title. Detail in table | Métrica | Valor | MAX detail. Summary | Sistema | Estado | Detalle |. NO bullets. EXAMPLES before approving. ALL reports to group AND private. Tablas nativas grupo: `sendRichMessage` Bot API 10.1 (monitor-restore-99-v5.py). NO sendMessage Markdown. NO HTML pre monospace (RECHAZADO). Persist on native rendering.", "title": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO met", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 2, "category": "staging-99/telegram", "parent": "staging-99", "subtema": "telegram", "tags": "api,auditoria,monitor,staging-99,svr-monitor,telegram", "content": "Telegram bot @Staging99Bot envia reportes al grupo svr-monitor. Tablas nativas con sendRichMessage Bot API 10.1", "title": "Telegram bot @Staging99Bot envia reportes al grupo svr-monitor. Tablas nativas c", "importance": 7, "source": "confirmed", "created_at": "2026-07-09T17:52:53.888046", "access_count": 0, "vip_score": 17}, {"id": 3, "category": "prod-250/backup", "parent": "prod-250", "subtema": "backup", "tags": "backup,backup-50,bloqueado,cli,espejo-241,explicit,prod-250,rdp-43,remoto,security,staging-240,sudo", "content": "User: espanol, CLI real. Servers: 43, 250, 241, 240, backup(.50). SUDO REMOTO BLOQUEADO. Destructive ops require EXPLICIT OK.", "title": "User: espanol, CLI real. Servers: 43, 250, 241, 240, backup(.50). SUDO REMOTO BL", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 4, "category": "general/general", "parent": "general", "subtema": "general", "tags": "analyze,analyze-first,first", "content": "User wants ANALYZE-FIRST before action. Said 'vamos a hacer todas las averiguaciones y analisis antes de tomar una decision'. Present findings, wait explicit authorization.", "title": "User wants ANALYZE-FIRST before action. Said 'vamos a hacer todas las averiguaci", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 5, "category": "staging-99/mysql", "parent": "staging-99", "subtema": "mysql", "tags": "backup,backup-50,mysql,not,pipeline,replica,restore,staging-99,zip", "content": "Staging .99: Ubuntu 26.04, MySQL 8.4.10. Pipeline restores epem from ZIP .50 at 21:00. NOT authoritative for July 2026+ (backup lag).", "title": "Staging .99: Ubuntu 26.04, MySQL 8.4.10. Pipeline restores epem from ZIP .50 at ", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 6, "category": "prod-250/mysql", "parent": "prod-250", "subtema": "mysql", "tags": "auditoria,bache,backup-50,contract_fees,corrected,cron,espejo-241,fully,mysql,prod-250,replica,sql_log_bin", "content": "Espejo (241): MySQL native replica from 250 (lag=0s). Baches por sql_log_bin=0. Jun 2026 FULLY CORRECTED 09/07: 1,087 UPDATEs total. Diff final +2 (normal). Cron nativo 241 daily 09:00 Telegram. Rastrillaje: solo contract_fees tiene baches reales.", "title": "Espejo (241): MySQL native replica from 250 (lag=0s). Baches por sql_log_bin=0. ", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 7, "category": "staging-99/vault", "parent": "staging-99", "subtema": "vault", "tags": "antes,count,json,monitor,staging-99,validation,vault", "content": "User exige revisar scripts por errores comunes (COUNT vs COUNT(*), escapes JSON, token ***, errores silenciosos curl>/dev/null) ANTES de deploy. Leccion .99: notificaciones erronas por bugs de script. Siempre validar con prueba real. scp requiere autorizacion explicita.", "title": "User exige revisar scripts por errores comunes (COUNT vs COUNT(*), escapes JSON,", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 8, "category": "espejo-241/mysql", "parent": "espejo-241", "subtema": "mysql", "tags": "admin-epem,all,api,auditoria,bache,backup,backup-50,chat_id,config,contract_fees,cron,detector_datos_desactualizados_espejo", "content": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens). Detail in table. ALL reports via `sendRichMessage` Bot API 10.1 (POST {chat_id:-1003771914699, rich_message:{markdown:raw}}). NO pipes, NO HTML pre, NO sendMessage, NO \n→\n\n normalization. Token: Hermes→/proc/$(pgrep -f \"gateway run\")/environ; .99→/home/admin-epem/.tg_token. .99 MySQL: SSH only (contract_fees ~25s/query, timeout=45s). Scripts: monitor-restore-99-v5.py, verificar-backup-50.sh, detector_datos_desactu", "title": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 9, "category": "espejo-241/telegram", "parent": "espejo-241", "subtema": "telegram", "tags": "config,espejo-241,staging-99,telegram,vault", "content": "Bot token real guardado en vault Hermes + .99 + .241 (chmod 600). Antes enmascarado ***.", "title": "Bot token real guardado en vault Hermes + .99 + .241 (chmod 600). Antes enmascar", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 10, "category": "general/pipeline", "parent": "general", "subtema": "pipeline", "tags": "auto-deploy,catedral,config,deep-memory-system,disk,grupoepem-bi-team,memory-deep,pipeline,telegram,vault,wal", "content": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_hermes_95, Vercel auto-deploy. DB ~/.hermes/memory-deep/db/memory.db (10 tablas WAL+FTS5). Skill deep-memory-system. Fase 1 motor pendiente. Token GitHub pendiente rotar.", "title": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}], "relationships": [], "tags": [{"name": "backup", "count": 6}, {"name": "staging", "count": 6}, {"name": "espejo-241", "count": 5}, {"name": "bache", "count": 4}, {"name": "mysql", "count": 4}, {"name": "produccion", "count": 4}, {"name": "cron", "count": 4}, {"name": "vault", "count": 4}, {"name": "all", "count": 4}, {"name": "contract_fees", "count": 3}, {"name": "telegram", "count": 3}, {"name": "epem", "count": 3}, {"name": "pipeline", "count": 3}, {"name": "replica", "count": 2}, {"name": "api", "count": 2}, {"name": "monitor", "count": 2}, {"name": "cause", "count": 1}, {"name": "root", "count": 1}, {"name": "sql_log_bin", "count": 1}, {"name": "bot", "count": 1}, {"name": "bloqueado", "count": 1}, {"name": "cli", "count": 1}, {"name": "explicit", "count": 1}, {"name": "rdp", "count": 1}, {"name": "remoto", "count": 1}, {"name": "sudo", "count": 1}, {"name": "analyze", "count": 1}, {"name": "analyze-first", "count": 1}, {"name": "first", "count": 1}, {"name": "not", "count": 1}, {"name": "restore", "count": 1}, {"name": "zip", "count": 1}, {"name": "corrected", "count": 1}, {"name": "fully", "count": 1}, {"name": "antes", "count": 1}, {"name": "count", "count": 1}, {"name": "json", "count": 1}, {"name": "admin-epem", "count": 1}, {"name": "chat_id", "count": 1}, {"name": "detector_datos_desactualizados_espejo", "count": 1}, {"name": "auto-deploy", "count": 1}, {"name": "deep-memory-system", "count": 1}, {"name": "grupoepem-bi-team", "count": 1}, {"name": "memory-deep", "count": 1}, {"name": "wal", "count": 1}, {"name": "line", "count": 1}, {"name": "single", "count": 1}, {"name": "absoluta", "count": 1}, {"name": "config", "count": 1}, {"name": "ley", "count": 1}], "grafo_hist": [{"fecha": "2026-07-09", "nodos": 17, "aristas": 0, "densidad": 0.0}], "mistakes": [{"id": 1, "entry_id": 1, "mistake_type": "wrong_assumption", "description": "Asumi que staging .99 tenia datos completos pero tiene 32M vs 156M del espejo", "user_reaction": "Usuario corrigio: staging no es copia completa", "correction": "Usar espejo como autoritativo para datos recientes", "created_at": "2026-07-09T17:52:54.088402", "access_count": 0}], "outcomes": [{"id": 1, "entry_id": 1, "action_summary": "Corregido bache 24/06 con 871 UPDATEs al espejo 241", "outcome_status": "success", "user_verdict": "Usuario aprobo", "next_action": "Monitorear proximos baches", "session_id": null, "created_at": "2026-07-09T17:52:54.130101", "closed_at": "2026-07-09T17:52:54.130101"}], "procedures": [{"id": 1, "skill_name": "nightly_sync", "procedure_name": "volcar", "version": "1.0.0", "content": "1. Backup DB 2. Integrity check 3. Leer MEMORY.md 4. Insertar entries 5. Recalcular VIP 6. OPTIMIZE FTS5", "tags": "cron,backup,nightly", "last_tested": "2026-07-09T17:52:54.175249", "test_result": "ok", "status": "active"}], "sync_log": [{"id": 1, "fecha": "2026-07-09T17:53:03.776398", "tipo": "memory_auto", "entradas": 15, "duplicados_skip": 0, "errores": null, "backup_path": "/home/vm-hermes/.hermes/memory-deep/backups/memory-BACKUP-20260709-175303.db"}], "skills": [{"name": "apple-notes", "description": "Manage Apple Notes via memo CLI: create, search, edit.", "category": "apple"}, {"name": "apple-reminders", "description": "Apple Reminders via remindctl: add, list, complete.", "category": "apple"}, {"name": "findmy", "description": "Track Apple devices/AirTags via FindMy.app on macOS.", "category": "apple"}, {"name": "imessage", "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.", "category": "apple"}, {"name": "claude-code", "description": "Delegate coding to Claude Code CLI (features, PRs).", "category": "autonomous-ai-agents"}, {"name": "codex", "description": "Delegate coding to OpenAI Codex CLI (features, PRs).", "category": "autonomous-ai-agents"}, {"name": "hermes-agent", "description": "Configure, extend, or contribute to Hermes Agent.", "category": "autonomous-ai-agents"}, {"name": "opencode", "description": "Delegate coding to OpenCode CLI (features, PR review).", "category": "autonomous-ai-agents"}, {"name": "computer-use", "description": "|", "category": "computer-use"}, {"name": "architecture-diagram", "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.", "category": "creative"}, {"name": "ascii-art", "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.", "category": "creative"}, {"name": "ascii-video", "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.", "category": "creative"}, {"name": "baoyu-infographic", "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).", "category": "creative"}, {"name": "claude-design", "description": "Design one-off HTML artifacts (landing, deck, prototype).", "category": "creative"}, {"name": "comfyui", "description": "Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter injection. Uses the official comfy-cli for lifecycle and direct REST/WebSocket API f", "category": "creative"}, {"name": "design-md", "description": "Author/validate/export Google's DESIGN.md token spec files.", "category": "creative"}, {"name": "excalidraw", "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).", "category": "creative"}, {"name": "humanizer", "description": "Humanize text: strip AI-isms and add real voice.", "category": "creative"}, {"name": "manim-video", "description": "Manim CE animations: 3Blue1Brown math/algo videos.", "category": "creative"}, {"name": "p5js", "description": "p5.js sketches: gen art, shaders, interactive, 3D.", "category": "creative"}, {"name": "popular-web-designs", "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.", "category": "creative"}, {"name": "pretext", "description": "Use when building creative browser demos with @chenglou/pretext — DOM-free text layout for ASCII art, typographic flow around obstacles, text-as-geometry games, kinetic typography, and text-powered ge", "category": "creative"}, {"name": "sketch", "description": "Throwaway HTML mockups: 2-3 design variants to compare.", "category": "creative"}, {"name": "songwriting-and-ai-music", "description": "Songwriting craft and Suno AI music prompts.", "category": "creative"}, {"name": "touchdesigner-mcp", "description": "Control a running TouchDesigner instance via twozero MCP — create operators, set parameters, wire connections, execute Python, build real-time visuals. 36 native tools.", "category": "creative"}, {"name": "jupyter-live-kernel", "description": "Iterative Python via live Jupyter kernel (hamelnb).", "category": "data-science"}, {"name": "actualizacion-espejo-241", "description": "Pipeline de actualizacion espejo 241 (192.168.0.241). MySQL espejo con replicacion automatica desde produccion (250). Topologia, sync, monitoreo y diferencias con staging 240.", "category": "devops"}, {"name": "actualizacion-staging-240", "description": "Pipeline diario de actualizacion staging (192.168.0.240 legado y 192.168.0.99 nuevo). Topologia, cronjobs, sync hibrido epem_temp -> epem, logs y monitoreo.", "category": "devops"}, {"name": "bitacora-240", "description": "Agente de bitacora para servidor 192.168.0.240 (srv-mysql2 / test-sistema). Registra todo lo realizado en cada sesion para referencia futura.", "category": "devops"}, {"name": "centralizar-logs-99", "description": "", "category": "devops"}, {"name": "deep-memory-system", "description": "Sistema de memoria profunda para Hermes: SQLite + FTS5 + VIP scoring + mistakes/outcomes + dashboard visual. Arquitectura, schema unificado, scripts CLI, crons, y deploy a Vercel.", "category": "devops"}, {"name": "espejo-241-ops-log", "description": "Operational record for Espejo 241: drift fix, monitoring, pipeline deprecation.", "category": "devops"}, {"name": "mysql-cross-server-comparison", "description": "Compare row counts, daily aggregates, and specific column values between two MySQL servers to detect data drift, missing replication windows, or sync issues.", "category": "devops"}, {"name": "mysql-replication-audit", "description": "Detect replication gaps between MySQL master and slave without stressing servers. Generates sync SQLs.", "category": "devops"}, {"name": "mysql-restore-pipelines", "description": ">", "category": "devops"}, {"name": "mysql-staging-restore", "description": "Restore completo de MySQL en staging 192.168.0.240. Pre-flight checks, collation fix + functional index removal (MySQL 8.0→5.7), restore, monitoreo, e incremental sync epem_temp → epem", "category": "devops"}, {"name": "ops-playbooks", "description": "AI-executable runbooks for staging/prod operations with IF/ELSE decision trees, phase-based logs, and Vault credential integration", "category": "devops"}, {"name": "qa-playbook-validation", "description": "Validacion automatica de playbooks bash antes de deploy. Detecta bugs silenciosos como captura de $? despues de asignacion, mysql_exec que oculta errores, y sleep sin retry loops.", "category": "devops"}, {"name": "server-diagnostics-hub", "description": "Patron de hub de diagnostico remoto: recolectar estado 360 (sistema, MySQL, logs, config) desde servidores via SSH, almacenar en snapshots timestamped, detectar incidencias automaticamente, limpiar po", "category": "devops"}, {"name": "staging-99-restore-guide", "description": "Guia completa en espanol no tecnico para el restore del Staging .99 (192.168.0.99). Incluye pasos para LLM y para usuario humano, playbooks con rollback, plan de contingencia, monitoreo por Telegram y", "category": "devops"}, {"name": "staging-99-restore-pipeline", "description": "Pipeline diario de restore de epem en Staging .99 (192.168.0.99) con lecciones aprendidas, troubleshooting y mejoras.", "category": "devops"}, {"name": "status-240", "description": "Resumen completo de servidores staging 192.168.0.240 y 192.168.0.99 cuando el usuario pide status", "category": "devops"}, {"name": "telegram-reportes-staging-99", "description": "Formato estandarizado de reportes operativos para Telegram del pipeline Staging .99. Define estructura visual, emojis, tablas Markdown y librerias Bash/Python reutilizables.", "category": "devops"}, {"name": "dogfood", "description": "Exploratory QA of web apps: find bugs, evidence, reports.", "category": "dogfood"}, {"name": "himalaya", "description": "Himalaya CLI: IMAP/SMTP email from terminal.", "category": "email"}, {"name": "codebase-inspection", "description": "Inspect codebases w/ pygount: LOC, languages, ratios.", "category": "github"}, {"name": "github-auth", "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.", "category": "github"}, {"name": "github-code-review", "description": "Review PRs: diffs, inline comments via gh or REST.", "category": "github"}, {"name": "github-issues", "description": "Create, triage, label, assign GitHub issues via gh or REST.", "category": "github"}, {"name": "github-pr-workflow", "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.", "category": "github"}, {"name": "github-repo-management", "description": "Clone/create/fork repos; manage remotes, releases.", "category": "github"}, {"name": "gif-search", "description": "Search/download GIFs from Tenor via curl + jq.", "category": "media"}, {"name": "heartmula", "description": "HeartMuLa: Suno-like song generation from lyrics + tags.", "category": "media"}, {"name": "songsee", "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.", "category": "media"}, {"name": "youtube-content", "description": "YouTube transcripts to summaries, threads, blogs.", "category": "media"}, {"name": "huggingface-hub", "description": "HuggingFace hf CLI: search/download/upload models, datasets.", "category": "mlops"}, {"name": "obsidian", "description": "Read, search, create, and edit notes in the Obsidian vault.", "category": "note-taking"}, {"name": "airtable", "description": "Airtable REST API via curl. Records CRUD, filters, upserts.", "category": "productivity"}, {"name": "google-workspace", "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.", "category": "productivity"}, {"name": "index-system", "description": "Sistema de indices tematicos para organizar conocimiento del agente en estantes con INDEX.md jerarquico.", "category": "productivity"}, {"name": "maps", "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.", "category": "productivity"}, {"name": "nano-pdf", "description": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).", "category": "productivity"}, {"name": "notion", "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.", "category": "productivity"}, {"name": "ocr-and-documents", "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).", "category": "productivity"}, {"name": "petdex", "description": "Install and select animated petdex mascots for Hermes.", "category": "productivity"}, {"name": "powerpoint", "description": "Create, read, edit .pptx decks, slides, notes, templates.", "category": "productivity"}, {"name": "teams-meeting-pipeline", "description": "Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscriptions.", "category": "productivity"}, {"name": "arxiv", "description": "Search arXiv papers by keyword, author, category, or ID.", "category": "research"}, {"name": "blogwatcher", "description": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.", "category": "research"}, {"name": "llm-wiki", "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.", "category": "research"}, {"name": "polymarket", "description": "Query Polymarket: markets, prices, orderbooks, history.", "category": "research"}, {"name": "research-paper-writing", "description": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.", "category": "research"}, {"name": "openhue", "description": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.", "category": "smart-home"}, {"name": "xurl", "description": "X/Twitter via xurl CLI: post, search, DM, media, v2 API.", "category": "social-media"}, {"name": "hermes-agent-skill-authoring", "description": "Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles.", "category": "software-development"}, {"name": "node-inspect-debugger", "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.", "category": "software-development"}, {"name": "plan", "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution. Bite-sized tasks, exact paths, complete code.", "category": "software-development"}, {"name": "python-debugpy", "description": "Debug Python: pdb REPL + debugpy remote (DAP).", "category": "software-development"}, {"name": "requesting-code-review", "description": "Pre-commit review: security scan, quality gates, auto-fix.", "category": "software-development"}, {"name": "simplify-code", "description": "Parallel 3-agent cleanup of recent code changes.", "category": "software-development"}, {"name": "spike", "description": "Throwaway experiments to validate an idea before build.", "category": "software-development"}, {"name": "systematic-debugging", "description": "4-phase root cause debugging: understand bugs before fixing.", "category": "software-development"}, {"name": "test-driven-development", "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.", "category": "software-development"}, {"name": "vault", "description": "Patron de agente de gestion segura de credenciales con matriz de permisos, auditoria, auto-deteccion y redaccion automatica. Aplicable a cualquier sistema multi-agente que necesite centralizar secreto", "category": "vault"}, {"name": "yuanbao", "description": "Yuanbao (元宝) groups: @mention users, query info/members.", "category": "yuanbao"}], "stats": {"total_entries": 17, "total_relationships": 0, "total_tags": 64, "total_mistakes": 1, "total_outcomes": 1, "total_procedures": 1, "vip_avg": 17.2, "outcomes_success": 1, "outcomes_failure": 0, "outcomes_pending": 0, "servers": {"staging-99": 6, "general": 5, "prod-250": 4, "espejo-241": 2}}};
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Catedral — Memoria de Hermes</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+:root {
+  --oro: #d4af37; --oro-br: #ffd700; --oro-ten: #8a6d1f;
+  --pergamino: #e8dcc8; --pergamino-ten: #a89b7a;
+  --piedra: #1a1a22; --piedra-clara: #2a2a35;
+  --vidrio-rojo: rgba(139,0,0,0.25); --vidrio-azul: rgba(26,26,110,0.25);
+  --vidrio-verde: rgba(13,77,13,0.25); --vidrio-oro: rgba(212,175,55,0.2);
+  --luz: rgba(255,215,0,0.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100vw;height:100vh;overflow:hidden}
+body{
+  background: linear-gradient(180deg, #0d0d14 0%, #16161e 40%, #1c1c26 70%, #0f0f16 100%);
+  color: var(--pergamino); font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* === CATEDRAL SVG BACKGROUND === */
+#cathedral-bg{
+  position:fixed; top:0; left:0; width:100vw; height:100vh;
+  z-index:0; pointer-events:none;
+}
+
+/* === GRAFO === */
+#grafo{
+  position:fixed; top:0; left:0; width:100vw; height:100vh;
+  z-index:1;
+}
+
+/* === TOPBAR === */
+.topbar{
+  position:fixed; top:0; left:0; right:0; height:52px;
+  background: rgba(10,10,15,0.88); border-bottom: 1px solid var(--oro-ten);
+  display:flex; align-items:center; padding:0 24px; z-index:20;
+  backdrop-filter: blur(10px);
+}
+.topbar h1{
+  font-size:1.15rem; color:var(--oro); letter-spacing:4px;
+  text-transform:uppercase; text-shadow: 0 0 20px rgba(212,175,55,0.3);
+}
+.topbar .sub{
+  font-size:0.7rem; color:var(--oro-ten); margin-left:10px; letter-spacing:1px;
+}
+.topbar .search{margin-left:auto; margin-right:12px}
+.topbar .search input{
+  background:rgba(18,18,26,0.9); border:1px solid var(--oro-ten);
+  color:var(--pergamino); padding:7px 14px; border-radius:4px;
+  font-size:0.8rem; width:260px; font-family:Georgia,serif;
+}
+.topbar .search input:focus{outline:none; border-color:var(--oro)}
+.topbar .btn{
+  background:rgba(18,18,26,0.9); border:1px solid var(--oro-ten);
+  color:var(--oro); padding:7px 16px; border-radius:4px;
+  font-size:0.75rem; cursor:pointer; font-family:Georgia,serif;
+  letter-spacing:1px; transition: all 0.2s;
+}
+.topbar .btn:hover{background:rgba(212,175,55,0.15); border-color:var(--oro)}
+
+/* === PANEL === */
+.panel{
+  position:fixed; top:52px; right:0; width:320px; height:calc(100vh - 52px);
+  background: rgba(10,10,15,0.94); border-left: 1px solid var(--oro-ten);
+  overflow-y:auto; z-index:15; backdrop-filter: blur(12px);
+  transition: transform 0.3s ease;
+}
+.panel.hidden{transform: translateX(320px)}
+.panel::-webkit-scrollbar{width:4px}
+.panel::-webkit-scrollbar-track{background:transparent}
+.panel::-webkit-scrollbar-thumb{background:rgba(212,175,55,0.2); border-radius:2px}
+
+.panel-section{padding:16px 20px; border-bottom:1px solid rgba(212,175,55,0.06)}
+.panel-section h3{
+  font-size:0.65rem; color:var(--oro); letter-spacing:2px;
+  text-transform:uppercase; margin-bottom:10px; font-weight:normal;
+}
+
+.stat-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px}
+.stat-card{
+  background:rgba(42,42,53,0.3); border:1px solid rgba(212,175,55,0.1);
+  border-radius:6px; padding:10px 4px; text-align:center;
+  position:relative;
+}
+.stat-card .val{
+  font-size:1.4rem; color:var(--oro-br); font-weight:bold;
+  text-shadow: 0 0 10px rgba(212,175,55,0.3);
+}
+.stat-card .lbl{
+  font-size:0.55rem; color:var(--pergamino-ten);
+  text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;
+}
+
+.srv-row{
+  display:flex; align-items:center; gap:10px;
+  padding:6px 8px; border-radius:4px; cursor:pointer;
+  font-size:0.8rem; transition: background 0.15s;
+}
+.srv-row:hover{background:rgba(212,175,55,0.08)}
+.srv-dot{width:12px; height:12px; border-radius:50%; flex-shrink:0;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+.srv-name{flex:1}
+.srv-count{color:var(--oro-ten); font-size:0.7rem}
+
+.entry-row{
+  padding:7px 0; border-bottom:1px solid rgba(212,175,55,0.04);
+  font-size:0.75rem; cursor:pointer; line-height:1.3;
+}
+.entry-row:hover{color:var(--oro-br)}
+.entry-row .vip{color:var(--oro-br); font-weight:bold; float:right; font-size:0.65rem}
+.entry-row .cat{color:var(--pergamino-ten); font-size:0.6rem; display:block; margin-top:2px}
+
+.mistake-row{
+  padding:6px 10px; border-left:3px solid #8b0000; margin-bottom:5px;
+  font-size:0.72rem; background:rgba(139,0,0,0.06);
+  border-radius:0 6px 6px 0;
+}
+.outcome-row{
+  padding:6px 10px; border-left:3px solid #2e7d32; margin-bottom:5px;
+  font-size:0.72rem; background:rgba(46,125,50,0.06);
+  border-radius:0 6px 6px 0;
+}
+.outcome-row.fail{border-color:#8b0000; background:rgba(139,0,0,0.06)}
+.outcome-row.pending{border-color:var(--oro); background:rgba(212,175,55,0.06)}
+
+.tag-cloud{display:flex; flex-wrap:wrap; gap:5px}
+.tag-pill{
+  padding:3px 9px; border-radius:12px; font-size:0.68rem;
+  background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.15);
+  color:var(--pergamino); cursor:pointer; transition: all 0.15s;
+}
+.tag-pill:hover{background:rgba(212,175,55,0.12); border-color:var(--oro-ten)}
+
+/* === TOOLTIP === */
+.tooltip{
+  position:fixed; padding:14px 18px;
+  background: rgba(16,14,10,0.97); border:1px solid var(--oro);
+  border-radius:8px; font-size:0.78rem; color:var(--pergamino);
+  max-width:340px; z-index:100; pointer-events:none;
+  opacity:0; transition:opacity 0.15s;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(212,175,55,0.1);
+}
+.tooltip h4{
+  color:var(--oro-br); margin-bottom:6px; font-size:0.88rem;
+  letter-spacing:1px; text-transform:uppercase;
+}
+.tooltip .meta{
+  color:var(--pergamino-ten); font-size:0.68rem; margin-bottom:6px;
+  letter-spacing:0.5px;
+}
+.tooltip .body{
+  color:var(--pergamino); font-size:0.74rem; line-height:1.5;
+}
+
+/* === LEGEND === */
+.legend{
+  position:fixed; bottom:16px; left:16px;
+  display:flex; gap:16px; z-index:10;
+  background:rgba(10,10,15,0.85); padding:8px 16px;
+  border-radius:8px; border:1px solid var(--oro-ten);
+  backdrop-filter: blur(4px);
+}
+.legend-item{display:flex; align-items:center; gap:6px; font-size:0.7rem; color:var(--pergamino)}
+.legend-dot{width:11px; height:11px; border-radius:50%}
+
+/* === NODE LABELS === */
+.node-label{
+  font-size:9px; fill: var(--pergamino);
+  pointer-events:none; text-anchor:middle;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.8);
+}
+.srv-label{
+  font-size:11px; fill: var(--oro-br);
+  pointer-events:none; text-anchor:middle; font-weight:bold;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.95), 0 0 12px rgba(0,0,0,0.8);
+  letter-spacing:1px;
+}
+
+/* === ANIMACIONES === */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.35; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+</style>
+</head>
+<body>
+
+<svg id="cathedral-bg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Luz cenital -->
+    <radialGradient id="luzCenital" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="rgba(255,235,180,0.08)"/>
+      <stop offset="40%" stop-color="rgba(212,175,55,0.03)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <!-- Suelo -->
+    <linearGradient id="suelo" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="rgba(10,10,15,0.9)"/>
+      <stop offset="30%" stop-color="rgba(20,20,30,0.4)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+    <!-- Piedra columna -->
+    <linearGradient id="columnaGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a22"/>
+      <stop offset="30%" stop-color="#2a2a38"/>
+      <stop offset="70%" stop-color="#2a2a38"/>
+      <stop offset="100%" stop-color="#1a1a22"/>
+    </linearGradient>
+    <!-- Vitral rojo -->
+    <linearGradient id="vitralRojo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(139,0,0,0.15)"/>
+      <stop offset="50%" stop-color="rgba(139,0,0,0.35)"/>
+      <stop offset="100%" stop-color="rgba(139,0,0,0.15)"/>
+    </linearGradient>
+    <!-- Vitral azul -->
+    <linearGradient id="vitralAzul" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(26,26,110,0.15)"/>
+      <stop offset="50%" stop-color="rgba(26,26,110,0.35)"/>
+      <stop offset="100%" stop-color="rgba(26,26,110,0.15)"/>
+    </linearGradient>
+    <!-- Vitral verde -->
+    <linearGradient id="vitralVerde" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(13,77,13,0.15)"/>
+      <stop offset="50%" stop-color="rgba(13,77,13,0.35)"/>
+      <stop offset="100%" stop-color="rgba(13,77,13,0.15)"/>
+    </linearGradient>
+    <!-- Vitral oro -->
+    <linearGradient id="vitralOro" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(212,175,55,0.1)"/>
+      <stop offset="50%" stop-color="rgba(212,175,55,0.3)"/>
+      <stop offset="100%" stop-color="rgba(212,175,55,0.1)"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Luz cenital -->
+  <polygon points="640,0 200,720 1080,720" fill="url(#luzCenital)"/>
+
+  <!-- Suelo -->
+  <rect x="0" y="520" width="1280" height="200" fill="url(#suelo)"/>
+
+  <!-- Columnas izquierdas -->
+  <g id="columnas-izq">
+    <!-- Columna 1 -->
+    <rect x="40" y="80" width="24" height="640" fill="url(#columnaGrad)" rx="2"/>
+    <rect x="36" y="70" width="32" height="10" fill="#3a3a4a" rx="2"/>
+    <rect x="32" y="720" width="40" height="8" fill="#2a2a38" rx="2"/>
+    <!-- Columna 2 -->
+    <rect x="140" y="120" width="20" height="600" fill="url(#columnaGrad)" rx="2"/>
+    <rect x="136" y="110" width="28" height="10" fill="#3a3a4a" rx="2"/>
+    <rect x="130" y="720" width="40" height="8" fill="#2a2a38" rx="2"/>
+  </g>
+
+  <!-- Columnas derechas -->
+  <g id="columnas-der">
+    <!-- Columna 1 -->
+    <rect x="1216" y="80" width="24" height="640" fill="url(#columnaGrad)" rx="2"/>
+    <rect x="1212" y="70" width="32" height="10" fill="#3a3a4a" rx="2"/>
+    <rect x="1208" y="720" width="40" height="8" fill="#2a2a38" rx="2"/>
+    <!-- Columna 2 -->
+    <rect x="1120" y="120" width="20" height="600" fill="url(#columnaGrad)" rx="2"/>
+    <rect x="1116" y="110" width="28" height="10" fill="#3a3a4a" rx="2"/>
+    <rect x="1110" y="720" width="40" height="8" fill="#2a2a38" rx="2"/>
+  </g>
+
+  <!-- Arcos apuntados -->
+  <g id="arcos" fill="none" stroke="rgba(212,175,55,0.08)" stroke-width="1">
+    <!-- Arco izquierdo grande -->
+    <path d="M 64 350 Q 200 150 340 350" />
+    <path d="M 160 380 Q 280 220 400 380" />
+    <!-- Arco derecho grande -->
+    <path d="M 940 350 Q 1080 150 1216 350" />
+    <path d="M 880 380 Q 1000 220 1120 380" />
+  </g>
+
+  <!-- Vitrales izquierdos -->
+  <g id="vitrales-izq">
+    <polygon points="70,150 110,150 130,350 50,350" fill="url(#vitralRojo)" stroke="rgba(139,0,0,0.3)" stroke-width="0.5"/>
+    <polygon points="120,180 150,180 165,340 105,340" fill="url(#vitralAzul)" stroke="rgba(26,26,110,0.3)" stroke-width="0.5"/>
+    <polygon points="160,200 180,200 190,330 150,330" fill="url(#vitralVerde)" stroke="rgba(13,77,13,0.3)" stroke-width="0.5"/>
+  </g>
+
+  <!-- Vitrales derechos -->
+  <g id="vitrales-der">
+    <polygon points="1170,150 1210,150 1230,350 1150,350" fill="url(#vitralRojo)" stroke="rgba(139,0,0,0.3)" stroke-width="0.5"/>
+    <polygon points="1130,180 1160,180 1175,340 1115,340" fill="url(#vitralAzul)" stroke="rgba(26,26,110,0.3)" stroke-width="0.5"/>
+    <polygon points="1100,200 1120,200 1130,330 1090,330" fill="url(#vitralVerde)" stroke="rgba(13,77,13,0.3)" stroke-width="0.5"/>
+  </g>
+
+  <!-- Rosetón central (arriba) -->
+  <g id="roseton" transform="translate(640, 60)">
+    <circle cx="0" cy="0" r="45" fill="none" stroke="rgba(212,175,55,0.15)" stroke-width="2"/>
+    <circle cx="0" cy="0" r="35" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="1"/>
+    <circle cx="0" cy="0" r="25" fill="none" stroke="rgba(212,175,55,0.08)" stroke-width="0.5"/>
+    <!-- Pétalos del rosetón -->
+    <g stroke="rgba(212,175,55,0.12)" stroke-width="1" fill="none">
+      <path d="M 0,-45 L 0,-25 M 0,25 L 0,45 M -45,0 L -25,0 M 25,0 L 45,0"/>
+      <path d="M -32,-32 L -18,-18 M 18,18 L 32,32 M -32,32 L -18,18 M 18,-18 L 32,-32"/>
+    </g>
+  </g>
+
+  <!-- Estrellas fugaces -->
+  <g id="estrellas" fill="rgba(255,235,180,0.4)">
+    <circle cx="300" cy="80" r="1.5"/>
+    <circle cx="900" cy="60" r="1.2"/>
+    <circle cx="200" cy="120" r="1"/>
+    <circle cx="1000" cy="100" r="1.3"/>
+    <circle cx="500" cy="40" r="1"/>
+    <circle cx="700" cy="90" r="1.1"/>
+  </g>
+</svg>
+<svg id="grafo"></svg>
+<div class="topbar">
+  <h1>La Catedral</h1>
+  <span class="sub">Memoria de Hermes</span>
+  <div class="search"><input type="text" id="searchInput" placeholder="Buscar en la nave..."/></div>
+  <button class="btn" id="togglePanel">Panel</button>
+</div>
+<div class="panel" id="panel"><div class="panel-section"><h3>Estado de la Catedral</h3><div class="stat-grid"><div class="stat-card"><div class="val">17</div><div class="lbl">Memorias</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Errores</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Outcomes</div></div><div class="stat-card"><div class="val">0</div><div class="lbl">Conexiones</div></div><div class="stat-card"><div class="val">64</div><div class="lbl">Tags</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Procedimientos</div></div><div class="stat-card"><div class="val">1</div><div class="lbl">Exitos</div></div><div class="stat-card"><div class="val">0</div><div class="lbl">Fallos</div></div><div class="stat-card"><div class="val">17.2</div><div class="lbl">VIP Prom</div></div></div></div><div class="panel-section"><h3>Naves (Servidores)</h3><div class="srv-row"><div class="srv-dot" style="background:#00838f"></div><span class="srv-name">Staging .99</span><span class="srv-count">6</span></div><div class="srv-row"><div class="srv-dot" style="background:#666"></div><span class="srv-name">General</span><span class="srv-count">5</span></div><div class="srv-row"><div class="srv-dot" style="background:#d4af37"></div><span class="srv-name">Produccion .250</span><span class="srv-count">4</span></div><div class="srv-row"><div class="srv-dot" style="background:#7b1fa2"></div><span class="srv-name">Espejo .241</span><span class="srv-count">2</span></div></div><div class="panel-section"><h3>Reliquias (Top VIP)</h3><div class="entry-row" onclick="focusNode(1)" data-srv="prod-250"><span class="vip">VIP 21</span><span class="cat">prod-250/mysql</span>El espejo 241 tiene replica MySQL nativa desde 250 con <br></div><div class="entry-row" onclick="focusNode(11)" data-srv="general"><span class="vip">VIP 18</span><span class="cat">general/mysql</span>MySQL commands: SINGLE LINE, `;` terminator, no line br<br></div><div class="entry-row" onclick="focusNode(12)" data-srv="general"><span class="vip">VIP 18</span><span class="cat">general/cron</span>LEY ABSOLUTA: Cero cambios sin permiso explicito de Emm<br></div><div class="entry-row" onclick="focusNode(13)" data-srv="staging-99"><span class="vip">VIP 18</span><span class="cat">staging-99/pipeline</span>User uses 'memoria' to mean DISK SPACE, never RAM. Pipe<br></div><div class="entry-row" onclick="focusNode(14)" data-srv="general"><span class="vip">VIP 18</span><span class="cat">general/pipeline</span>User expects automated QA (qa-playbook-shell.sh) on ALL<br></div><div class="entry-row" onclick="focusNode(15)" data-srv="prod-250"><span class="vip">VIP 18</span><span class="cat">prod-250/validation</span>User tests new operational patterns on .99 ('conejo de <br></div><div class="entry-row" onclick="focusNode(16)" data-srv="staging-99"><span class="vip">VIP 18</span><span class="cat">staging-99/telegram</span>Emmanuel V. Vault update on credential share. Bot @Stag<br></div><div class="entry-row" onclick="focusNode(17)" data-srv="staging-99"><span class="vip">VIP 18</span><span class="cat">staging-99/pipeline</span>Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH<br></div></div><div class="panel-section"><h3>Errores Aprendidos</h3><div class="mistake-row">Asumi que staging .99 tenia datos completos pero tiene 32M vs 156M del espejo</div></div><div class="panel-section"><h3>Outcomes</h3><div class="outcome-row ">Corregido bache 24/06 con 871 UPDATEs al espejo 241</div></div><div class="panel-section"><h3>Runas (Tags)</h3><div class="tag-cloud"><span class="tag-pill">backup (6)</span><span class="tag-pill">staging (6)</span><span class="tag-pill">espejo-241 (5)</span><span class="tag-pill">bache (4)</span><span class="tag-pill">mysql (4)</span><span class="tag-pill">produccion (4)</span><span class="tag-pill">cron (4)</span><span class="tag-pill">vault (4)</span><span class="tag-pill">all (4)</span><span class="tag-pill">contract_fees (3)</span><span class="tag-pill">telegram (3)</span><span class="tag-pill">epem (3)</span><span class="tag-pill">pipeline (3)</span><span class="tag-pill">replica (2)</span><span class="tag-pill">api (2)</span><span class="tag-pill">monitor (2)</span><span class="tag-pill">cause (1)</span><span class="tag-pill">root (1)</span><span class="tag-pill">sql_log_bin (1)</span><span class="tag-pill">bot (1)</span><span class="tag-pill">bloqueado (1)</span><span class="tag-pill">cli (1)</span><span class="tag-pill">explicit (1)</span><span class="tag-pill">rdp (1)</span><span class="tag-pill">remoto (1)</span></div></div></div>
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#d4af37"></div>Memoria</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#c62828"></div>Error</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#2e7d32"></div>Outcome</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#fff;border:2px solid #d4af37"></div>Servidor</div>
+</div>
+<div class="tooltip" id="tooltip"></div><script>const DATA = {"meta": {"generated_at": "2026-07-09T18:28:56.480316", "db_path": "/home/vm-hermes/.hermes/memory-deep/db/memory.db", "agent_name": "Hermes", "system": "La Catedral"}, "entries": [{"id": 1, "category": "prod-250/mysql", "parent": "prod-250", "subtema": "mysql", "tags": "auditoria,bache,backup-50,cause,espejo-241,mysql,prod-250,replica,root,sql_log_bin", "content": "El espejo 241 tiene replica MySQL nativa desde 250 con lag=0s. ROOT CAUSE de baches: production batch jobs usan sql_log_bin=0", "title": "El espejo 241 tiene replica MySQL nativa desde 250 con lag=0s. ROOT CAUSE de bac", "importance": 8, "source": "user_stated_confirmed", "created_at": "2026-07-09T17:52:53.819484", "access_count": 1, "vip_score": 21}, {"id": 11, "category": "general/mysql", "parent": "general", "subtema": "mysql", "tags": "line,mysql,single", "content": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.", "title": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 12, "category": "general/cron", "parent": "general", "subtema": "cron", "tags": "absoluta,config,cron,ley,security,todo", "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presentar, esperar 'si'/'dale'/'autorizado'. Silencio != aprobacion. Aplica a TODO: scripts, configs, crons, deploys, UPDATEs, INSERTs, scp, rm. Sin excepciones.", "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presenta", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 13, "category": "staging-99/pipeline", "parent": "staging-99", "subtema": "pipeline", "tags": "auto-run,disk,pipeline,ram,space,staging-99", "content": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authorized at 21:00.", "title": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authori", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 14, "category": "general/pipeline", "parent": "general", "subtema": "pipeline", "tags": "all,pipeline,qa-playbook-shell,validation", "content": "User expects automated QA (qa-playbook-shell.sh) on ALL pipeline scripts before trusting them. Zero FAILs required. User was very upset about typo bugs: 'Es inadmisible que tengamos estos errores'.", "title": "User expects automated QA (qa-playbook-shell.sh) on ALL pipeline scripts before ", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 15, "category": "prod-250/validation", "parent": "prod-250", "subtema": "validation", "tags": "backup-50,espejo-241,prod-250,staging-99,validation", "content": "User tests new operational patterns on .99 ('conejo de indias') before rolling to .250 and .241.", "title": "User tests new operational patterns on .99 ('conejo de indias') before rolling t", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 16, "category": "staging-99/telegram", "parent": "staging-99", "subtema": "telegram", "tags": "all,auditoria,monitor,staging-99,telegram,vault", "content": "Emmanuel V. Vault update on credential share. Bot @Staging99Bot. Private: 8846593692. Group 'svr - monitor': -1003771914699. ALL reports to group, not just private.", "title": "Emmanuel V. Vault update on credential share. Bot @Staging99Bot. Private: 884659", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 17, "category": "staging-99/pipeline", "parent": "staging-99", "subtema": "pipeline", "tags": "all,and,api,auditoria,clean,examples,html,max,monitor,monitor-restore,only,pipeline", "content": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO metrics/parens/jargon in title. Detail in table | Métrica | Valor | MAX detail. Summary | Sistema | Estado | Detalle |. NO bullets. EXAMPLES before approving. ALL reports to group AND private. Tablas nativas grupo: `sendRichMessage` Bot API 10.1 (monitor-restore-99-v5.py). NO sendMessage Markdown. NO HTML pre monospace (RECHAZADO). Persist on native rendering.", "title": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO met", "importance": 8, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 18}, {"id": 2, "category": "staging-99/telegram", "parent": "staging-99", "subtema": "telegram", "tags": "api,auditoria,monitor,staging-99,svr-monitor,telegram", "content": "Telegram bot @Staging99Bot envia reportes al grupo svr-monitor. Tablas nativas con sendRichMessage Bot API 10.1", "title": "Telegram bot @Staging99Bot envia reportes al grupo svr-monitor. Tablas nativas c", "importance": 7, "source": "confirmed", "created_at": "2026-07-09T17:52:53.888046", "access_count": 0, "vip_score": 17}, {"id": 3, "category": "prod-250/backup", "parent": "prod-250", "subtema": "backup", "tags": "backup,backup-50,bloqueado,cli,espejo-241,explicit,prod-250,rdp-43,remoto,security,staging-240,sudo", "content": "User: espanol, CLI real. Servers: 43, 250, 241, 240, backup(.50). SUDO REMOTO BLOQUEADO. Destructive ops require EXPLICIT OK.", "title": "User: espanol, CLI real. Servers: 43, 250, 241, 240, backup(.50). SUDO REMOTO BL", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 4, "category": "general/general", "parent": "general", "subtema": "general", "tags": "analyze,analyze-first,first", "content": "User wants ANALYZE-FIRST before action. Said 'vamos a hacer todas las averiguaciones y analisis antes de tomar una decision'. Present findings, wait explicit authorization.", "title": "User wants ANALYZE-FIRST before action. Said 'vamos a hacer todas las averiguaci", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 5, "category": "staging-99/mysql", "parent": "staging-99", "subtema": "mysql", "tags": "backup,backup-50,mysql,not,pipeline,replica,restore,staging-99,zip", "content": "Staging .99: Ubuntu 26.04, MySQL 8.4.10. Pipeline restores epem from ZIP .50 at 21:00. NOT authoritative for July 2026+ (backup lag).", "title": "Staging .99: Ubuntu 26.04, MySQL 8.4.10. Pipeline restores epem from ZIP .50 at ", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 6, "category": "prod-250/mysql", "parent": "prod-250", "subtema": "mysql", "tags": "auditoria,bache,backup-50,contract_fees,corrected,cron,espejo-241,fully,mysql,prod-250,replica,sql_log_bin", "content": "Espejo (241): MySQL native replica from 250 (lag=0s). Baches por sql_log_bin=0. Jun 2026 FULLY CORRECTED 09/07: 1,087 UPDATEs total. Diff final +2 (normal). Cron nativo 241 daily 09:00 Telegram. Rastrillaje: solo contract_fees tiene baches reales.", "title": "Espejo (241): MySQL native replica from 250 (lag=0s). Baches por sql_log_bin=0. ", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 7, "category": "staging-99/vault", "parent": "staging-99", "subtema": "vault", "tags": "antes,count,json,monitor,staging-99,validation,vault", "content": "User exige revisar scripts por errores comunes (COUNT vs COUNT(*), escapes JSON, token ***, errores silenciosos curl>/dev/null) ANTES de deploy. Leccion .99: notificaciones erronas por bugs de script. Siempre validar con prueba real. scp requiere autorizacion explicita.", "title": "User exige revisar scripts por errores comunes (COUNT vs COUNT(*), escapes JSON,", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 8, "category": "espejo-241/mysql", "parent": "espejo-241", "subtema": "mysql", "tags": "admin-epem,all,api,auditoria,bache,backup,backup-50,chat_id,config,contract_fees,cron,detector_datos_desactualizados_espejo", "content": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens). Detail in table. ALL reports via `sendRichMessage` Bot API 10.1 (POST {chat_id:-1003771914699, rich_message:{markdown:raw}}). NO pipes, NO HTML pre, NO sendMessage, NO \n→\n\n normalization. Token: Hermes→/proc/$(pgrep -f \"gateway run\")/environ; .99→/home/admin-epem/.tg_token. .99 MySQL: SSH only (contract_fees ~25s/query, timeout=45s). Scripts: monitor-restore-99-v5.py, verificar-backup-50.sh, detector_datos_desactu", "title": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 9, "category": "espejo-241/telegram", "parent": "espejo-241", "subtema": "telegram", "tags": "config,espejo-241,staging-99,telegram,vault", "content": "Bot token real guardado en vault Hermes + .99 + .241 (chmod 600). Antes enmascarado ***.", "title": "Bot token real guardado en vault Hermes + .99 + .241 (chmod 600). Antes enmascar", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}, {"id": 10, "category": "general/pipeline", "parent": "general", "subtema": "pipeline", "tags": "auto-deploy,catedral,config,deep-memory-system,disk,grupoepem-bi-team,memory-deep,pipeline,telegram,vault,wal", "content": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_hermes_95, Vercel auto-deploy. DB ~/.hermes/memory-deep/db/memory.db (10 tablas WAL+FTS5). Skill deep-memory-system. Fase 1 motor pendiente. Token GitHub pendiente rotar.", "title": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_", "importance": 6, "source": "memory_purge", "created_at": "2026-07-09T17:53:03.761500", "access_count": 0, "vip_score": 16}], "relationships": [], "tags": [{"nombre": "backup", "count": 6}, {"nombre": "staging", "count": 6}, {"nombre": "espejo-241", "count": 5}, {"nombre": "bache", "count": 4}, {"nombre": "mysql", "count": 4}, {"nombre": "produccion", "count": 4}, {"nombre": "cron", "count": 4}, {"nombre": "vault", "count": 4}, {"nombre": "all", "count": 4}, {"nombre": "contract_fees", "count": 3}, {"nombre": "telegram", "count": 3}, {"nombre": "epem", "count": 3}, {"nombre": "pipeline", "count": 3}, {"nombre": "replica", "count": 2}, {"nombre": "api", "count": 2}, {"nombre": "monitor", "count": 2}, {"nombre": "cause", "count": 1}, {"nombre": "root", "count": 1}, {"nombre": "sql_log_bin", "count": 1}, {"nombre": "bot", "count": 1}, {"nombre": "bloqueado", "count": 1}, {"nombre": "cli", "count": 1}, {"nombre": "explicit", "count": 1}, {"nombre": "rdp", "count": 1}, {"nombre": "remoto", "count": 1}, {"nombre": "sudo", "count": 1}, {"nombre": "analyze", "count": 1}, {"nombre": "analyze-first", "count": 1}, {"nombre": "first", "count": 1}, {"nombre": "not", "count": 1}, {"nombre": "restore", "count": 1}, {"nombre": "zip", "count": 1}, {"nombre": "corrected", "count": 1}, {"nombre": "fully", "count": 1}, {"nombre": "antes", "count": 1}, {"nombre": "count", "count": 1}, {"nombre": "json", "count": 1}, {"nombre": "admin-epem", "count": 1}, {"nombre": "chat_id", "count": 1}, {"nombre": "detector_datos_desactualizados_espejo", "count": 1}, {"nombre": "auto-deploy", "count": 1}, {"nombre": "deep-memory-system", "count": 1}, {"nombre": "grupoepem-bi-team", "count": 1}, {"nombre": "memory-deep", "count": 1}, {"nombre": "wal", "count": 1}, {"nombre": "line", "count": 1}, {"nombre": "single", "count": 1}, {"nombre": "absoluta", "count": 1}, {"nombre": "config", "count": 1}, {"nombre": "ley", "count": 1}], "grafo_hist": [{"id": 1, "fecha": "2026-07-09", "nodos_count": 17, "aristas_count": 0, "densidad": 0.0, "centralidad_max": 0.0, "snapshot_json": "{\"nodos\": 17, \"aristas\": 0, \"densidad\": 0.0, \"centralidad_max\": 0}"}], "mistakes": [{"id": 1, "entry_id": 1, "mistake_type": "wrong_assumption", "description": "Asumi que staging .99 tenia datos completos pero tiene 32M vs 156M del espejo", "user_reaction": "Usuario corrigio: staging no es copia completa", "correction": "Usar espejo como autoritativo para datos recientes", "created_at": "2026-07-09T17:52:54.088402", "access_count": 0}], "outcomes": [{"id": 1, "entry_id": 1, "action_summary": "Corregido bache 24/06 con 871 UPDATEs al espejo 241", "outcome_status": "success", "user_verdict": "Usuario aprobo", "next_action": "Monitorear proximos baches", "session_id": null, "created_at": "2026-07-09T17:52:54.130101", "closed_at": "2026-07-09T17:52:54.130101"}], "procedures": [{"id": 1, "skill_name": "nightly_sync", "procedure_name": "volcar", "version": "1.0.0", "content": "1. Backup DB 2. Integrity check 3. Leer MEMORY.md 4. Insertar entries 5. Recalcular VIP 6. OPTIMIZE FTS5", "tags": "cron,backup,nightly", "last_tested": "2026-07-09T17:52:54.175249", "test_result": "ok", "status": "active"}], "sync_log": [{"id": 1, "fecha": "2026-07-09T17:53:03.776398", "tipo": "memory_auto", "entradas": 15, "duplicados_skip": 0, "errores": null, "backup_path": "/home/vm-hermes/.hermes/memory-deep/backups/memory-BACKUP-20260709-175303.db"}], "skills": [{"name": "findmy", "description": "Track Apple devices/AirTags via FindMy.app on macOS.", "category": "apple"}, {"name": "apple-notes", "description": "Manage Apple Notes via memo CLI: create, search, edit.", "category": "apple"}, {"name": "imessage", "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.", "category": "apple"}, {"name": "apple-reminders", "description": "Apple Reminders via remindctl: add, list, complete.", "category": "apple"}, {"name": "opencode", "description": "Delegate coding to OpenCode CLI (features, PR review).", "category": "autonomous-ai-agents"}, {"name": "hermes-agent", "description": "Configure, extend, or contribute to Hermes Agent.", "category": "autonomous-ai-agents"}, {"name": "codex", "description": "Delegate coding to OpenAI Codex CLI (features, PRs).", "category": "autonomous-ai-agents"}, {"name": "claude-code", "description": "Delegate coding to Claude Code CLI (features, PRs).", "category": "autonomous-ai-agents"}, {"name": "computer-use", "description": "|", "category": "computer-use"}, {"name": "humanizer", "description": "Humanize text: strip AI-isms and add real voice.", "category": "creative"}, {"name": "songwriting-and-ai-music", "description": "Songwriting craft and Suno AI music prompts.", "category": "creative"}, {"name": "design-md", "description": "Author/validate/export Google's DESIGN.md token spec files.", "category": "creative"}, {"name": "architecture-diagram", "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.", "category": "creative"}, {"name": "pretext", "description": "Use when building creative browser demos with @chenglou/pretext — DOM-free text layout for ASCII art, typographic flow around obstacles, text-as-geometry games, kinetic typography, and text-powered ge", "category": "creative"}, {"name": "popular-web-designs", "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.", "category": "creative"}, {"name": "ascii-art", "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.", "category": "creative"}, {"name": "baoyu-infographic", "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).", "category": "creative"}, {"name": "p5js", "description": "p5.js sketches: gen art, shaders, interactive, 3D.", "category": "creative"}, {"name": "claude-design", "description": "Design one-off HTML artifacts (landing, deck, prototype).", "category": "creative"}, {"name": "excalidraw", "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).", "category": "creative"}, {"name": "sketch", "description": "Throwaway HTML mockups: 2-3 design variants to compare.", "category": "creative"}, {"name": "comfyui", "description": "Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter injection. Uses the official comfy-cli for lifecycle and direct REST/WebSocket API f", "category": "creative"}, {"name": "touchdesigner-mcp", "description": "Control a running TouchDesigner instance via twozero MCP — create operators, set parameters, wire connections, execute Python, build real-time visuals. 36 native tools.", "category": "creative"}, {"name": "ascii-video", "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.", "category": "creative"}, {"name": "manim-video", "description": "Manim CE animations: 3Blue1Brown math/algo videos.", "category": "creative"}, {"name": "jupyter-live-kernel", "description": "Iterative Python via live Jupyter kernel (hamelnb).", "category": "data-science"}, {"name": "espejo-241-ops-log", "description": "Operational record for Espejo 241: drift fix, monitoring, pipeline deprecation.", "category": "devops"}, {"name": "bitacora-240", "description": "Agente de bitacora para servidor 192.168.0.240 (srv-mysql2 / test-sistema). Registra todo lo realizado en cada sesion para referencia futura.", "category": "devops"}, {"name": "server-diagnostics-hub", "description": "Patron de hub de diagnostico remoto: recolectar estado 360 (sistema, MySQL, logs, config) desde servidores via SSH, almacenar en snapshots timestamped, detectar incidencias automaticamente, limpiar po", "category": "devops"}, {"name": "actualizacion-staging-240", "description": "Pipeline diario de actualizacion staging (192.168.0.240 legado y 192.168.0.99 nuevo). Topologia, cronjobs, sync hibrido epem_temp -> epem, logs y monitoreo.", "category": "devops"}, {"name": "mysql-restore-pipelines", "description": ">", "category": "devops"}, {"name": "staging-99-restore-guide", "description": "Guia completa en espanol no tecnico para el restore del Staging .99 (192.168.0.99). Incluye pasos para LLM y para usuario humano, playbooks con rollback, plan de contingencia, monitoreo por Telegram y", "category": "devops"}, {"name": "mysql-cross-server-comparison", "description": "Compare row counts, daily aggregates, and specific column values between two MySQL servers to detect data drift, missing replication windows, or sync issues.", "category": "devops"}, {"name": "mysql-replication-audit", "description": "Detect replication gaps between MySQL master and slave without stressing servers. Generates sync SQLs.", "category": "devops"}, {"name": "mysql-staging-restore", "description": "Restore completo de MySQL en staging 192.168.0.240. Pre-flight checks, collation fix + functional index removal (MySQL 8.0→5.7), restore, monitoreo, e incremental sync epem_temp → epem", "category": "devops"}, {"name": "ops-playbooks", "description": "AI-executable runbooks for staging/prod operations with IF/ELSE decision trees, phase-based logs, and Vault credential integration", "category": "devops"}, {"name": "staging-99-restore-pipeline", "description": "Pipeline diario de restore de epem en Staging .99 (192.168.0.99) con lecciones aprendidas, troubleshooting y mejoras.", "category": "devops"}, {"name": "actualizacion-espejo-241", "description": "Pipeline de actualizacion espejo 241 (192.168.0.241). MySQL espejo con replicacion automatica desde produccion (250). Topologia, sync, monitoreo y diferencias con staging 240.", "category": "devops"}, {"name": "deep-memory-system", "description": "Sistema de memoria profunda para Hermes: SQLite + FTS5 + VIP scoring + mistakes/outcomes + dashboard visual. Arquitectura, schema unificado, scripts CLI, crons, y deploy a Vercel.", "category": "devops"}, {"name": "telegram-reportes-staging-99", "description": "Formato estandarizado de reportes operativos para Telegram del pipeline Staging .99. Define estructura visual, emojis, tablas Markdown y librerias Bash/Python reutilizables.", "category": "devops"}, {"name": "qa-playbook-validation", "description": "Validacion automatica de playbooks bash antes de deploy. Detecta bugs silenciosos como captura de $? despues de asignacion, mysql_exec que oculta errores, y sleep sin retry loops.", "category": "devops"}, {"name": "centralizar-logs-99", "description": "", "category": "devops"}, {"name": "status-240", "description": "Resumen completo de servidores staging 192.168.0.240 y 192.168.0.99 cuando el usuario pide status", "category": "devops"}, {"name": "dogfood", "description": "Exploratory QA of web apps: find bugs, evidence, reports.", "category": "dogfood"}, {"name": "himalaya", "description": "Himalaya CLI: IMAP/SMTP email from terminal.", "category": "email"}, {"name": "codebase-inspection", "description": "Inspect codebases w/ pygount: LOC, languages, ratios.", "category": "github"}, {"name": "github-auth", "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.", "category": "github"}, {"name": "github-code-review", "description": "Review PRs: diffs, inline comments via gh or REST.", "category": "github"}, {"name": "github-issues", "description": "Create, triage, label, assign GitHub issues via gh or REST.", "category": "github"}, {"name": "github-repo-management", "description": "Clone/create/fork repos; manage remotes, releases.", "category": "github"}, {"name": "github-pr-workflow", "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.", "category": "github"}, {"name": "songsee", "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.", "category": "media"}, {"name": "heartmula", "description": "HeartMuLa: Suno-like song generation from lyrics + tags.", "category": "media"}, {"name": "gif-search", "description": "Search/download GIFs from Tenor via curl + jq.", "category": "media"}, {"name": "youtube-content", "description": "YouTube transcripts to summaries, threads, blogs.", "category": "media"}, {"name": "huggingface-hub", "description": "HuggingFace hf CLI: search/download/upload models, datasets.", "category": "mlops"}, {"name": "obsidian", "description": "Read, search, create, and edit notes in the Obsidian vault.", "category": "note-taking"}, {"name": "teams-meeting-pipeline", "description": "Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscriptions.", "category": "productivity"}, {"name": "petdex", "description": "Install and select animated petdex mascots for Hermes.", "category": "productivity"}, {"name": "ocr-and-documents", "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).", "category": "productivity"}, {"name": "airtable", "description": "Airtable REST API via curl. Records CRUD, filters, upserts.", "category": "productivity"}, {"name": "index-system", "description": "Sistema de indices tematicos para organizar conocimiento del agente en estantes con INDEX.md jerarquico.", "category": "productivity"}, {"name": "powerpoint", "description": "Create, read, edit .pptx decks, slides, notes, templates.", "category": "productivity"}, {"name": "google-workspace", "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.", "category": "productivity"}, {"name": "notion", "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.", "category": "productivity"}, {"name": "nano-pdf", "description": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).", "category": "productivity"}, {"name": "maps", "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.", "category": "productivity"}, {"name": "blogwatcher", "description": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.", "category": "research"}, {"name": "arxiv", "description": "Search arXiv papers by keyword, author, category, or ID.", "category": "research"}, {"name": "polymarket", "description": "Query Polymarket: markets, prices, orderbooks, history.", "category": "research"}, {"name": "llm-wiki", "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.", "category": "research"}, {"name": "research-paper-writing", "description": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.", "category": "research"}, {"name": "openhue", "description": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.", "category": "smart-home"}, {"name": "xurl", "description": "X/Twitter via xurl CLI: post, search, DM, media, v2 API.", "category": "social-media"}, {"name": "requesting-code-review", "description": "Pre-commit review: security scan, quality gates, auto-fix.", "category": "software-development"}, {"name": "test-driven-development", "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.", "category": "software-development"}, {"name": "python-debugpy", "description": "Debug Python: pdb REPL + debugpy remote (DAP).", "category": "software-development"}, {"name": "spike", "description": "Throwaway experiments to validate an idea before build.", "category": "software-development"}, {"name": "systematic-debugging", "description": "4-phase root cause debugging: understand bugs before fixing.", "category": "software-development"}, {"name": "node-inspect-debugger", "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.", "category": "software-development"}, {"name": "plan", "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution. Bite-sized tasks, exact paths, complete code.", "category": "software-development"}, {"name": "simplify-code", "description": "Parallel 3-agent cleanup of recent code changes.", "category": "software-development"}, {"name": "hermes-agent-skill-authoring", "description": "Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles.", "category": "software-development"}, {"name": "vault", "description": "Patron de agente de gestion segura de credenciales con matriz de permisos, auditoria, auto-deteccion y redaccion automatica. Aplicable a cualquier sistema multi-agente que necesite centralizar secreto", "category": "vault"}, {"name": "yuanbao", "description": "Yuanbao (元宝) groups: @mention users, query info/members.", "category": "yuanbao"}], "stats": {"total_entries": 17, "total_relationships": 0, "total_tags": 64, "total_mistakes": 1, "total_outcomes": 1, "total_procedures": 1, "vip_avg": 17.2, "outcomes_success": 1, "outcomes_failure": 0, "outcomes_pending": 0, "servers": {"staging-99": 6, "general": 5, "prod-250": 4, "espejo-241": 2}}};
     const svg = d3.select("#grafo");
     const width = window.innerWidth;
-    const height = window.innerHeight - 56;
+    const height = window.innerHeight;
     svg.attr("viewBox", [0, 0, width, height]);
+
+    const g = svg.append('g');
+    const zoom = d3.zoom().scaleExtent([0.3, 3]).on('zoom', (e) => g.attr('transform', e.transform));
+    svg.call(zoom);
 
     const tooltip = d3.select("#tooltip");
 
-    // Colores de servidores
+    // Colores
     const srvColors = {
         'prod-250': '#d4af37', 'espejo-241': '#7b1fa2',
         'staging-240': '#1565c0', 'staging-99': '#00838f',
-        'backup-50': '#c62828', 'rdp-43': '#ef6c00',
-        'general': '#666'
+        'backup-50': '#c62828', 'rdp-43': '#ef6c00', 'general': '#888'
+    };
+    const srvLabels = {
+        'prod-250': 'PROD .250', 'espejo-241': 'ESPEJO .241',
+        'staging-99': 'STAGING .99', 'general': 'GENERAL'
     };
 
     // === NODOS ===
-    // 1. Nodos pilares (servidores)
+    // Servidores como pilares de la nave
     const srvCounts = {};
-    DATA.entries.forEach(e => {
-        srvCounts[e.parent] = (srvCounts[e.parent] || 0) + 1;
-    });
+    DATA.entries.forEach(e => { srvCounts[e.parent] = (srvCounts[e.parent] || 0) + 1; });
+
+    // Posiciones de servidores: distribuidos en la nave central
+    const srvPositions = {
+        'prod-250':   {x: width * 0.30, y: height * 0.35},
+        'espejo-241': {x: width * 0.70, y: height * 0.30},
+        'staging-99': {x: width * 0.25, y: height * 0.65},
+        'general':    {x: width * 0.75, y: height * 0.60}
+    };
 
     const serverNodes = Object.keys(srvCounts).map(srv => ({
-        id: 'S_' + srv,
-        type: 'server',
-        server: srv,
-        label: srv,
-        count: srvCounts[srv],
-        r: 25 + srvCounts[srv] * 3,  // mas memorias = mas grande
+        id: 'S_' + srv, type: 'server', server: srv,
+        label: srvLabels[srv] || srv, count: srvCounts[srv],
+        r: 28 + srvCounts[srv] * 4,
         color: srvColors[srv] || '#666',
-        fx: null, fy: null  // libres para force layout
+        x: srvPositions[srv]?.x || width/2,
+        y: srvPositions[srv]?.y || height/2
     }));
 
-    // 2. Nodos de memoria
+    // Memorias: distribuidas en arcos alrededor de cada pilar
     const memNodes = DATA.entries.map(e => ({
-        id: e.id,
-        type: 'memoria',
-        server: e.parent,
-        subtema: e.subtema,
-        title: e.title,
-        content: e.content,
-        vip: e.vip_score,
-        importance: e.importance,
-        tags: e.tags,
-        source: e.source,
-        r: Math.max(5, Math.sqrt(e.vip_score || 1) * 2),
+        id: e.id, type: 'memoria', server: e.parent, subtema: e.subtema,
+        title: e.title, content: e.content, vip: e.vip_score,
+        importance: e.importance, tags: e.tags, source: e.source,
+        r: Math.max(5, Math.sqrt(e.vip_score || 1) * 2.2),
         color: srvColors[e.parent] || '#d4af37'
     }));
 
-    // 3. Nodos de mistakes
-    const mistakeNodes = DATA.mistakes.map(m => ({
-        id: 'M' + m.id,
-        type: 'mistake',
-        title: (m.description || '').slice(0, 60),
-        content: m.description,
-        mtype: m.mistake_type,
-        correction: m.correction,
-        vip: 5,
-        r: 8,
-        color: '#c62828'
-    }));
-
-    // 4. Nodos de outcomes
-    const outcomeNodes = DATA.outcomes.map(o => ({
-        id: 'O' + o.id,
-        type: 'outcome',
-        title: (o.action_summary || '').slice(0, 60),
-        content: o.action_summary,
-        status: o.outcome_status,
-        vip: 3,
-        r: 8,
-        color: o.outcome_status === 'failure' ? '#c62828' :
-              o.outcome_status === 'pending' ? '#d4af37' : '#2e7d32'
-    }));
-
-    const allNodes = [...serverNodes, ...memNodes, ...mistakeNodes, ...outcomeNodes];
-
-    // === LINKS ===
-    // 1. Memory → su servidor
-    const links = [];
-    memNodes.forEach(m => {
-        links.push({
-            source: m.id,
-            target: 'S_' + m.server,
-            strength: 1.0,
-            type: 'parent'
-        });
-    });
-
-    // 2. Mistakes → memory relacionada
-    DATA.mistakes.forEach(m => {
-        if (m.entry_id) {
-            links.push({
-                source: 'M' + m.id,
-                target: m.entry_id,
-                strength: 0.8,
-                type: 'mistake'
-            });
-        }
-    });
-
-    // 3. Outcomes → memory relacionada
-    DATA.outcomes.forEach(o => {
-        if (o.entry_id) {
-            links.push({
-                source: 'O' + o.id,
-                target: o.entry_id,
-                strength: 0.6,
-                type: 'outcome'
-            });
-        }
-    });
-
-    // 4. Conexiones por tags compartidos (solo entre memorias del mismo servidor)
-    const tagMap = {};
-    DATA.entries.forEach(e => {
-        if (e.tags) {
-            e.tags.split(',').forEach(tag => {
-                tag = tag.trim().toLowerCase();
-                if (!tag || tag.length < 3) return;
-                if (!tagMap[tag]) tagMap[tag] = [];
-                tagMap[tag].push(e.id);
-            });
-        }
-    });
-    Object.values(tagMap).forEach(ids => {
-        for (let i = 0; i < ids.length; i++) {
-            for (let j = i + 1; j < ids.length; j++) {
-                if (!links.find(l =>
-                    (l.source === ids[i] && l.target === ids[j]) ||
-                    (l.source === ids[j] && l.target === ids[i])
-                )) {
-                    links.push({source: ids[i], target: ids[j], strength: 0.3, type: 'tag'});
-                }
-            }
-        }
-    });
-
-    // === ZOOM ===
-    const g = svg.append('g');
-    const zoom = d3.zoom()
-        .scaleExtent([0.3, 4])
-        .on('zoom', (event) => g.attr('transform', event.transform));
-    svg.call(zoom);
-
-    // === LAYOUT JERARQUICO PRE-DEFINIDO ===
-    // Posiciones fijas para servidores (hexagono)
-    const srvPositions = {
-        'prod-250':   {x: width * 0.35, y: height * 0.25},
-        'espejo-241': {x: width * 0.65, y: height * 0.25},
-        'staging-99': {x: width * 0.25, y: height * 0.65},
-        'general':    {x: width * 0.75, y: height * 0.65}
-    };
-
-    // Asignar posiciones a servidores
-    serverNodes.forEach(s => {
-        const pos = srvPositions[s.server] || {x: width/2, y: height/2};
-        s.x = pos.x;
-        s.y = pos.y;
-    });
-
-    // Asignar posiciones a memorias en circulo alrededor de su servidor
     const srvMemories = {};
     memNodes.forEach(m => {
         if (!srvMemories[m.server]) srvMemories[m.server] = [];
@@ -170,203 +399,208 @@
     Object.keys(srvMemories).forEach(srv => {
         const center = srvPositions[srv] || {x: width/2, y: height/2};
         const items = srvMemories[srv];
-        const radius = 140 + items.length * 8;
+        const radius = 130 + items.length * 10;
         items.forEach((m, i) => {
             const angle = (2 * Math.PI / items.length) * i - Math.PI / 2;
             m.x = center.x + Math.cos(angle) * radius;
-            m.y = center.y + Math.sin(angle) * radius;
+            m.y = center.y + Math.sin(angle) * radius * 0.7; // elipse para profundidad
         });
     });
 
-    // Posiciones fijas para mistakes y outcomes (a los costados)
-    mistakeNodes.forEach((m, i) => {
-        m.x = width * 0.08 + i * 60;
-        m.y = height * 0.15;
+    // Mistakes
+    const mistakeNodes = DATA.mistakes.map((m, i) => ({
+        id: 'M' + m.id, type: 'mistake',
+        title: (m.description || '').slice(0, 60),
+        content: m.description, mtype: m.mistake_type, correction: m.correction,
+        vip: 5, r: 9, color: '#c62828',
+        x: width * 0.12, y: height * 0.20 + i * 35
+    }));
+
+    // Outcomes
+    const outcomeNodes = DATA.outcomes.map((o, i) => ({
+        id: 'O' + o.id, type: 'outcome',
+        title: (o.action_summary || '').slice(0, 60),
+        content: o.action_summary, status: o.outcome_status,
+        vip: 3, r: 9,
+        color: o.outcome_status === 'failure' ? '#c62828' :
+              o.outcome_status === 'pending' ? '#d4af37' : '#2e7d32',
+        x: width * 0.88, y: height * 0.75 + i * 30
+    }));
+
+    const allNodes = [...serverNodes, ...memNodes, ...mistakeNodes, ...outcomeNodes];
+
+    // === LINKS ===
+    const links = [];
+    memNodes.forEach(m => {
+        links.push({source: m.id, target: 'S_' + m.server, strength: 1.0, type: 'parent'});
     });
-    outcomeNodes.forEach((o, i) => {
-        o.x = width * 0.85 + i * 60;
-        o.y = height * 0.85;
+    DATA.mistakes.forEach(m => {
+        if (m.entry_id) links.push({source: 'M' + m.id, target: m.entry_id, strength: 0.8, type: 'mistake'});
+    });
+    DATA.outcomes.forEach(o => {
+        if (o.entry_id) links.push({source: 'O' + o.id, target: o.entry_id, strength: 0.6, type: 'outcome'});
+    });
+    // Tags compartidos
+    const tagMap = {};
+    DATA.entries.forEach(e => {
+        if (e.tags) e.tags.split(',').forEach(tag => {
+            tag = tag.trim().toLowerCase();
+            if (!tag || tag.length < 3) return;
+            if (!tagMap[tag]) tagMap[tag] = [];
+            tagMap[tag].push(e.id);
+        });
+    });
+    Object.values(tagMap).forEach(ids => {
+        for (let i = 0; i < ids.length; i++) {
+            for (let j = i+1; j < ids.length; j++) {
+                if (!links.find(l => (l.source === ids[i] && l.target === ids[j]) || (l.source === ids[j] && l.target === ids[i]))) {
+                    links.push({source: ids[i], target: ids[j], strength: 0.25, type: 'tag'});
+                }
+            }
+        }
     });
 
-    // === RENDER LINKS ===
+    // === RENDER ===
     const link = g.append('g')
         .selectAll('line')
         .data(links)
         .join('line')
-        .attr('x1', d => allNodes.find(n => n.id === d.source).x)
-        .attr('y1', d => allNodes.find(n => n.id === d.source).y)
-        .attr('x2', d => allNodes.find(n => n.id === d.target).x)
-        .attr('y2', d => allNodes.find(n => n.id === d.target).y)
-        .attr('stroke', d => d.type === 'parent' ? 'rgba(212,175,55,0.15)' :
-                            d.type === 'mistake' ? 'rgba(198,40,40,0.4)' :
-                            d.type === 'outcome' ? 'rgba(46,125,50,0.4)' :
-                            'rgba(212,175,55,0.04)')
-        .attr('stroke-width', d => d.type === 'parent' ? 1.5 : d.type === 'tag' ? 0.5 : 2)
-        .attr('stroke-opacity', 0.6);
+        .attr('x1', d => allNodes.find(n => n.id === d.source)?.x || 0)
+        .attr('y1', d => allNodes.find(n => n.id === d.source)?.y || 0)
+        .attr('x2', d => allNodes.find(n => n.id === d.target)?.x || 0)
+        .attr('y2', d => allNodes.find(n => n.id === d.target)?.y || 0)
+        .attr('stroke', d => d.type === 'parent' ? 'rgba(212,175,55,0.10)' :
+                             d.type === 'mistake' ? 'rgba(198,40,40,0.35)' :
+                             d.type === 'outcome' ? 'rgba(46,125,50,0.35)' :
+                             'rgba(212,175,55,0.03)')
+        .attr('stroke-width', d => d.type === 'parent' ? 1.2 : d.type === 'tag' ? 0.4 : 2)
+        .attr('stroke-opacity', 0.5);
 
-    // === RENDER NODES ===
     const node = g.append('g')
         .selectAll('g')
         .data(allNodes)
         .join('g')
         .attr('transform', d => `translate(${d.x},${d.y})`)
         .style('cursor', 'pointer')
-        .call(d3.drag()
-            .on('start', dragstarted)
-            .on('drag', dragged)
-            .on('end', dragended));
+        .call(d3.drag().on('start', dragstart).on('drag', dragging).on('end', dragend));
 
-    // Circulos
+    // Circulo principal
     node.append('circle')
         .attr('r', d => d.r)
-        .attr('fill', d => d.color)
-        .attr('fill-opacity', d => d.type === 'server' ? 0.12 : 0.85)
+        .attr('fill', d => d.type === 'server' ? 'rgba(0,0,0,0.3)' : d.color)
+        .attr('fill-opacity', d => d.type === 'server' ? 0.3 : 0.8)
         .attr('stroke', d => d.color)
         .attr('stroke-width', d => d.type === 'server' ? 3 : 1.5)
-        .attr('stroke-opacity', d => d.type === 'server' ? 0.8 : 0.5);
+        .attr('stroke-opacity', d => d.type === 'server' ? 0.9 : 0.5);
 
-    // Glow en servidores
+    // Aura/glow en servidores (segundo circulo mas grande)
     node.filter(d => d.type === 'server')
         .append('circle')
-        .attr('r', d => d.r + 10)
+        .attr('r', d => d.r + 12)
         .attr('fill', 'none')
         .attr('stroke', d => d.color)
-        .attr('stroke-width', 1.5)
-        .attr('stroke-opacity', 0.15)
-        .attr('stroke-dasharray', '4,4');
+        .attr('stroke-width', 1)
+        .attr('stroke-opacity', 0.2)
+        .attr('stroke-dasharray', '3,6');
 
-    // Labels de servidor (siempre visibles)
+    // Labels servidor
     node.filter(d => d.type === 'server')
         .append('text')
         .attr('class', 'srv-label')
-        .attr('dy', d => d.r + 20)
-        .text(d => {
-            const labels = {'prod-250':'PROD .250','espejo-241':'ESPEJO .241',
-                           'staging-99':'STAGING .99','backup-50':'BACKUP .50',
-                           'rdp-43':'RDP .43','general':'GENERAL'};
-            return labels[d.server] || d.server;
-        });
+        .attr('dy', d => d.r + 22)
+        .text(d => d.label);
 
-    // Labels de memorias (visibles si VIP alto o hover)
-    const memLabels = node.filter(d => d.type === 'memoria')
+    // Labels memorias
+    node.filter(d => d.type === 'memoria')
         .append('text')
         .attr('class', 'node-label')
-        .attr('dy', d => -d.r - 6)
-        .attr('fill-opacity', d => 0.85)
-        .text(d => d.title.slice(0, 28));
+        .attr('dy', d => -d.r - 8)
+        .attr('fill-opacity', 0.85)
+        .text(d => d.title.slice(0, 30));
 
-    // Labels de mistakes y outcomes
+    // Labels mistakes/outcomes
     node.filter(d => d.type === 'mistake' || d.type === 'outcome')
         .append('text')
         .attr('class', 'node-label')
-        .attr('dy', 16)
+        .attr('dy', 18)
         .attr('fill-opacity', 0.8)
-        .text(d => d.title.slice(0, 20));
+        .text(d => d.title.slice(0, 22));
 
     // === INTERACCIONES ===
     node.on('mouseover', function(event, d) {
-        d3.select(this).select('circle').attr('stroke-width', 3).attr('stroke-opacity', 1);
-        // Mostrar label de memorias bajas
-        if (d.type === 'memoria') {
-            d3.select(this).select('text').attr('fill-opacity', 1).attr('dy', -d.r - 6);
-        }
-        // Resaltar conexiones
+        d3.select(this).select('circle').attr('stroke-width', 4).attr('stroke-opacity', 1);
         link.attr('stroke-opacity', l =>
-            (l.source.id === d.id || l.target.id === d.id) ? 0.9 : 0.03);
+            (l.source.id === d.id || l.target.id === d.id) ? 0.9 : 0.02);
         link.attr('stroke-width', l =>
             (l.source.id === d.id || l.target.id === d.id) ? 2.5 : 0.3);
 
         tooltip.style('opacity', 1)
-            .html(()=>{
+            .html(() => {
                 if (d.type === 'server') {
-                    const srvLabels = {'prod-250':'Produccion .250','espejo-241':'Espejo .241',
-                                      'staging-99':'Staging .99','general':'General'};
-                    return `<h4>${srvLabels[d.server] || d.server}</h4>` +
-                           `<div class="meta">Pilar servidor · ${d.count} memorias</div>` +
-                           `<div class="body">Click para centrar</div>`;
+                    return `<h4>Pilar: ${d.label}</h4>` +
+                           `<div class="meta">${d.count} memorias en esta nave</div>` +
+                           `<div class="body">Click para centrar la vista</div>`;
                 }
                 if (d.type === 'mistake') {
                     return `<h4>Error Aprendido</h4>` +
                            `<div class="meta">${d.mtype}</div>` +
-                           `<div class="body">${(d.content||'').slice(0,200)}</div>` +
-                           (d.correction ? `<div class="body" style="margin-top:6px;color:#4caf50"><b>Correccion:</b> ${d.correction.slice(0,150)}</div>` : '');
+                           `<div class="body">${(d.content||'').slice(0,220)}</div>` +
+                           (d.correction ? `<div class="body" style="margin-top:8px;color:#81c784"><b>Correccion:</b> ${d.correction.slice(0,180)}</div>` : '');
                 }
                 if (d.type === 'outcome') {
                     return `<h4>Outcome</h4>` +
                            `<div class="meta">Estado: ${d.status}</div>` +
-                           `<div class="body">${(d.content||'').slice(0,200)}</div>`;
+                           `<div class="body">${(d.content||'').slice(0,220)}</div>`;
                 }
                 return `<h4>${d.title}</h4>` +
-                       `<div class="meta">${d.server||''}/${d.subtema||''} · VIP ${d.vip} · Fuente: ${d.source}</div>` +
-                       `<div class="body">${(d.content||'').slice(0,250)}</div>`;
+                       `<div class="meta">${d.server}/${d.subtema} · VIP ${d.vip} · ${d.source}</div>` +
+                       `<div class="body">${(d.content||'').slice(0,280)}</div>`;
             })
-            .style('left', Math.min(event.pageX + 14, window.innerWidth - 340) + 'px')
-            .style('top', Math.min(event.pageY + 14, window.innerHeight - 120) + 'px');
+            .style('left', Math.min(event.pageX + 14, window.innerWidth - 360) + 'px')
+            .style('top', Math.min(event.pageY + 14, window.innerHeight - 140) + 'px');
     })
     .on('mouseout', function(event, d) {
         d3.select(this).select('circle')
             .attr('stroke-width', d.type === 'server' ? 3 : 1.5)
-            .attr('stroke-opacity', d.type === 'server' ? 0.8 : 0.5);
-        if (d.type === 'memoria') {
-            d3.select(this).select('text').attr('fill-opacity', 0.85).attr('dy', -d.r - 6);
-        }
-        link.attr('stroke-opacity', 0.6).attr('stroke-width',
-            d => d.type === 'parent' ? 1.5 : d.type === 'tag' ? 0.5 : 2);
+            .attr('stroke-opacity', d.type === 'server' ? 0.9 : 0.5);
+        link.attr('stroke-opacity', 0.5).attr('stroke-width',
+            d => d.type === 'parent' ? 1.2 : d.type === 'tag' ? 0.4 : 2);
         tooltip.style('opacity', 0);
     })
     .on('click', function(event, d) {
-        if (d.type === 'server') {
-            const scale = 1.3;
-            svg.transition().duration(600).call(
-                zoom.transform,
-                d3.zoomIdentity.translate(width/2 - d.x*scale, height/2 - d.y*scale).scale(scale)
-            );
-        } else {
-            const scale = 2.2;
-            svg.transition().duration(600).call(
-                zoom.transform,
-                d3.zoomIdentity.translate(width/2 - d.x*scale, height/2 - d.y*scale).scale(scale)
-            );
-        }
+        const scale = d.type === 'server' ? 1.2 : 2.0;
+        svg.transition().duration(700).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(width/2 - d.x*scale, height/2 - d.y*scale).scale(scale)
+        );
     });
 
-    function dragstarted(event, d) {
-        d3.select(this).raise();
-    }
-    function dragged(event, d) {
+    function dragstart(event, d) { d3.select(this).raise(); }
+    function dragging(event, d) {
         d.x = event.x; d.y = event.y;
         d3.select(this).attr('transform', `translate(${d.x},${d.y})`);
-        // Actualizar links conectados
-        link.attr('x1', l => allNodes.find(n => n.id === l.source.id || n.id === l.source)?.x || l.source.x)
-            .attr('y1', l => allNodes.find(n => n.id === l.source.id || n.id === l.source)?.y || l.source.y)
-            .attr('x2', l => allNodes.find(n => n.id === l.target.id || n.id === l.target)?.x || l.target.x)
-            .attr('y2', l => allNodes.find(n => n.id === l.target.id || n.id === l.target)?.y || l.target.y);
+        link.attr('x1', l => allNodes.find(n => n.id === l.source)?.x || l.source.x)
+            .attr('y1', l => allNodes.find(n => n.id === l.source)?.y || l.source.y)
+            .attr('x2', l => allNodes.find(n => n.id === l.target)?.x || l.target.x)
+            .attr('y2', l => allNodes.find(n => n.id === l.target)?.y || l.target.y);
     }
-    function dragended(event, d) {}
+    function dragend(event, d) {}
 
     // === SEARCH ===
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', function() {
+    document.getElementById('searchInput').addEventListener('input', function() {
         const q = this.value.toLowerCase();
         if (!q) {
-            node.select('circle').attr('fill-opacity', d => d.type === 'server' ? 0.12 : 0.85);
-            memLabels.attr('fill-opacity', d => 0.85);
-            link.attr('stroke-opacity', 0.6);
+            node.select('circle').attr('fill-opacity', d => d.type === 'server' ? 0.3 : 0.8);
+            link.attr('stroke-opacity', 0.5);
             return;
         }
         node.select('circle').attr('fill-opacity', d => {
             if (d.type === 'server') {
                 const hasMatch = memNodes.some(m => m.server === d.server &&
                     ((m.title||'').toLowerCase().includes(q) || (m.tags||'').toLowerCase().includes(q)));
-                return hasMatch ? 0.25 : 0.03;
+                return hasMatch ? 0.4 : 0.05;
             }
-            const match = (d.title||'').toLowerCase().includes(q) || (d.tags||'').toLowerCase().includes(q);
-            return match ? 0.95 : 0.08;
-        });
-        // Mostrar labels de matches
-        node.selectAll('text').attr('fill-opacity', d => {
-            if (d.type !== 'memoria') return d.type === 'server' ? 1 : 0.8;
-            return (d.title||'').toLowerCase().includes(q) || (d.tags||'').toLowerCase().includes(q) ? 0.9 : 0;
+            return ((d.title||'').toLowerCase().includes(q) || (d.tags||'').toLowerCase().includes(q)) ? 0.95 : 0.06;
         });
         link.attr('stroke-opacity', l => {
             const sm = ((l.source.title||'') + (l.source.tags||'') + (l.target.title||'') + (l.target.tags||'')).toLowerCase();
@@ -374,24 +608,22 @@
         });
     });
 
-    // === TOGGLE PANEL ===
+    // === PANEL ===
     document.getElementById('togglePanel').addEventListener('click', () => {
         document.getElementById('panel').classList.toggle('hidden');
     });
 
-    // === FOCUS NODE (desde panel) ===
+    // === FOCUS NODE ===
     window.focusNode = function(id) {
         const n = allNodes.find(x => x.id === id);
         if (!n) return;
-        const scale = 2.2;
-        svg.transition().duration(600).call(
+        svg.transition().duration(700).call(
             zoom.transform,
-            d3.zoomIdentity.translate(width/2 - n.x*scale, height/2 - n.y*scale).scale(scale)
+            d3.zoomIdentity.translate(width/2 - n.x*2, height/2 - n.y*2).scale(2)
         );
-        // Resaltar
-        node.select('circle').attr('fill-opacity', d => d.id === id ? 1 : 0.1);
+        node.select('circle').attr('fill-opacity', d => d.id === id ? 1 : 0.08);
         setTimeout(() => {
-            node.select('circle').attr('fill-opacity', d => d.type === 'server' ? 0.12 : 0.85);
+            node.select('circle').attr('fill-opacity', d => d.type === 'server' ? 0.3 : 0.8);
         }, 4000);
     };
     </script></body></html>

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-09T18:18:54.006849",
+    "generated_at": "2026-07-09T18:28:56.480316",
     "db_path": "/home/vm-hermes/.hermes/memory-deep/db/memory.db",
     "agent_name": "Hermes",
     "system": "La Catedral"
@@ -248,212 +248,215 @@
   "relationships": [],
   "tags": [
     {
-      "name": "backup",
+      "nombre": "backup",
       "count": 6
     },
     {
-      "name": "staging",
+      "nombre": "staging",
       "count": 6
     },
     {
-      "name": "espejo-241",
+      "nombre": "espejo-241",
       "count": 5
     },
     {
-      "name": "bache",
+      "nombre": "bache",
       "count": 4
     },
     {
-      "name": "mysql",
+      "nombre": "mysql",
       "count": 4
     },
     {
-      "name": "produccion",
+      "nombre": "produccion",
       "count": 4
     },
     {
-      "name": "cron",
+      "nombre": "cron",
       "count": 4
     },
     {
-      "name": "vault",
+      "nombre": "vault",
       "count": 4
     },
     {
-      "name": "all",
+      "nombre": "all",
       "count": 4
     },
     {
-      "name": "contract_fees",
+      "nombre": "contract_fees",
       "count": 3
     },
     {
-      "name": "telegram",
+      "nombre": "telegram",
       "count": 3
     },
     {
-      "name": "epem",
+      "nombre": "epem",
       "count": 3
     },
     {
-      "name": "pipeline",
+      "nombre": "pipeline",
       "count": 3
     },
     {
-      "name": "replica",
+      "nombre": "replica",
       "count": 2
     },
     {
-      "name": "api",
+      "nombre": "api",
       "count": 2
     },
     {
-      "name": "monitor",
+      "nombre": "monitor",
       "count": 2
     },
     {
-      "name": "cause",
+      "nombre": "cause",
       "count": 1
     },
     {
-      "name": "root",
+      "nombre": "root",
       "count": 1
     },
     {
-      "name": "sql_log_bin",
+      "nombre": "sql_log_bin",
       "count": 1
     },
     {
-      "name": "bot",
+      "nombre": "bot",
       "count": 1
     },
     {
-      "name": "bloqueado",
+      "nombre": "bloqueado",
       "count": 1
     },
     {
-      "name": "cli",
+      "nombre": "cli",
       "count": 1
     },
     {
-      "name": "explicit",
+      "nombre": "explicit",
       "count": 1
     },
     {
-      "name": "rdp",
+      "nombre": "rdp",
       "count": 1
     },
     {
-      "name": "remoto",
+      "nombre": "remoto",
       "count": 1
     },
     {
-      "name": "sudo",
+      "nombre": "sudo",
       "count": 1
     },
     {
-      "name": "analyze",
+      "nombre": "analyze",
       "count": 1
     },
     {
-      "name": "analyze-first",
+      "nombre": "analyze-first",
       "count": 1
     },
     {
-      "name": "first",
+      "nombre": "first",
       "count": 1
     },
     {
-      "name": "not",
+      "nombre": "not",
       "count": 1
     },
     {
-      "name": "restore",
+      "nombre": "restore",
       "count": 1
     },
     {
-      "name": "zip",
+      "nombre": "zip",
       "count": 1
     },
     {
-      "name": "corrected",
+      "nombre": "corrected",
       "count": 1
     },
     {
-      "name": "fully",
+      "nombre": "fully",
       "count": 1
     },
     {
-      "name": "antes",
+      "nombre": "antes",
       "count": 1
     },
     {
-      "name": "count",
+      "nombre": "count",
       "count": 1
     },
     {
-      "name": "json",
+      "nombre": "json",
       "count": 1
     },
     {
-      "name": "admin-epem",
+      "nombre": "admin-epem",
       "count": 1
     },
     {
-      "name": "chat_id",
+      "nombre": "chat_id",
       "count": 1
     },
     {
-      "name": "detector_datos_desactualizados_espejo",
+      "nombre": "detector_datos_desactualizados_espejo",
       "count": 1
     },
     {
-      "name": "auto-deploy",
+      "nombre": "auto-deploy",
       "count": 1
     },
     {
-      "name": "deep-memory-system",
+      "nombre": "deep-memory-system",
       "count": 1
     },
     {
-      "name": "grupoepem-bi-team",
+      "nombre": "grupoepem-bi-team",
       "count": 1
     },
     {
-      "name": "memory-deep",
+      "nombre": "memory-deep",
       "count": 1
     },
     {
-      "name": "wal",
+      "nombre": "wal",
       "count": 1
     },
     {
-      "name": "line",
+      "nombre": "line",
       "count": 1
     },
     {
-      "name": "single",
+      "nombre": "single",
       "count": 1
     },
     {
-      "name": "absoluta",
+      "nombre": "absoluta",
       "count": 1
     },
     {
-      "name": "config",
+      "nombre": "config",
       "count": 1
     },
     {
-      "name": "ley",
+      "nombre": "ley",
       "count": 1
     }
   ],
   "grafo_hist": [
     {
+      "id": 1,
       "fecha": "2026-07-09",
-      "nodos": 17,
-      "aristas": 0,
-      "densidad": 0.0
+      "nodos_count": 17,
+      "aristas_count": 0,
+      "densidad": 0.0,
+      "centralidad_max": 0.0,
+      "snapshot_json": "{\"nodos\": 17, \"aristas\": 0, \"densidad\": 0.0, \"centralidad_max\": 0}"
     }
   ],
   "mistakes": [
@@ -507,18 +510,13 @@
   ],
   "skills": [
     {
-      "name": "apple-notes",
-      "description": "Manage Apple Notes via memo CLI: create, search, edit.",
-      "category": "apple"
-    },
-    {
-      "name": "apple-reminders",
-      "description": "Apple Reminders via remindctl: add, list, complete.",
-      "category": "apple"
-    },
-    {
       "name": "findmy",
       "description": "Track Apple devices/AirTags via FindMy.app on macOS.",
+      "category": "apple"
+    },
+    {
+      "name": "apple-notes",
+      "description": "Manage Apple Notes via memo CLI: create, search, edit.",
       "category": "apple"
     },
     {
@@ -527,13 +525,13 @@
       "category": "apple"
     },
     {
-      "name": "claude-code",
-      "description": "Delegate coding to Claude Code CLI (features, PRs).",
-      "category": "autonomous-ai-agents"
+      "name": "apple-reminders",
+      "description": "Apple Reminders via remindctl: add, list, complete.",
+      "category": "apple"
     },
     {
-      "name": "codex",
-      "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
+      "name": "opencode",
+      "description": "Delegate coding to OpenCode CLI (features, PR review).",
       "category": "autonomous-ai-agents"
     },
     {
@@ -542,8 +540,13 @@
       "category": "autonomous-ai-agents"
     },
     {
-      "name": "opencode",
-      "description": "Delegate coding to OpenCode CLI (features, PR review).",
+      "name": "codex",
+      "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
+      "category": "autonomous-ai-agents"
+    },
+    {
+      "name": "claude-code",
+      "description": "Delegate coding to Claude Code CLI (features, PRs).",
       "category": "autonomous-ai-agents"
     },
     {
@@ -552,73 +555,8 @@
       "category": "computer-use"
     },
     {
-      "name": "architecture-diagram",
-      "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
-      "category": "creative"
-    },
-    {
-      "name": "ascii-art",
-      "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.",
-      "category": "creative"
-    },
-    {
-      "name": "ascii-video",
-      "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
-      "category": "creative"
-    },
-    {
-      "name": "baoyu-infographic",
-      "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
-      "category": "creative"
-    },
-    {
-      "name": "claude-design",
-      "description": "Design one-off HTML artifacts (landing, deck, prototype).",
-      "category": "creative"
-    },
-    {
-      "name": "comfyui",
-      "description": "Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter injection. Uses the official comfy-cli for lifecycle and direct REST/WebSocket API f",
-      "category": "creative"
-    },
-    {
-      "name": "design-md",
-      "description": "Author/validate/export Google's DESIGN.md token spec files.",
-      "category": "creative"
-    },
-    {
-      "name": "excalidraw",
-      "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).",
-      "category": "creative"
-    },
-    {
       "name": "humanizer",
       "description": "Humanize text: strip AI-isms and add real voice.",
-      "category": "creative"
-    },
-    {
-      "name": "manim-video",
-      "description": "Manim CE animations: 3Blue1Brown math/algo videos.",
-      "category": "creative"
-    },
-    {
-      "name": "p5js",
-      "description": "p5.js sketches: gen art, shaders, interactive, 3D.",
-      "category": "creative"
-    },
-    {
-      "name": "popular-web-designs",
-      "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
-      "category": "creative"
-    },
-    {
-      "name": "pretext",
-      "description": "Use when building creative browser demos with @chenglou/pretext — DOM-free text layout for ASCII art, typographic flow around obstacles, text-as-geometry games, kinetic typography, and text-powered ge",
-      "category": "creative"
-    },
-    {
-      "name": "sketch",
-      "description": "Throwaway HTML mockups: 2-3 design variants to compare.",
       "category": "creative"
     },
     {
@@ -627,8 +565,73 @@
       "category": "creative"
     },
     {
+      "name": "design-md",
+      "description": "Author/validate/export Google's DESIGN.md token spec files.",
+      "category": "creative"
+    },
+    {
+      "name": "architecture-diagram",
+      "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
+      "category": "creative"
+    },
+    {
+      "name": "pretext",
+      "description": "Use when building creative browser demos with @chenglou/pretext — DOM-free text layout for ASCII art, typographic flow around obstacles, text-as-geometry games, kinetic typography, and text-powered ge",
+      "category": "creative"
+    },
+    {
+      "name": "popular-web-designs",
+      "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
+      "category": "creative"
+    },
+    {
+      "name": "ascii-art",
+      "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.",
+      "category": "creative"
+    },
+    {
+      "name": "baoyu-infographic",
+      "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
+      "category": "creative"
+    },
+    {
+      "name": "p5js",
+      "description": "p5.js sketches: gen art, shaders, interactive, 3D.",
+      "category": "creative"
+    },
+    {
+      "name": "claude-design",
+      "description": "Design one-off HTML artifacts (landing, deck, prototype).",
+      "category": "creative"
+    },
+    {
+      "name": "excalidraw",
+      "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).",
+      "category": "creative"
+    },
+    {
+      "name": "sketch",
+      "description": "Throwaway HTML mockups: 2-3 design variants to compare.",
+      "category": "creative"
+    },
+    {
+      "name": "comfyui",
+      "description": "Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter injection. Uses the official comfy-cli for lifecycle and direct REST/WebSocket API f",
+      "category": "creative"
+    },
+    {
       "name": "touchdesigner-mcp",
       "description": "Control a running TouchDesigner instance via twozero MCP — create operators, set parameters, wire connections, execute Python, build real-time visuals. 36 native tools.",
+      "category": "creative"
+    },
+    {
+      "name": "ascii-video",
+      "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
+      "category": "creative"
+    },
+    {
+      "name": "manim-video",
+      "description": "Manim CE animations: 3Blue1Brown math/algo videos.",
       "category": "creative"
     },
     {
@@ -637,13 +640,8 @@
       "category": "data-science"
     },
     {
-      "name": "actualizacion-espejo-241",
-      "description": "Pipeline de actualizacion espejo 241 (192.168.0.241). MySQL espejo con replicacion automatica desde produccion (250). Topologia, sync, monitoreo y diferencias con staging 240.",
-      "category": "devops"
-    },
-    {
-      "name": "actualizacion-staging-240",
-      "description": "Pipeline diario de actualizacion staging (192.168.0.240 legado y 192.168.0.99 nuevo). Topologia, cronjobs, sync hibrido epem_temp -> epem, logs y monitoreo.",
+      "name": "espejo-241-ops-log",
+      "description": "Operational record for Espejo 241: drift fix, monitoring, pipeline deprecation.",
       "category": "devops"
     },
     {
@@ -652,18 +650,23 @@
       "category": "devops"
     },
     {
-      "name": "centralizar-logs-99",
-      "description": "",
+      "name": "server-diagnostics-hub",
+      "description": "Patron de hub de diagnostico remoto: recolectar estado 360 (sistema, MySQL, logs, config) desde servidores via SSH, almacenar en snapshots timestamped, detectar incidencias automaticamente, limpiar po",
       "category": "devops"
     },
     {
-      "name": "deep-memory-system",
-      "description": "Sistema de memoria profunda para Hermes: SQLite + FTS5 + VIP scoring + mistakes/outcomes + dashboard visual. Arquitectura, schema unificado, scripts CLI, crons, y deploy a Vercel.",
+      "name": "actualizacion-staging-240",
+      "description": "Pipeline diario de actualizacion staging (192.168.0.240 legado y 192.168.0.99 nuevo). Topologia, cronjobs, sync hibrido epem_temp -> epem, logs y monitoreo.",
       "category": "devops"
     },
     {
-      "name": "espejo-241-ops-log",
-      "description": "Operational record for Espejo 241: drift fix, monitoring, pipeline deprecation.",
+      "name": "mysql-restore-pipelines",
+      "description": ">",
+      "category": "devops"
+    },
+    {
+      "name": "staging-99-restore-guide",
+      "description": "Guia completa en espanol no tecnico para el restore del Staging .99 (192.168.0.99). Incluye pasos para LLM y para usuario humano, playbooks con rollback, plan de contingencia, monitoreo por Telegram y",
       "category": "devops"
     },
     {
@@ -677,11 +680,6 @@
       "category": "devops"
     },
     {
-      "name": "mysql-restore-pipelines",
-      "description": ">",
-      "category": "devops"
-    },
-    {
       "name": "mysql-staging-restore",
       "description": "Restore completo de MySQL en staging 192.168.0.240. Pre-flight checks, collation fix + functional index removal (MySQL 8.0→5.7), restore, monitoreo, e incremental sync epem_temp → epem",
       "category": "devops"
@@ -692,33 +690,38 @@
       "category": "devops"
     },
     {
-      "name": "qa-playbook-validation",
-      "description": "Validacion automatica de playbooks bash antes de deploy. Detecta bugs silenciosos como captura de $? despues de asignacion, mysql_exec que oculta errores, y sleep sin retry loops.",
-      "category": "devops"
-    },
-    {
-      "name": "server-diagnostics-hub",
-      "description": "Patron de hub de diagnostico remoto: recolectar estado 360 (sistema, MySQL, logs, config) desde servidores via SSH, almacenar en snapshots timestamped, detectar incidencias automaticamente, limpiar po",
-      "category": "devops"
-    },
-    {
-      "name": "staging-99-restore-guide",
-      "description": "Guia completa en espanol no tecnico para el restore del Staging .99 (192.168.0.99). Incluye pasos para LLM y para usuario humano, playbooks con rollback, plan de contingencia, monitoreo por Telegram y",
-      "category": "devops"
-    },
-    {
       "name": "staging-99-restore-pipeline",
       "description": "Pipeline diario de restore de epem en Staging .99 (192.168.0.99) con lecciones aprendidas, troubleshooting y mejoras.",
       "category": "devops"
     },
     {
-      "name": "status-240",
-      "description": "Resumen completo de servidores staging 192.168.0.240 y 192.168.0.99 cuando el usuario pide status",
+      "name": "actualizacion-espejo-241",
+      "description": "Pipeline de actualizacion espejo 241 (192.168.0.241). MySQL espejo con replicacion automatica desde produccion (250). Topologia, sync, monitoreo y diferencias con staging 240.",
+      "category": "devops"
+    },
+    {
+      "name": "deep-memory-system",
+      "description": "Sistema de memoria profunda para Hermes: SQLite + FTS5 + VIP scoring + mistakes/outcomes + dashboard visual. Arquitectura, schema unificado, scripts CLI, crons, y deploy a Vercel.",
       "category": "devops"
     },
     {
       "name": "telegram-reportes-staging-99",
       "description": "Formato estandarizado de reportes operativos para Telegram del pipeline Staging .99. Define estructura visual, emojis, tablas Markdown y librerias Bash/Python reutilizables.",
+      "category": "devops"
+    },
+    {
+      "name": "qa-playbook-validation",
+      "description": "Validacion automatica de playbooks bash antes de deploy. Detecta bugs silenciosos como captura de $? despues de asignacion, mysql_exec que oculta errores, y sleep sin retry loops.",
+      "category": "devops"
+    },
+    {
+      "name": "centralizar-logs-99",
+      "description": "",
+      "category": "devops"
+    },
+    {
+      "name": "status-240",
+      "description": "Resumen completo de servidores staging 192.168.0.240 y 192.168.0.99 cuando el usuario pide status",
       "category": "devops"
     },
     {
@@ -752,18 +755,18 @@
       "category": "github"
     },
     {
-      "name": "github-pr-workflow",
-      "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.",
-      "category": "github"
-    },
-    {
       "name": "github-repo-management",
       "description": "Clone/create/fork repos; manage remotes, releases.",
       "category": "github"
     },
     {
-      "name": "gif-search",
-      "description": "Search/download GIFs from Tenor via curl + jq.",
+      "name": "github-pr-workflow",
+      "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.",
+      "category": "github"
+    },
+    {
+      "name": "songsee",
+      "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.",
       "category": "media"
     },
     {
@@ -772,8 +775,8 @@
       "category": "media"
     },
     {
-      "name": "songsee",
-      "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.",
+      "name": "gif-search",
+      "description": "Search/download GIFs from Tenor via curl + jq.",
       "category": "media"
     },
     {
@@ -792,38 +795,8 @@
       "category": "note-taking"
     },
     {
-      "name": "airtable",
-      "description": "Airtable REST API via curl. Records CRUD, filters, upserts.",
-      "category": "productivity"
-    },
-    {
-      "name": "google-workspace",
-      "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.",
-      "category": "productivity"
-    },
-    {
-      "name": "index-system",
-      "description": "Sistema de indices tematicos para organizar conocimiento del agente en estantes con INDEX.md jerarquico.",
-      "category": "productivity"
-    },
-    {
-      "name": "maps",
-      "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
-      "category": "productivity"
-    },
-    {
-      "name": "nano-pdf",
-      "description": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).",
-      "category": "productivity"
-    },
-    {
-      "name": "notion",
-      "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.",
-      "category": "productivity"
-    },
-    {
-      "name": "ocr-and-documents",
-      "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).",
+      "name": "teams-meeting-pipeline",
+      "description": "Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscriptions.",
       "category": "productivity"
     },
     {
@@ -832,19 +805,44 @@
       "category": "productivity"
     },
     {
+      "name": "ocr-and-documents",
+      "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).",
+      "category": "productivity"
+    },
+    {
+      "name": "airtable",
+      "description": "Airtable REST API via curl. Records CRUD, filters, upserts.",
+      "category": "productivity"
+    },
+    {
+      "name": "index-system",
+      "description": "Sistema de indices tematicos para organizar conocimiento del agente en estantes con INDEX.md jerarquico.",
+      "category": "productivity"
+    },
+    {
       "name": "powerpoint",
       "description": "Create, read, edit .pptx decks, slides, notes, templates.",
       "category": "productivity"
     },
     {
-      "name": "teams-meeting-pipeline",
-      "description": "Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscriptions.",
+      "name": "google-workspace",
+      "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.",
       "category": "productivity"
     },
     {
-      "name": "arxiv",
-      "description": "Search arXiv papers by keyword, author, category, or ID.",
-      "category": "research"
+      "name": "notion",
+      "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.",
+      "category": "productivity"
+    },
+    {
+      "name": "nano-pdf",
+      "description": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).",
+      "category": "productivity"
+    },
+    {
+      "name": "maps",
+      "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
+      "category": "productivity"
     },
     {
       "name": "blogwatcher",
@@ -852,13 +850,18 @@
       "category": "research"
     },
     {
-      "name": "llm-wiki",
-      "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.",
+      "name": "arxiv",
+      "description": "Search arXiv papers by keyword, author, category, or ID.",
       "category": "research"
     },
     {
       "name": "polymarket",
       "description": "Query Polymarket: markets, prices, orderbooks, history.",
+      "category": "research"
+    },
+    {
+      "name": "llm-wiki",
+      "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.",
       "category": "research"
     },
     {
@@ -877,33 +880,18 @@
       "category": "social-media"
     },
     {
-      "name": "hermes-agent-skill-authoring",
-      "description": "Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles.",
-      "category": "software-development"
-    },
-    {
-      "name": "node-inspect-debugger",
-      "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
-      "category": "software-development"
-    },
-    {
-      "name": "plan",
-      "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution. Bite-sized tasks, exact paths, complete code.",
-      "category": "software-development"
-    },
-    {
-      "name": "python-debugpy",
-      "description": "Debug Python: pdb REPL + debugpy remote (DAP).",
-      "category": "software-development"
-    },
-    {
       "name": "requesting-code-review",
       "description": "Pre-commit review: security scan, quality gates, auto-fix.",
       "category": "software-development"
     },
     {
-      "name": "simplify-code",
-      "description": "Parallel 3-agent cleanup of recent code changes.",
+      "name": "test-driven-development",
+      "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
+      "category": "software-development"
+    },
+    {
+      "name": "python-debugpy",
+      "description": "Debug Python: pdb REPL + debugpy remote (DAP).",
       "category": "software-development"
     },
     {
@@ -917,8 +905,23 @@
       "category": "software-development"
     },
     {
-      "name": "test-driven-development",
-      "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
+      "name": "node-inspect-debugger",
+      "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
+      "category": "software-development"
+    },
+    {
+      "name": "plan",
+      "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution. Bite-sized tasks, exact paths, complete code.",
+      "category": "software-development"
+    },
+    {
+      "name": "simplify-code",
+      "description": "Parallel 3-agent cleanup of recent code changes.",
+      "category": "software-development"
+    },
+    {
+      "name": "hermes-agent-skill-authoring",
+      "description": "Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles.",
       "category": "software-development"
     },
     {
