@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Catedral · Red Neural de Memoria</title>
+    <style>
+        :root {
+            --catedral-bg: #0a0a0f;
+            --catedral-negro: #12121a;
+            --catedral-oro: #d4af37;
+            --catedral-oro-brillante: #ffd700;
+            --catedral-oro-tenue: #b8860b;
+            --catedral-pergamino: #f3e5ab;
+            --catedral-vitral-rojo: #8b0000;
+            --catedral-vitral-azul: #1a1a6e;
+            --catedral-vitral-verde: #0d4d0d;
+            --catedral-gris: #2a2a35;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a0f 60%);
+            color: var(--catedral-pergamino);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .vitrales {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .vitrales::before, .vitrales::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 100vh;
+            top: 0;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(139,0,0,0.08) 20%,
+                rgba(26,26,110,0.08) 40%,
+                rgba(13,77,13,0.08) 60%,
+                rgba(139,0,0,0.08) 80%,
+                transparent 100%);
+            filter: blur(40px);
+        }
+        .vitrales::before { left: -100px; }
+        .vitrales::after { right: -100px; }
+        .container {
+            z-index: 1;
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border: 3px solid var(--catedral-oro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: radial-gradient(circle, #1a1a2e 0%, #0a0a0f 100%);
+            box-shadow: 0 0 30px rgba(212,175,55,0.3), inset 0 0 20px rgba(212,175,55,0.1);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(212,175,55,0.3), inset 0 0 20px rgba(212,175,55,0.1); }
+            50% { box-shadow: 0 0 50px rgba(255,215,0,0.5), inset 0 0 30px rgba(212,175,55,0.2); }
+        }
+        h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.5rem;
+            color: var(--catedral-oro);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(212,175,55,0.4);
+        }
+        h2 {
+            font-size: 1.1rem;
+            color: var(--catedral-oro-tenue);
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+        .status {
+            background: var(--catedral-negro);
+            border: 1px solid var(--catedral-oro-tenue);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .status h3 {
+            color: var(--catedral-oro);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .status-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+            font-size: 0.9rem;
+        }
+        .status-table td:first-child {
+            color: var(--catedral-oro-tenue);
+            text-align: left;
+        }
+        .status-table td:last-child {
+            color: var(--catedral-pergamino);
+            text-align: right;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            background: rgba(13,77,13,0.3);
+            border: 1px solid #0d4d0d;
+            color: #4caf50;
+        }
+        .sparkle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: var(--catedral-oro-brillante);
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 0;
+            animation: floatUp 8s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: var(--catedral-oro-tenue);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="vitrales"></div>
+    <div id="sparkles"></div>
+    <div class="container">
+        <div class="logo">&#9961;</div>
+        <h1>La Catedral</h1>
+        <h2>Red Neural de Memoria</h2>
+        <div class="status">
+            <h3>Estado del Sistema</h3>
+            <table class="status-table">
+                <tr><td>Sistema</td><td>Hermes Deep Memory v1.0</td></tr>
+                <tr><td>Estado</td><td><span class="status-badge">Inicializando</span></td></tr>
+                <tr><td>Motor de memoria</td><td>En construccion</td></tr>
+                <tr><td>Dashboard visual</td><td>Pendiente</td></tr>
+                <tr><td>Deploy</td><td>Vercel + GitHub</td></tr>
+                <tr><td>Ultima actualizacion</td><td>2026-07-09</td></tr>
+            </table>
+        </div>
+        <div class="footer">
+            La Catedral &middot; Grupo EPEM &middot; Hermes Agent
+        </div>
+    </div>
+    <script>
+        // Generar particulas doradas
+        const sparkles = document.getElementById('sparkles');
+        for (let i = 0; i < 20; i++) {
+            const s = document.createElement('div');
+            s.className = 'sparkle';
+            s.style.left = Math.random() * 100 + 'vw';
+            s.style.animationDelay = Math.random() * 8 + 's';
+            s.style.animationDuration = (6 + Math.random() * 4) + 's';
+            sparkles.appendChild(s);
+        }
+    </script>
+</body>
+</html>
