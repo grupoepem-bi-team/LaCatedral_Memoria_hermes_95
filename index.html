@@ -19,38 +19,28 @@ html,body { width:100vw; height:100vh; overflow:hidden; background: linear-gradi
 @keyframes pulse-dot { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
 .header .last-update { color: #666; font-size: 0.75rem; }
 
-#main { position:fixed; top:56px; left:0; right:360px; bottom:0; overflow:hidden; }
+#main { position:fixed; top:56px; left:0; right:380px; bottom:0; overflow:hidden; }
 #bg-svg { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
 #grafo { position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; }
 
-#side-panel { position:fixed; top:56px; right:0; width:360px; height:calc(100vh - 56px); background: rgba(12,12,18,0.97); border-left: 1px solid rgba(212,175,55,0.15); z-index:90; overflow-y:auto; padding: 20px; backdrop-filter: blur(8px); }
-#side-panel h2 { color: var(--oro); font-size: 1rem; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(212,175,55,0.15); letter-spacing: 1px; }
-#side-panel h3 { color: #aaa; font-size: 0.8rem; margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 1px; }
+#side-panel { position:fixed; top:56px; right:0; width:380px; height:calc(100vh - 56px); background: rgba(12,12,18,0.97); border-left: 1px solid rgba(212,175,55,0.15); z-index:90; overflow-y:auto; padding: 20px; backdrop-filter: blur(8px); }
 
-.srv-card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 14px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; }
-.srv-card:hover { border-color: rgba(212,175,55,0.3); transform: translateX(-4px); }
-.srv-card.active { border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.05); }
-.srv-card .srv-header { display:flex; align-items:center; gap: 10px; margin-bottom: 6px; }
-.srv-card .srv-icon { font-size: 1.4rem; }
-.srv-card .srv-name { font-weight: bold; color: #fff; font-size: 0.95rem; }
-.srv-card .srv-status { margin-left: auto; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; text-transform: uppercase; font-weight: bold; }
-.srv-card .srv-status.online { background: rgba(76,175,80,0.15); color: #4caf50; }
-.srv-card .srv-status.offline { background: rgba(244,67,54,0.15); color: #f44336; }
-.srv-card .srv-status.unknown { background: rgba(255,152,0,0.15); color: #ff9800; }
-.srv-card .srv-desc { font-size: 0.8rem; color: #aaa; line-height: 1.4; margin-bottom: 8px; }
-.srv-card .srv-services { display:flex; flex-wrap:wrap; gap: 4px; }
-.srv-card .srv-services span { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.15); color: var(--pergamino); padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; }
+/* SECCION SERVIDOR EN PANEL */
+.server-section { margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.1); border-radius: 12px; overflow:hidden; }
+.server-section-header { display:flex; align-items:center; gap: 10px; padding: 12px 16px; background: rgba(212,175,55,0.04); cursor: pointer; transition: all 0.2s; }
+.server-section-header:hover { background: rgba(212,175,55,0.08); }
+.server-section-header .sh-icon { font-size: 1.3rem; }
+.server-section-header .sh-name { font-weight: bold; color: #fff; font-size: 0.95rem; }
+.server-section-header .sh-status { margin-left: auto; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; text-transform: uppercase; font-weight: bold; }
+.server-section-header .sh-status.online { background: rgba(76,175,80,0.15); color: #4caf50; }
+.server-section-header .sh-status.offline { background: rgba(244,67,54,0.15); color: #f44336; }
+.server-section-header .sh-status.unknown { background: rgba(255,152,0,0.15); color: #ff9800; }
+.server-section-header .sh-count { margin-left: 8px; font-size: 0.7rem; color: #888; }
+.server-section-body { display: none; padding: 0 16px 12px; }
+.server-section-body.visible { display: block; }
 
-.flow-card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: all 0.2s; }
-.flow-card:hover { border-color: rgba(212,175,55,0.25); }
-.flow-card .flow-name { font-weight: 600; color: #fff; font-size: 0.85rem; margin-bottom: 4px; display:flex; align-items:center; gap: 6px; }
-.flow-card .flow-desc { font-size: 0.75rem; color: #888; line-height: 1.3; }
-.flow-card .flow-meta { margin-top: 6px; font-size: 0.7rem; color: #666; display:flex; justify-content:space-between; }
-.flow-card .flow-status { padding: 1px 6px; border-radius: 8px; font-size: 0.6rem; }
-.flow-card .flow-status.active { background: rgba(76,175,80,0.12); color: #4caf50; }
-
-/* COMPONENTE CON SUBTAREAS */
-.comp-card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 10px; margin-bottom: 6px; cursor: pointer; }
+/* COMPONENTE */
+.comp-card { background: rgba(25,25,35,0.8); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; margin-top: 8px; cursor: pointer; transition: all 0.2s; }
 .comp-card:hover { border-color: rgba(212,175,55,0.2); }
 .comp-card .comp-header { display:flex; align-items:center; gap: 8px; }
 .comp-card .comp-name { font-weight: 600; font-size: 0.82rem; color: #ddd; }
@@ -62,16 +52,17 @@ html,body { width:100vw; height:100vh; overflow:hidden; background: linear-gradi
 /* SUBTAREAS */
 .subtasks-container { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.05); }
 .subtasks-container.visible { display: block; }
-.subtask { display:flex; align-items:flex-start; gap: 8px; padding: 6px 0; padding-left: 12px; border-left: 2px solid rgba(212,175,55,0.1); }
-.subtask .st-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 2px; }
+.subtask { display:flex; align-items:flex-start; gap: 8px; padding: 5px 0; padding-left: 8px; border-left: 2px solid rgba(212,175,55,0.1); }
+.subtask .st-icon { font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; }
 .subtask .st-content { flex: 1; }
-.subtask .st-name { font-size: 0.78rem; color: #ccc; }
-.subtask .st-desc { font-size: 0.68rem; color: #888; margin-top: 2px; }
-.subtask .st-status { font-size: 0.6rem; padding: 1px 6px; border-radius: 8px; margin-left: auto; align-self: center; }
+.subtask .st-name { font-size: 0.76rem; color: #ccc; }
+.subtask .st-desc { font-size: 0.66rem; color: #888; margin-top: 1px; }
+.subtask .st-status { font-size: 0.58rem; padding: 1px 5px; border-radius: 6px; margin-left: auto; align-self: center; flex-shrink: 0; }
 .subtask .st-status.done { background: rgba(76,175,80,0.12); color: #4caf50; }
 .subtask .st-status.active { background: rgba(33,150,243,0.12); color: #2196f3; }
 .subtask .st-status.pending { background: rgba(255,152,0,0.12); color: #ff9800; }
 
+/* TOOLTIP */
 .tooltip { position:fixed; padding: 16px; background: rgba(16,14,10,0.98); border: 1px solid var(--oro); border-radius: 12px; max-width: 380px; z-index:200; pointer-events:none; opacity:0; transition: opacity 0.25s; box-shadow: 0 12px 40px rgba(0,0,0,0.7); }
 .tooltip .tt-title { font-size: 1rem; font-weight: bold; color: var(--oro); margin-bottom: 8px; }
 .tooltip .tt-desc { font-size: 0.82rem; color: #ccc; line-height: 1.5; margin-bottom: 8px; }
@@ -94,7 +85,7 @@ html,body { width:100vw; height:100vh; overflow:hidden; background: linear-gradi
     <div class="status">
         <div class="status-dot"></div>
         <span style="color:#4caf50;font-size:0.8rem;">Sistema operativo</span>
-        <span class="last-update">Actualizado: 14:15</span>
+        <span class="last-update">Actualizado: 14:20</span>
     </div>
 </div>
 
@@ -116,18 +107,13 @@ html,body { width:100vw; height:100vh; overflow:hidden; background: linear-gradi
 </div>
 
 <div id="side-panel">
-    <h2>🏛️ Servidores</h2>
-    <div id="server-list"></div>
-    <h3>🌊 Canales de datos</h3>
-    <div id="flow-list"></div>
-    <h3>⚙️ Componentes activos</h3>
-    <div id="component-list"></div>
+    <div id="server-sections"></div>
 </div>
 
 <div class="tooltip" id="tooltip"></div>
 
 <script>
-const DATA = {"meta": {"generated_at": "2026-07-10T14:15:08.974857", "version": "8.1"}, "servers": [{"id": "srv-95", "name": "HERMES .95", "ip": "localhost", "role": "Cerebro del sistema", "status": "online", "color": "#d4af37", "icon": "🧠", "desc": "Controlador central. Coordina todos los servidores y ejecuta el agente Hermes.", "services": ["Hermes Agent", "Dashboard", "Deep Memory", "Skills"]}, {"id": "srv-250", "name": "PROD .250", "ip": "192.168.0.250", "role": "Base de datos principal", "status": "online", "color": "#2e7d32", "icon": "🗄️", "desc": "MySQL 8.4 produccion. Datos en tiempo real del sistema EPEM.", "services": ["MySQL 8.4", "Replicacion master"]}, {"id": "srv-241", "name": "ESPEJO .241", "ip": "192.168.0.241", "role": "Copia de seguridad viva", "status": "online", "color": "#1565c0", "icon": "🪞", "desc": "Replica nativa de .250. Si .250 cae, .241 tiene los datos.", "services": ["MySQL Replica", "Detector de drift"]}, {"id": "srv-240", "name": "STAGING .240", "ip": "192.168.0.240", "role": "Ambiente de pruebas", "status": "online", "color": "#7b1fa2", "icon": "🧪", "desc": "Servidor legacy para pruebas. Ubuntu antiguo.", "services": ["MySQL 5.7", "Test-sistema"]}, {"id": "srv-99", "name": "STAGING .99", "ip": "192.168.0.99", "role": "Nuevo ambiente de pruebas", "status": "online", "color": "#00838f", "icon": "🔬", "desc": "Staging moderno con MySQL 8.4. Restaura backups cada noche.", "services": ["MySQL 8.4", "Restore pipeline"]}, {"id": "srv-50", "name": "BACKUP .50", "ip": "192.168.0.50", "role": "Almacen de backups", "status": "online", "color": "#c62828", "icon": "💾", "desc": "Guarda archivos ZIP con copias de la base de datos.", "services": ["ZIP backups", "Verificacion diaria"]}, {"id": "srv-43", "name": "RDP .43", "ip": "192.168.0.43", "role": "Escritorio remoto", "status": "online", "color": "#ef6c00", "icon": "🖥️", "desc": "Acceso remoto Windows para administracion visual.", "services": ["RDP", "Recordatorios"]}], "flows": [{"id": "flow-1", "from": "srv-250", "to": "srv-241", "type": "replica", "name": "Replica MySQL", "desc": "Datos se copian automaticamente cada segundo", "status": "active", "icon": "🔄"}, {"id": "flow-2", "from": "srv-250", "to": "srv-99", "type": "restore", "name": "Restore Pipeline", "desc": "Backup completo se restaura cada noche", "status": "active", "icon": "📥"}, {"id": "flow-3", "from": "srv-50", "to": "srv-99", "type": "backup", "name": "ZIP Backup", "desc": "Archivo comprimido viaja al staging", "status": "active", "icon": "📦"}, {"id": "flow-4", "from": "srv-95", "to": "srv-240", "type": "ssh", "name": "Diagnostico", "desc": "Comandos de monitoreo remoto", "status": "active", "icon": "🔍"}, {"id": "flow-5", "from": "srv-95", "to": "srv-241", "type": "ssh", "name": "Detector", "desc": "Verifica que .241 tenga datos actualizados", "status": "active", "icon": "📡"}, {"id": "flow-6", "from": "srv-95", "to": "srv-99", "type": "ssh", "name": "Monitor", "desc": "Observa el restore cada 10 minutos", "status": "active", "icon": "👁️"}, {"id": "flow-7", "from": "srv-95", "to": "all", "type": "telegram", "name": "Alertas Telegram", "desc": "Mensajes al grupo de monitoreo", "status": "active", "icon": "📨"}, {"id": "flow-8", "from": "srv-95", "to": "github", "type": "deploy", "name": "Deploy Web", "desc": "Dashboard se publica automaticamente", "status": "active", "icon": "🚀"}], "components": [{"id": "comp-1", "name": "Monitor Restore .99", "type": "cron", "server": "srv-95", "target": "srv-99", "status": "active", "schedule": "Cada 10 minutos", "human_desc": "Revisa si el restore esta corriendo bien y avisa si hay problemas.", "last_run": "2026-07-10T13:50", "icon": "⏰", "subtasks": [{"id": "st-1-1", "name": "Conectar SSH a .99", "desc": "Establece conexion segura", "status": "done", "icon": "🔌"}, {"id": "st-1-2", "name": "Leer estado actual", "desc": "Verifica el archivo de progreso", "status": "done", "icon": "📄"}, {"id": "st-1-3", "name": "Comparar con ejecucion anterior", "desc": "Detecta si avanzo o se bloqueo", "status": "done", "icon": "📊"}, {"id": "st-1-4", "name": "Evaluar progreso", "desc": "Calcula % completado y tablas restantes", "status": "active", "icon": "🧮"}, {"id": "st-1-5", "name": "Enviar alerta Telegram", "desc": "Notifica solo si hay cambio de estado", "status": "pending", "icon": "📨"}]}, {"id": "comp-2", "name": "Sync Nocturno", "type": "cron", "server": "srv-95", "target": "srv-95", "status": "active", "schedule": "3:00 AM", "human_desc": "Limpia memorias viejas y recalcula VIP scores.", "last_run": "2026-07-10T03:00", "icon": "🌙", "subtasks": [{"id": "st-2-1", "name": "Cargar MEMORY.md", "desc": "Lee memorias del dia", "status": "done", "icon": "📂"}, {"id": "st-2-2", "name": "Parsear bloques por §", "desc": "Separa memorias individuales", "status": "done", "icon": "✂️"}, {"id": "st-2-3", "name": "Calcular hashes SHA256", "desc": "Deduplicacion de entradas", "status": "done", "icon": "#️⃣"}, {"id": "st-2-4", "name": "Insertar en SQLite", "desc": "Guarda en DB con WAL mode", "status": "done", "icon": "💾"}, {"id": "st-2-5", "name": "Recalcular VIP scores", "desc": "Actualiza pesos de memorias", "status": "done", "icon": "⚖️"}, {"id": "st-2-6", "name": "Registrar en sync_log", "desc": "Log de operacion completada", "status": "done", "icon": "📝"}]}, {"id": "comp-3", "name": "Rebuild Dashboard", "type": "cron", "server": "srv-95", "target": "github", "status": "active", "schedule": "3:05 AM", "human_desc": "Genera el mapa visual y lo publica en la web.", "last_run": "2026-07-10T03:05", "icon": "🏗️", "subtasks": [{"id": "st-3-1", "name": "Consultar SQLite", "desc": "Extrae datos de memorias", "status": "done", "icon": "🗃️"}, {"id": "st-3-2", "name": "Calcular posiciones D3", "desc": "Layout de nodos y aristas", "status": "done", "icon": "📐"}, {"id": "st-3-3", "name": "Generar HTML", "desc": "Renderiza template con datos", "status": "done", "icon": "🎨"}, {"id": "st-3-4", "name": "Copiar a /tmp/LaCatedral", "desc": "Prepara repo local", "status": "done", "icon": "📋"}, {"id": "st-3-5", "name": "Git commit + push", "desc": "Sube a GitHub", "status": "done", "icon": "⬆️"}, {"id": "st-3-6", "name": "Verificar Vercel deploy", "desc": "Confirma que la web esta viva", "status": "done", "icon": "✅"}]}, {"id": "comp-4", "name": "Detector Espejo .241", "type": "cron", "server": "srv-95", "target": "srv-241", "status": "active", "schedule": "9:00 AM", "human_desc": "Compara datos entre .250 y .241. Detecta diferencias.", "last_run": "2026-07-10T09:04", "icon": "🔎", "subtasks": [{"id": "st-4-1", "name": "Conectar a .250 (master)", "desc": "SSH a produccion", "status": "done", "icon": "🔌"}, {"id": "st-4-2", "name": "Contar tablas en .250", "desc": "SELECT COUNT(*)", "status": "done", "icon": "🔢"}, {"id": "st-4-3", "name": "Conectar a .241 (espejo)", "desc": "SSH a replica", "status": "done", "icon": "🔌"}, {"id": "st-4-4", "name": "Contar tablas en .241", "desc": "SELECT COUNT(*)", "status": "done", "icon": "🔢"}, {"id": "st-4-5", "name": "Comparar resultados", "desc": "Detecta drift", "status": "done", "icon": "⚖️"}, {"id": "st-4-6", "name": "Generar SQL de sincronizacion", "desc": "Crea script de fix", "status": "pending", "icon": "📝"}]}, {"id": "comp-5", "name": "Verificar Backup .50", "type": "cron", "server": "srv-95", "target": "srv-50", "status": "active", "schedule": "5-8 AM", "human_desc": "Comprueba que los ZIP de backup no esten corruptos.", "last_run": "2026-07-10T08:01", "icon": "✅", "subtasks": [{"id": "st-5-1", "name": "Listar ZIP en .50", "desc": "ls /backups/*.zip", "status": "done", "icon": "📂"}, {"id": "st-5-2", "name": "Verificar fecha", "desc": "Comprueba que no sea mayor a 48h", "status": "done", "icon": "📅"}, {"id": "st-5-3", "name": "Test de integridad", "desc": "unzip -t para validar", "status": "active", "icon": "🔧"}, {"id": "st-5-4", "name": "Comprobar espacio disco", "desc": "df -h /backups", "status": "pending", "icon": "💿"}]}, {"id": "comp-6", "name": "Recordatorio RDP .43", "type": "cron", "server": "srv-95", "target": "srv-43", "status": "pending", "schedule": "Una vez", "human_desc": "Alerta cuando hay que revisar el escritorio remoto.", "last_run": "N/A", "icon": "🔔", "subtasks": [{"id": "st-6-1", "name": "Verificar conexion RDP", "desc": "Test de puerto 3389", "status": "pending", "icon": "🔌"}, {"id": "st-6-2", "name": "Comprobar licencias", "desc": "RDS CAL disponibles", "status": "pending", "icon": "🔑"}, {"id": "st-6-3", "name": "Enviar recordatorio", "desc": "Telegram a admin", "status": "pending", "icon": "📨"}]}]};
+const DATA = {"meta": {"generated_at": "2026-07-10T14:20:49.512877", "version": "8.2"}, "servers": [{"id": "srv-95", "name": "HERMES .95", "ip": "localhost", "role": "Cerebro del sistema", "status": "online", "color": "#d4af37", "icon": "🧠", "desc": "Controlador central. Coordina todos los servidores.", "services": ["Hermes Agent", "Dashboard", "Deep Memory", "Skills"]}, {"id": "srv-250", "name": "PROD .250", "ip": "192.168.0.250", "role": "Base de datos principal", "status": "online", "color": "#2e7d32", "icon": "🗄️", "desc": "MySQL 8.4 produccion. Datos en tiempo real del sistema EPEM.", "services": ["MySQL 8.4", "Replicacion master"]}, {"id": "srv-241", "name": "ESPEJO .241", "ip": "192.168.0.241", "role": "Copia de seguridad viva", "status": "online", "color": "#1565c0", "icon": "🪞", "desc": "Replica nativa de .250. Si .250 cae, .241 tiene los datos.", "services": ["MySQL Replica", "Detector de drift"]}, {"id": "srv-240", "name": "STAGING .240", "ip": "192.168.0.240", "role": "Ambiente de pruebas", "status": "online", "color": "#7b1fa2", "icon": "🧪", "desc": "Servidor legacy para pruebas. Ubuntu antiguo.", "services": ["MySQL 5.7", "Test-sistema"]}, {"id": "srv-99", "name": "STAGING .99", "ip": "192.168.0.99", "role": "Nuevo ambiente de pruebas", "status": "online", "color": "#00838f", "icon": "🔬", "desc": "Staging moderno con MySQL 8.4. Restaura backups cada noche.", "services": ["MySQL 8.4", "Restore pipeline"]}, {"id": "srv-50", "name": "BACKUP .50", "ip": "192.168.0.50", "role": "Almacen de backups", "status": "online", "color": "#c62828", "icon": "💾", "desc": "Guarda archivos ZIP con copias de la base de datos.", "services": ["ZIP backups", "Verificacion diaria"]}, {"id": "srv-43", "name": "RDP .43", "ip": "192.168.0.43", "role": "Escritorio remoto", "status": "online", "color": "#ef6c00", "icon": "🖥️", "desc": "Acceso remoto Windows para administracion visual.", "services": ["RDP", "Recordatorios"]}], "flows": [{"id": "flow-1", "from": "srv-250", "to": "srv-241", "type": "replica", "name": "Replica MySQL", "desc": "Datos se copian automaticamente cada segundo", "status": "active", "icon": "🔄"}, {"id": "flow-2", "from": "srv-250", "to": "srv-99", "type": "restore", "name": "Restore Pipeline", "desc": "Backup completo se restaura cada noche", "status": "active", "icon": "📥"}, {"id": "flow-3", "from": "srv-50", "to": "srv-99", "type": "backup", "name": "ZIP Backup", "desc": "Archivo comprimido viaja al staging", "status": "active", "icon": "📦"}, {"id": "flow-4", "from": "srv-95", "to": "srv-240", "type": "ssh", "name": "Diagnostico", "desc": "Comandos de monitoreo remoto", "status": "active", "icon": "🔍"}, {"id": "flow-5", "from": "srv-95", "to": "srv-241", "type": "ssh", "name": "Detector", "desc": "Verifica que .241 tenga datos actualizados", "status": "active", "icon": "📡"}, {"id": "flow-6", "from": "srv-95", "to": "srv-99", "type": "ssh", "name": "Monitor", "desc": "Observa el restore cada 10 minutos", "status": "active", "icon": "👁️"}, {"id": "flow-7", "from": "srv-95", "to": "all", "type": "telegram", "name": "Alertas Telegram", "desc": "Mensajes al grupo de monitoreo", "status": "active", "icon": "📨"}, {"id": "flow-8", "from": "srv-95", "to": "github", "type": "deploy", "name": "Deploy Web", "desc": "Dashboard se publica automaticamente", "status": "active", "icon": "🚀"}], "components": [{"id": "comp-1", "name": "Monitor Restore .99", "type": "cron", "server": "srv-95", "target": "srv-99", "status": "active", "schedule": "Cada 10 minutos", "human_desc": "Revisa si el restore esta corriendo bien y avisa si hay problemas.", "last_run": "2026-07-10T13:50", "icon": "⏰", "subtasks": [{"id": "st-1-1", "name": "Conectar SSH a .99", "desc": "Establece conexion segura", "status": "done", "icon": "🔌"}, {"id": "st-1-2", "name": "Leer estado actual", "desc": "Verifica el archivo de progreso", "status": "done", "icon": "📄"}, {"id": "st-1-3", "name": "Comparar con anterior", "desc": "Detecta si avanzo o se bloqueo", "status": "done", "icon": "📊"}, {"id": "st-1-4", "name": "Evaluar progreso", "desc": "Calcula % completado y tablas restantes", "status": "active", "icon": "🧮"}, {"id": "st-1-5", "name": "Enviar alerta Telegram", "desc": "Notifica solo si hay cambio de estado", "status": "pending", "icon": "📨"}]}, {"id": "comp-2", "name": "Sync Nocturno", "type": "cron", "server": "srv-95", "target": "srv-95", "status": "active", "schedule": "3:00 AM", "human_desc": "Limpia memorias viejas y recalcula VIP scores.", "last_run": "2026-07-10T03:00", "icon": "🌙", "subtasks": [{"id": "st-2-1", "name": "Cargar MEMORY.md", "desc": "Lee memorias del dia", "status": "done", "icon": "📂"}, {"id": "st-2-2", "name": "Parsear bloques por §", "desc": "Separa memorias individuales", "status": "done", "icon": "✂️"}, {"id": "st-2-3", "name": "Calcular hashes SHA256", "desc": "Deduplicacion de entradas", "status": "done", "icon": "#️⃣"}, {"id": "st-2-4", "name": "Insertar en SQLite", "desc": "Guarda en DB con WAL mode", "status": "done", "icon": "💾"}, {"id": "st-2-5", "name": "Recalcular VIP scores", "desc": "Actualiza pesos de memorias", "status": "done", "icon": "⚖️"}, {"id": "st-2-6", "name": "Registrar en sync_log", "desc": "Log de operacion completada", "status": "done", "icon": "📝"}]}, {"id": "comp-3", "name": "Rebuild Dashboard", "type": "cron", "server": "srv-95", "target": "github", "status": "active", "schedule": "3:05 AM", "human_desc": "Genera el mapa visual y lo publica en la web.", "last_run": "2026-07-10T03:05", "icon": "🏗️", "subtasks": [{"id": "st-3-1", "name": "Consultar SQLite", "desc": "Extrae datos de memorias", "status": "done", "icon": "🗃️"}, {"id": "st-3-2", "name": "Calcular posiciones D3", "desc": "Layout de nodos y aristas", "status": "done", "icon": "📐"}, {"id": "st-3-3", "name": "Generar HTML", "desc": "Renderiza template con datos", "status": "done", "icon": "🎨"}, {"id": "st-3-4", "name": "Copiar a /tmp/LaCatedral", "desc": "Prepara repo local", "status": "done", "icon": "📋"}, {"id": "st-3-5", "name": "Git commit + push", "desc": "Sube a GitHub", "status": "done", "icon": "⬆️"}, {"id": "st-3-6", "name": "Verificar Vercel deploy", "desc": "Confirma que la web esta viva", "status": "done", "icon": "✅"}]}, {"id": "comp-4", "name": "Detector Espejo .241", "type": "cron", "server": "srv-95", "target": "srv-241", "status": "active", "schedule": "9:00 AM", "human_desc": "Compara datos entre .250 y .241. Detecta diferencias.", "last_run": "2026-07-10T09:04", "icon": "🔎", "subtasks": [{"id": "st-4-1", "name": "Conectar a .250 (master)", "desc": "SSH a produccion", "status": "done", "icon": "🔌"}, {"id": "st-4-2", "name": "Contar tablas en .250", "desc": "SELECT COUNT(*)", "status": "done", "icon": "🔢"}, {"id": "st-4-3", "name": "Conectar a .241 (espejo)", "desc": "SSH a replica", "status": "done", "icon": "🔌"}, {"id": "st-4-4", "name": "Contar tablas en .241", "desc": "SELECT COUNT(*)", "status": "done", "icon": "🔢"}, {"id": "st-4-5", "name": "Comparar resultados", "desc": "Detecta drift", "status": "done", "icon": "⚖️"}, {"id": "st-4-6", "name": "Generar SQL de sincronizacion", "desc": "Crea script de fix", "status": "pending", "icon": "📝"}]}, {"id": "comp-5", "name": "Verificar Backup .50", "type": "cron", "server": "srv-95", "target": "srv-50", "status": "active", "schedule": "5-8 AM", "human_desc": "Comprueba que los ZIP de backup no esten corruptos.", "last_run": "2026-07-10T08:01", "icon": "✅", "subtasks": [{"id": "st-5-1", "name": "Listar ZIP en .50", "desc": "ls /backups/*.zip", "status": "done", "icon": "📂"}, {"id": "st-5-2", "name": "Verificar fecha", "desc": "Comprueba que no sea mayor a 48h", "status": "done", "icon": "📅"}, {"id": "st-5-3", "name": "Test de integridad", "desc": "unzip -t para validar", "status": "active", "icon": "🔧"}, {"id": "st-5-4", "name": "Comprobar espacio disco", "desc": "df -h /backups", "status": "pending", "icon": "💿"}]}, {"id": "comp-6", "name": "Recordatorio RDP .43", "type": "cron", "server": "srv-95", "target": "srv-43", "status": "pending", "schedule": "Una vez", "human_desc": "Alerta cuando hay que revisar el escritorio remoto.", "last_run": "N/A", "icon": "🔔", "subtasks": [{"id": "st-6-1", "name": "Verificar conexion RDP", "desc": "Test de puerto 3389", "status": "pending", "icon": "🔌"}, {"id": "st-6-2", "name": "Comprobar licencias", "desc": "RDS CAL disponibles", "status": "pending", "icon": "🔑"}, {"id": "st-6-3", "name": "Enviar recordatorio", "desc": "Telegram a admin", "status": "pending", "icon": "📨"}]}]};
 const width = document.getElementById('main').clientWidth;
 const height = document.getElementById('main').clientHeight;
 
@@ -138,7 +124,7 @@ svg.call(zoom);
 
 const tooltip = d3.select("#tooltip");
 
-// === POSICIONES ===
+// === POSICIONES SERVIDORES ===
 const servers = DATA.servers.map((d, i) => {
     const isCenter = d.id === 'srv-95';
     const angle = isCenter ? 0 : (2 * Math.PI / (DATA.servers.length - 1)) * (i - 1) - Math.PI / 2;
@@ -149,6 +135,22 @@ const servers = DATA.servers.map((d, i) => {
     return d;
 });
 
+// === POSICIONES COMPONENTES (orbitando su servidor) ===
+const components = DATA.components.map((c, i) => {
+    const srv = servers.find(s => s.id === c.server);
+    if (srv) {
+        const count = DATA.components.filter(x => x.server === c.server).length;
+        const idx = DATA.components.filter((x, j) => x.server === c.server && j < i).length;
+        const angle = (2 * Math.PI / count) * idx + (srv.isCenter ? 0 : Math.PI / 4);
+        const dist = srv.isCenter ? 140 : 90;
+        c.x = srv.x + Math.cos(angle) * dist;
+        c.y = srv.y + Math.sin(angle) * dist;
+        c.parentServer = srv;
+    }
+    return c;
+});
+
+// === CANALES ENTRE SERVIDORES ===
 const flows = DATA.flows.map(f => {
     const from = servers.find(s => s.id === f.from);
     const to = servers.find(s => s.id === f.to);
@@ -161,7 +163,7 @@ const flows = DATA.flows.map(f => {
     return f;
 });
 
-// === RENDER CANALES ===
+// === RENDER CANALES (servidor a servidor) ===
 const channelPath = d3.line().curve(d3.curveBasis);
 
 flows.forEach((f, i) => {
@@ -198,7 +200,41 @@ flows.forEach((f, i) => {
         .text(f.icon + ' ' + f.name);
 });
 
-// === RENDER SERVIDORES ===
+// === RENDER CONEXIONES SERVIDOR -> COMPONENTE ===
+components.forEach(c => {
+    if (!c.parentServer) return;
+    g.append('line')
+        .attr('x1', c.parentServer.x).attr('y1', c.parentServer.y)
+        .attr('x2', c.x).attr('y2', c.y)
+        .attr('stroke', 'rgba(212,175,55,0.08)')
+        .attr('stroke-width', 1)
+        .attr('stroke-dasharray', '4,4');
+});
+
+// === RENDER COMPONENTES ===
+const compGroup = g.selectAll('.comp-node').data(components).join('g')
+    .attr('class', 'comp-node')
+    .attr('transform', d => `translate(${d.x},${d.y})`)
+    .style('cursor', 'pointer');
+
+compGroup.append('circle')
+    .attr('r', 22)
+    .attr('fill', 'rgba(30,30,40,0.9)')
+    .attr('stroke', d => d.parentServer ? d.parentServer.color : '#666')
+    .attr('stroke-width', 1.5)
+    .attr('stroke-opacity', 0.5);
+
+compGroup.append('text')
+    .attr('text-anchor', 'middle').attr('dy', 4)
+    .attr('font-size', '14px')
+    .text(d => d.icon);
+
+compGroup.append('text')
+    .attr('text-anchor', 'middle').attr('dy', -28)
+    .attr('fill', '#aaa').attr('font-size', '8px')
+    .text(d => d.name.length > 18 ? d.name.slice(0,18)+'...' : d.name);
+
+// === RENDER SERVIDORES (encima de todo) ===
 const serverGroup = g.selectAll('.server-node').data(servers).join('g')
     .attr('class', 'server-node')
     .attr('transform', d => `translate(${d.x},${d.y})`)
@@ -260,88 +296,98 @@ serverGroup.on('mouseover', function(event, d) {
         d3.zoomIdentity.translate(width/2 - d.x*scale, height/2 - d.y*scale).scale(scale));
 });
 
-// === PANEL LATERAL ===
+// === INTERACCIONES COMPONENTE ===
+compGroup.on('mouseover', function(event, d) {
+    d3.select(this).select('circle').attr('stroke-width', 3).attr('stroke-opacity', 0.8);
+    tooltip.html(`
+        <div class="tt-title">${d.icon} ${d.name}</div>
+        <div class="tt-desc">${d.human_desc}</div>
+        <div class="tt-meta">Servidor: ${d.parentServer.name} | Schedule: ${d.schedule}</div>
+    `).style('opacity', 1)
+    .style('left', Math.min(event.pageX + 16, window.innerWidth - 420) + 'px')
+    .style('top', Math.min(event.pageY + 16, window.innerHeight - 200) + 'px');
+})
+.on('mouseout', function() {
+    d3.select(this).select('circle').attr('stroke-width', 1.5).attr('stroke-opacity', 0.5);
+    tooltip.style('opacity', 0);
+})
+.on('click', function(event, d) {
+    toggleSubtasks(d.id);
+});
+
+// === PANEL LATERAL: SECCIONES POR SERVIDOR ===
 function renderPanel() {
-    // Servidores
-    const srvList = document.getElementById('server-list');
-    srvList.innerHTML = DATA.servers.map(s => `
-        <div class="srv-card ${s.id === 'srv-95' ? 'active' : ''}" data-id="${s.id}" onclick="highlightServer('${s.id}')">
-            <div class="srv-header">
-                <span class="srv-icon">${s.icon}</span>
-                <span class="srv-name">${s.name}</span>
-                <span class="srv-status ${s.status}">${s.status}</span>
-            </div>
-            <div class="srv-desc">${s.desc}</div>
-            <div class="srv-services">${s.services.map(x => `<span>${x}</span>`).join('')}</div>
-        </div>
-    `).join('');
-    
-    // Flujos
-    const flowList = document.getElementById('flow-list');
-    flowList.innerHTML = DATA.flows.map(f => `
-        <div class="flow-card" onclick="centerOnFlow('${f.id}')">
-            <div class="flow-name">${f.icon} ${f.name}</div>
-            <div class="flow-desc">${f.desc}</div>
-            <div class="flow-meta">
-                <span>${f.from.replace('srv-','')} &rarr; ${f.to.replace('srv-','')}</span>
-                <span class="flow-status active">${f.status}</span>
-            </div>
-        </div>
-    `).join('');
-    
-    // Componentes con subtareas expandibles
-    const compList = document.getElementById('component-list');
-    compList.innerHTML = DATA.components.map(c => `
-        <div class="comp-card" id="comp-${c.id}" onclick="toggleSubtasks('${c.id}')">
-            <div class="comp-header">
-                <span>${c.icon}</span>
-                <span class="comp-name">${c.name}</span>
-                <span class="expand-icon">&#9654;</span>
-            </div>
-            <div class="comp-desc">${c.human_desc}</div>
-            <div class="comp-meta">&#9201; ${c.schedule} | Ultima: ${c.last_run} | ${c.subtasks.length} subtareas</div>
-            <div class="subtasks-container" id="subtasks-${c.id}">
-                ${c.subtasks.map(st => `
-                    <div class="subtask">
-                        <span class="st-icon">${st.icon}</span>
-                        <div class="st-content">
-                            <div class="st-name">${st.name}</div>
-                            <div class="st-desc">${st.desc}</div>
+    const container = document.getElementById('server-sections');
+    container.innerHTML = DATA.servers.map(srv => {
+        const srvComps = DATA.components.filter(c => c.server === srv.id);
+        const compCount = srvComps.length;
+        const subtaskCount = srvComps.reduce((sum, c) => sum + (c.subtasks ? c.subtasks.length : 0), 0);
+        
+        return `
+            <div class="server-section" id="section-${srv.id}">
+                <div class="server-section-header" onclick="toggleSection('${srv.id}')">
+                    <span class="sh-icon">${srv.icon}</span>
+                    <span class="sh-name">${srv.name}</span>
+                    <span class="sh-count">${compCount} comp · ${subtaskCount} subtareas</span>
+                    <span class="sh-status ${srv.status}">${srv.status}</span>
+                </div>
+                <div class="server-section-body ${srv.id === 'srv-95' ? 'visible' : ''}" id="section-body-${srv.id}">
+                    <div style="font-size:0.75rem;color:#999;margin:8px 0;">${srv.desc}</div>
+                    ${srvComps.map(c => `
+                        <div class="comp-card" id="comp-${c.id}" onclick="event.stopPropagation(); toggleSubtasks('${c.id}')">
+                            <div class="comp-header">
+                                <span>${c.icon}</span>
+                                <span class="comp-name">${c.name}</span>
+                                <span class="expand-icon">&#9654;</span>
+                            </div>
+                            <div class="comp-desc">${c.human_desc}</div>
+                            <div class="comp-meta">&#9201; ${c.schedule} | Ultima: ${c.last_run} | ${c.subtasks.length} subtareas</div>
+                            <div class="subtasks-container" id="subtasks-${c.id}">
+                                ${c.subtasks.map(st => `
+                                    <div class="subtask">
+                                        <span class="st-icon">${st.icon}</span>
+                                        <div class="st-content">
+                                            <div class="st-name">${st.name}</div>
+                                            <div class="st-desc">${st.desc}</div>
+                                        </div>
+                                        <span class="st-status ${st.status}">${st.status}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
                         </div>
-                        <span class="st-status ${st.status}">${st.status}</span>
-                    </div>
-                `).join('')}
+                    `).join('')}
+                    ${compCount === 0 ? '<div style="font-size:0.75rem;color:#666;padding:8px;">Sin componentes en este servidor</div>' : ''}
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
-function highlightServer(srvId) {
-    document.querySelectorAll('.srv-card').forEach(el => el.classList.remove('active'));
-    const card = document.querySelector(`[data-id="${srvId}"]`);
-    if (card) card.classList.add('active');
-}
-
-function centerOnFlow(flowId) {
-    const f = DATA.flows.find(x => x.id === flowId);
-    if (f && f.midX) {
-        svg.transition().duration(600).call(zoom.transform,
-            d3.zoomIdentity.translate(width/2 - f.midX*1.8, height/2 - f.midY*1.8).scale(1.8));
-    }
+function toggleSection(srvId) {
+    const body = document.getElementById('section-body-' + srvId);
+    if (body) body.classList.toggle('visible');
 }
 
 function toggleSubtasks(compId) {
     const card = document.getElementById('comp-' + compId);
     const container = document.getElementById('subtasks-' + compId);
     if (!card || !container) return;
-    
     card.classList.toggle('expanded');
     container.classList.toggle('visible');
 }
 
-window.highlightServer = highlightServer;
-window.centerOnFlow = centerOnFlow;
+function highlightServer(srvId) {
+    document.querySelectorAll('.server-section-header').forEach(el => el.style.background = '');
+    const section = document.getElementById('section-' + srvId);
+    if (section) {
+        section.querySelector('.server-section-header').style.background = 'rgba(212,175,55,0.1)';
+        document.getElementById('section-body-' + srvId).classList.add('visible');
+    }
+}
+
+window.toggleSection = toggleSection;
 window.toggleSubtasks = toggleSubtasks;
+window.highlightServer = highlightServer;
 
 renderPanel();
 
