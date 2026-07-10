@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-07-10T14:20:49.512877",
-    "version": "8.2"
+    "generated_at": "2026-07-10T14:24:06.177612",
+    "version": "8.3"
   },
   "servers": [
     {
@@ -12,7 +12,7 @@
       "status": "online",
       "color": "#d4af37",
       "icon": "🧠",
-      "desc": "Controlador central. Coordina todos los servidores.",
+      "desc": "Controlador central. Coordina todos los servidores y ejecuta el agente Hermes.",
       "services": [
         "Hermes Agent",
         "Dashboard",
@@ -189,60 +189,10 @@
   ],
   "components": [
     {
-      "id": "comp-1",
-      "name": "Monitor Restore .99",
-      "type": "cron",
-      "server": "srv-95",
-      "target": "srv-99",
-      "status": "active",
-      "schedule": "Cada 10 minutos",
-      "human_desc": "Revisa si el restore esta corriendo bien y avisa si hay problemas.",
-      "last_run": "2026-07-10T13:50",
-      "icon": "⏰",
-      "subtasks": [
-        {
-          "id": "st-1-1",
-          "name": "Conectar SSH a .99",
-          "desc": "Establece conexion segura",
-          "status": "done",
-          "icon": "🔌"
-        },
-        {
-          "id": "st-1-2",
-          "name": "Leer estado actual",
-          "desc": "Verifica el archivo de progreso",
-          "status": "done",
-          "icon": "📄"
-        },
-        {
-          "id": "st-1-3",
-          "name": "Comparar con anterior",
-          "desc": "Detecta si avanzo o se bloqueo",
-          "status": "done",
-          "icon": "📊"
-        },
-        {
-          "id": "st-1-4",
-          "name": "Evaluar progreso",
-          "desc": "Calcula % completado y tablas restantes",
-          "status": "active",
-          "icon": "🧮"
-        },
-        {
-          "id": "st-1-5",
-          "name": "Enviar alerta Telegram",
-          "desc": "Notifica solo si hay cambio de estado",
-          "status": "pending",
-          "icon": "📨"
-        }
-      ]
-    },
-    {
-      "id": "comp-2",
+      "id": "comp-95-1",
       "name": "Sync Nocturno",
       "type": "cron",
       "server": "srv-95",
-      "target": "srv-95",
       "status": "active",
       "schedule": "3:00 AM",
       "human_desc": "Limpia memorias viejas y recalcula VIP scores.",
@@ -250,42 +200,42 @@
       "icon": "🌙",
       "subtasks": [
         {
-          "id": "st-2-1",
+          "id": "st-95-1-1",
           "name": "Cargar MEMORY.md",
           "desc": "Lee memorias del dia",
           "status": "done",
           "icon": "📂"
         },
         {
-          "id": "st-2-2",
+          "id": "st-95-1-2",
           "name": "Parsear bloques por §",
           "desc": "Separa memorias individuales",
           "status": "done",
           "icon": "✂️"
         },
         {
-          "id": "st-2-3",
+          "id": "st-95-1-3",
           "name": "Calcular hashes SHA256",
           "desc": "Deduplicacion de entradas",
           "status": "done",
           "icon": "#️⃣"
         },
         {
-          "id": "st-2-4",
+          "id": "st-95-1-4",
           "name": "Insertar en SQLite",
           "desc": "Guarda en DB con WAL mode",
           "status": "done",
           "icon": "💾"
         },
         {
-          "id": "st-2-5",
+          "id": "st-95-1-5",
           "name": "Recalcular VIP scores",
           "desc": "Actualiza pesos de memorias",
           "status": "done",
           "icon": "⚖️"
         },
         {
-          "id": "st-2-6",
+          "id": "st-95-1-6",
           "name": "Registrar en sync_log",
           "desc": "Log de operacion completada",
           "status": "done",
@@ -294,11 +244,10 @@
       ]
     },
     {
-      "id": "comp-3",
+      "id": "comp-95-2",
       "name": "Rebuild Dashboard",
       "type": "cron",
       "server": "srv-95",
-      "target": "github",
       "status": "active",
       "schedule": "3:05 AM",
       "human_desc": "Genera el mapa visual y lo publica en la web.",
@@ -306,43 +255,43 @@
       "icon": "🏗️",
       "subtasks": [
         {
-          "id": "st-3-1",
+          "id": "st-95-2-1",
           "name": "Consultar SQLite",
           "desc": "Extrae datos de memorias",
           "status": "done",
           "icon": "🗃️"
         },
         {
-          "id": "st-3-2",
+          "id": "st-95-2-2",
           "name": "Calcular posiciones D3",
           "desc": "Layout de nodos y aristas",
           "status": "done",
           "icon": "📐"
         },
         {
-          "id": "st-3-3",
+          "id": "st-95-2-3",
           "name": "Generar HTML",
           "desc": "Renderiza template con datos",
           "status": "done",
           "icon": "🎨"
         },
         {
-          "id": "st-3-4",
-          "name": "Copiar a /tmp/LaCatedral",
+          "id": "st-95-2-4",
+          "name": "Copiar a repo",
           "desc": "Prepara repo local",
           "status": "done",
           "icon": "📋"
         },
         {
-          "id": "st-3-5",
+          "id": "st-95-2-5",
           "name": "Git commit + push",
           "desc": "Sube a GitHub",
           "status": "done",
           "icon": "⬆️"
         },
         {
-          "id": "st-3-6",
-          "name": "Verificar Vercel deploy",
+          "id": "st-95-2-6",
+          "name": "Verificar deploy",
           "desc": "Confirma que la web esta viva",
           "status": "done",
           "icon": "✅"
@@ -350,11 +299,160 @@
       ]
     },
     {
-      "id": "comp-4",
-      "name": "Detector Espejo .241",
-      "type": "cron",
+      "id": "comp-95-3",
+      "name": "Alertas Telegram",
+      "type": "service",
       "server": "srv-95",
-      "target": "srv-241",
+      "status": "active",
+      "schedule": "Continuo",
+      "human_desc": "Escucha eventos y envia alertas al grupo de monitoreo.",
+      "last_run": "2026-07-10T14:15",
+      "icon": "📨",
+      "subtasks": [
+        {
+          "id": "st-95-3-1",
+          "name": "Obtener token Bot",
+          "desc": "Lee del proceso gateway",
+          "status": "done",
+          "icon": "🔑"
+        },
+        {
+          "id": "st-95-3-2",
+          "name": "Formatear mensaje",
+          "desc": "Crea rich_message markdown",
+          "status": "done",
+          "icon": "📝"
+        },
+        {
+          "id": "st-95-3-3",
+          "name": "POST a Bot API",
+          "desc": "sendRichMessage al grupo",
+          "status": "active",
+          "icon": "📤"
+        },
+        {
+          "id": "st-95-3-4",
+          "name": "Verificar entrega",
+          "desc": "Confirma HTTP 200",
+          "status": "pending",
+          "icon": "✓"
+        }
+      ]
+    },
+    {
+      "id": "comp-250-1",
+      "name": "MySQL 8.4 Master",
+      "type": "service",
+      "server": "srv-250",
+      "status": "active",
+      "schedule": "24/7",
+      "human_desc": "Base de datos principal del sistema EPEM. Recibe escrituras y lecturas.",
+      "last_run": "2026-07-10T14:20",
+      "icon": "🗄️",
+      "subtasks": [
+        {
+          "id": "st-250-1-1",
+          "name": "Iniciar mysqld",
+          "desc": "Servicio activo en puerto 3306",
+          "status": "done",
+          "icon": "🚀"
+        },
+        {
+          "id": "st-250-1-2",
+          "name": "Esperar conexiones",
+          "desc": "Acepta queries de aplicacion",
+          "status": "active",
+          "icon": "👂"
+        },
+        {
+          "id": "st-250-1-3",
+          "name": "Escribir binlog",
+          "desc": "Registra cambios para replica",
+          "status": "active",
+          "icon": "📝"
+        },
+        {
+          "id": "st-250-1-4",
+          "name": "Mantenimiento",
+          "desc": "OPTIMIZE TABLE semanal",
+          "status": "pending",
+          "icon": "🔧"
+        }
+      ]
+    },
+    {
+      "id": "comp-250-2",
+      "name": "Replicacion a .241",
+      "type": "service",
+      "server": "srv-250",
+      "status": "active",
+      "schedule": "Continuo",
+      "human_desc": "Envia binlog a .241 para mantener copia sincronizada.",
+      "last_run": "2026-07-10T14:20",
+      "icon": "🔄",
+      "subtasks": [
+        {
+          "id": "st-250-2-1",
+          "name": "Leer binlog",
+          "desc": "Captura eventos de cambio",
+          "status": "active",
+          "icon": "📄"
+        },
+        {
+          "id": "st-250-2-2",
+          "name": "Enviar a .241",
+          "desc": "Stream por red",
+          "status": "active",
+          "icon": "📡"
+        },
+        {
+          "id": "st-250-2-3",
+          "name": "Confirmar ACK",
+          "desc": "Espera confirmacion de .241",
+          "status": "active",
+          "icon": "✓"
+        }
+      ]
+    },
+    {
+      "id": "comp-241-1",
+      "name": "MySQL Replica",
+      "type": "service",
+      "server": "srv-241",
+      "status": "active",
+      "schedule": "24/7",
+      "human_desc": "Recibe datos de .250 y aplica cambios en tiempo real.",
+      "last_run": "2026-07-10T14:20",
+      "icon": "🪞",
+      "subtasks": [
+        {
+          "id": "st-241-1-1",
+          "name": "Conectar a .250",
+          "desc": "IO thread lee binlog",
+          "status": "active",
+          "icon": "🔌"
+        },
+        {
+          "id": "st-241-1-2",
+          "name": "Aplicar cambios",
+          "desc": "SQL thread ejecuta queries",
+          "status": "active",
+          "icon": "⚙️"
+        },
+        {
+          "id": "st-241-1-3",
+          "name": "Verificar lag",
+          "desc": "Segundos de retraso vs master",
+          "status": "active",
+          "icon": "⏱"
+        }
+      ]
+    },
+    {
+      "id": "comp-241-2",
+      "name": "Detector de Drift",
+      "type": "cron",
+      "server": "srv-241",
       "status": "active",
       "schedule": "9:00 AM",
       "human_desc": "Compara datos entre .250 y .241. Detecta diferencias.",
@@ -362,97 +460,217 @@
       "icon": "🔎",
       "subtasks": [
         {
-          "id": "st-4-1",
-          "name": "Conectar a .250 (master)",
-          "desc": "SSH a produccion",
-          "status": "done",
-          "icon": "🔌"
-        },
-        {
-          "id": "st-4-2",
+          "id": "st-241-2-1",
           "name": "Contar tablas en .250",
-          "desc": "SELECT COUNT(*)",
+          "desc": "SSH + SELECT COUNT",
           "status": "done",
           "icon": "🔢"
         },
         {
-          "id": "st-4-3",
-          "name": "Conectar a .241 (espejo)",
-          "desc": "SSH a replica",
-          "status": "done",
-          "icon": "🔌"
-        },
-        {
-          "id": "st-4-4",
+          "id": "st-241-2-2",
           "name": "Contar tablas en .241",
-          "desc": "SELECT COUNT(*)",
+          "desc": "SSH + SELECT COUNT",
           "status": "done",
           "icon": "🔢"
         },
         {
-          "id": "st-4-5",
+          "id": "st-241-2-3",
           "name": "Comparar resultados",
-          "desc": "Detecta drift",
+          "desc": "Detecta discrepancias",
           "status": "done",
           "icon": "⚖️"
         },
         {
-          "id": "st-4-6",
-          "name": "Generar SQL de sincronizacion",
-          "desc": "Crea script de fix",
+          "id": "st-241-2-4",
+          "name": "Generar SQL de fix",
+          "desc": "Crea script de sincronizacion",
           "status": "pending",
           "icon": "📝"
         }
       ]
     },
     {
-      "id": "comp-5",
-      "name": "Verificar Backup .50",
-      "type": "cron",
-      "server": "srv-95",
-      "target": "srv-50",
+      "id": "comp-240-1",
+      "name": "MySQL 5.7 Legacy",
+      "type": "service",
+      "server": "srv-240",
       "status": "active",
-      "schedule": "5-8 AM",
-      "human_desc": "Comprueba que los ZIP de backup no esten corruptos.",
-      "last_run": "2026-07-10T08:01",
-      "icon": "✅",
+      "schedule": "24/7",
+      "human_desc": "Base de datos legacy para pruebas. Ubuntu antiguo.",
+      "last_run": "2026-07-10T14:20",
+      "icon": "🧪",
       "subtasks": [
         {
-          "id": "st-5-1",
-          "name": "Listar ZIP en .50",
-          "desc": "ls /backups/*.zip",
+          "id": "st-240-1-1",
+          "name": "Iniciar mysqld",
+          "desc": "Servicio activo",
           "status": "done",
-          "icon": "📂"
+          "icon": "🚀"
         },
         {
-          "id": "st-5-2",
-          "name": "Verificar fecha",
-          "desc": "Comprueba que no sea mayor a 48h",
-          "status": "done",
-          "icon": "📅"
-        },
-        {
-          "id": "st-5-3",
-          "name": "Test de integridad",
-          "desc": "unzip -t para validar",
+          "id": "st-240-1-2",
+          "name": "Esperar queries",
+          "desc": "Acepta conexiones de test",
           "status": "active",
-          "icon": "🔧"
-        },
-        {
-          "id": "st-5-4",
-          "name": "Comprobar espacio disco",
-          "desc": "df -h /backups",
-          "status": "pending",
-          "icon": "💿"
+          "icon": "👂"
         }
       ]
     },
     {
-      "id": "comp-6",
-      "name": "Recordatorio RDP .43",
+      "id": "comp-99-1",
+      "name": "Restore Pipeline",
       "type": "cron",
-      "server": "srv-95",
-      "target": "srv-43",
+      "server": "srv-99",
+      "status": "active",
+      "schedule": "3:00 AM",
+      "human_desc": "Restaura backup completo desde .50 cada noche.",
+      "last_run": "2026-07-10T03:00",
+      "icon": "📥",
+      "subtasks": [
+        {
+          "id": "st-99-1-1",
+          "name": "Descargar ZIP",
+          "desc": "scp desde .50",
+          "status": "done",
+          "icon": "📦"
+        },
+        {
+          "id": "st-99-1-2",
+          "name": "Descomprimir",
+          "desc": "unzip en /tmp/restore",
+          "status": "done",
+          "icon": "📂"
+        },
+        {
+          "id": "st-99-1-3",
+          "name": "Importar SQL",
+          "desc": "mysql < backup.sql",
+          "status": "done",
+          "icon": "💾"
+        },
+        {
+          "id": "st-99-1-4",
+          "name": "Verificar tablas",
+          "desc": "SHOW TABLES vs .250",
+          "status": "done",
+          "icon": "✅"
+        }
+      ]
+    },
+    {
+      "id": "comp-99-2",
+      "name": "Monitor de Health",
+      "type": "service",
+      "server": "srv-99",
+      "status": "active",
+      "schedule": "Continuo",
+      "human_desc": "Verifica que MySQL responda y el disco tenga espacio.",
+      "last_run": "2026-07-10T14:20",
+      "icon": "💓",
+      "subtasks": [
+        {
+          "id": "st-99-2-1",
+          "name": "Ping MySQL",
+          "desc": "SELECT 1",
+          "status": "active",
+          "icon": "🔌"
+        },
+        {
+          "id": "st-99-2-2",
+          "name": "Verificar disco",
+          "desc": "df -h /var/lib/mysql",
+          "status": "active",
+          "icon": "💿"
+        },
+        {
+          "id": "st-99-2-3",
+          "name": "Reportar a .95",
+          "desc": "Envia metricas",
+          "status": "active",
+          "icon": "📡"
+        }
+      ]
+    },
+    {
+      "id": "comp-50-1",
+      "name": "ZIP Backup",
+      "type": "cron",
+      "server": "srv-50",
+      "status": "active",
+      "schedule": "2:00 AM",
+      "human_desc": "Comprime la base de datos y la guarda localmente.",
+      "last_run": "2026-07-10T02:00",
+      "icon": "💾",
+      "subtasks": [
+        {
+          "id": "st-50-1-1",
+          "name": "mysqldump",
+          "desc": "Exporta desde .250",
+          "status": "done",
+          "icon": "📤"
+        },
+        {
+          "id": "st-50-1-2",
+          "name": "Comprimir ZIP",
+          "desc": "zip -r backup.zip",
+          "status": "done",
+          "icon": "🗜️"
+        },
+        {
+          "id": "st-50-1-3",
+          "name": "Verificar integridad",
+          "desc": "unzip -t",
+          "status": "done",
+          "icon": "✅"
+        },
+        {
+          "id": "st-50-1-4",
+          "name": "Rotar backups viejos",
+          "desc": "Elimina ZIPs mayores a 7 dias",
+          "status": "pending",
+          "icon": "🗑️"
+        }
+      ]
+    },
+    {
+      "id": "comp-43-1",
+      "name": "Servicio RDP",
+      "type": "service",
+      "server": "srv-43",
+      "status": "active",
+      "schedule": "24/7",
+      "human_desc": "Escritorio remoto Windows para administracion visual.",
+      "last_run": "2026-07-10T14:20",
+      "icon": "🖥️",
+      "subtasks": [
+        {
+          "id": "st-43-1-1",
+          "name": "Iniciar Terminal Services",
+          "desc": "Servicio RDP activo",
+          "status": "done",
+          "icon": "🚀"
+        },
+        {
+          "id": "st-43-1-2",
+          "name": "Escuchar puerto 3389",
+          "desc": "Acepta conexiones",
+          "status": "active",
+          "icon": "👂"
+        },
+        {
+          "id": "st-43-1-3",
+          "name": "Verificar licencias",
+          "desc": "RDS CAL disponibles",
+          "status": "active",
+          "icon": "🔑"
+        }
+      ]
+    },
+    {
+      "id": "comp-43-2",
+      "name": "Recordatorio Administrador",
+      "type": "cron",
+      "server": "srv-43",
       "status": "pending",
       "schedule": "Una vez",
       "human_desc": "Alerta cuando hay que revisar el escritorio remoto.",
@@ -460,21 +678,14 @@
       "icon": "🔔",
       "subtasks": [
         {
-          "id": "st-6-1",
-          "name": "Verificar conexion RDP",
+          "id": "st-43-2-1",
+          "name": "Verificar conexion",
           "desc": "Test de puerto 3389",
           "status": "pending",
           "icon": "🔌"
         },
         {
-          "id": "st-6-2",
-          "name": "Comprobar licencias",
-          "desc": "RDS CAL disponibles",
-          "status": "pending",
-          "icon": "🔑"
-        },
-        {
-          "id": "st-6-3",
+          "id": "st-43-2-2",
           "name": "Enviar recordatorio",
           "desc": "Telegram a admin",
           "status": "pending",
