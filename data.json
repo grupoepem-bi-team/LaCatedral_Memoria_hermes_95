@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-07-10T14:35:05.721198",
-    "version": "9.0"
+    "generated_at": "2026-07-10T14:39:50.174859",
+    "version": "9.1"
   },
   "servers": [
     {
@@ -200,39 +200,45 @@
       "subtasks": [
         {
           "name": "Cargar MEMORY.md",
-          "desc": "Lee memorias",
+          "desc": "Lee archivo de texto",
           "status": "done",
-          "icon": "📂"
+          "icon": "📂",
+          "human_summary": "Abre el archivo donde guardamos todo lo aprendido durante el dia."
         },
         {
           "name": "Parsear bloques",
           "desc": "Separa por §",
           "status": "done",
-          "icon": "✂️"
+          "icon": "✂️",
+          "human_summary": "Divide el texto en partes separadas por el simbolo especial §."
         },
         {
           "name": "Calcular hashes",
           "desc": "SHA256",
           "status": "done",
-          "icon": "#️⃣"
+          "icon": "#️⃣",
+          "human_summary": "Crea un codigo unico para cada parte para saber si ya existe."
         },
         {
           "name": "Insertar SQLite",
           "desc": "WAL mode",
           "status": "done",
-          "icon": "💾"
+          "icon": "💾",
+          "human_summary": "Guarda las nuevas partes en la base de datos sin perder las viejas."
         },
         {
           "name": "Recalcular VIP",
           "desc": "Pesos",
           "status": "done",
-          "icon": "⚖️"
+          "icon": "⚖️",
+          "human_summary": "Revisa que tan importantes son las memorias y les da una puntuacion."
         },
         {
           "name": "Registrar log",
           "desc": "sync_log",
           "status": "done",
-          "icon": "📝"
+          "icon": "📝",
+          "human_summary": "Escribe un registro de lo que hizo para poder revisarlo despues."
         }
       ]
     },
@@ -251,37 +257,43 @@
           "name": "Consultar SQLite",
           "desc": "Extrae datos",
           "status": "done",
-          "icon": "🗃️"
+          "icon": "🗃️",
+          "human_summary": "Pide a la base de datos toda la informacion del sistema."
         },
         {
           "name": "Layout D3",
           "desc": "Posiciones",
           "status": "done",
-          "icon": "📐"
+          "icon": "📐",
+          "human_summary": "Calcula donde poner cada servidor y cada tarea en el mapa."
         },
         {
           "name": "Generar HTML",
           "desc": "Template",
           "status": "done",
-          "icon": "🎨"
+          "icon": "🎨",
+          "human_summary": "Crea la pagina web con colores, formas y texto."
         },
         {
           "name": "Copiar repo",
           "desc": "/tmp/LaCatedral",
           "status": "done",
-          "icon": "📋"
+          "icon": "📋",
+          "human_summary": "Guarda el archivo en la carpeta que sincroniza con internet."
         },
         {
           "name": "Git push",
           "desc": "GitHub",
           "status": "done",
-          "icon": "⬆️"
+          "icon": "⬆️",
+          "human_summary": "Sube la pagina a internet para que todos la puedan ver."
         },
         {
           "name": "Verificar",
           "desc": "Vercel",
           "status": "done",
-          "icon": "✅"
+          "icon": "✅",
+          "human_summary": "Revisa que la pagina este funcionando correctamente en la web."
         }
       ]
     },
@@ -300,25 +312,29 @@
           "name": "Obtener token",
           "desc": "Gateway",
           "status": "done",
-          "icon": "🔑"
+          "icon": "🔑",
+          "human_summary": "Consigue la contrasena secreta para poder enviar mensajes al grupo."
         },
         {
           "name": "Formatear",
           "desc": "rich_message",
           "status": "done",
-          "icon": "📝"
+          "icon": "📝",
+          "human_summary": "Prepara el mensaje con titulos, tablas y colores bonitos."
         },
         {
           "name": "POST API",
           "desc": "sendRichMessage",
           "status": "active",
-          "icon": "📤"
+          "icon": "📤",
+          "human_summary": "Envia el mensaje formateado al grupo de Telegram."
         },
         {
           "name": "Verificar",
           "desc": "HTTP 200",
           "status": "pending",
-          "icon": "✓"
+          "icon": "✓",
+          "human_summary": "Confirma que Telegram recibio el mensaje sin errores."
         }
       ]
     },
@@ -337,25 +353,29 @@
           "name": "Iniciar",
           "desc": "Puerto 3306",
           "status": "done",
-          "icon": "🚀"
+          "icon": "🚀",
+          "human_summary": "Enciende el motor de base de datos para que pueda recibir preguntas."
         },
         {
           "name": "Escuchar",
           "desc": "Queries",
           "status": "active",
-          "icon": "👂"
+          "icon": "👂",
+          "human_summary": "Espera a que las aplicaciones le pidan informacion."
         },
         {
           "name": "Binlog",
           "desc": "Replica",
           "status": "active",
-          "icon": "📝"
+          "icon": "📝",
+          "human_summary": "Guarda un registro de todos los cambios para copiarlos a otra computadora."
         },
         {
           "name": "Mantenimiento",
           "desc": "OPTIMIZE",
           "status": "pending",
-          "icon": "🔧"
+          "icon": "🔧",
+          "human_summary": "Limpia y organiza los archivos para que todo funcione mas rapido."
         }
       ]
     },
@@ -374,19 +394,22 @@
           "name": "Leer binlog",
           "desc": "Cambios",
           "status": "active",
-          "icon": "📄"
+          "icon": "📄",
+          "human_summary": "Lee el diario de cambios que escribio el motor de base de datos."
         },
         {
           "name": "Enviar",
           "desc": "Stream",
           "status": "active",
-          "icon": "📡"
+          "icon": "📡",
+          "human_summary": "Manda esos cambios por internet a la computadora espejo."
         },
         {
           "name": "ACK",
           "desc": "Confirmacion",
           "status": "active",
-          "icon": "✓"
+          "icon": "✓",
+          "human_summary": "Espera a que la otra computadora diga que recibio todo bien."
         }
       ]
     },
@@ -405,19 +428,22 @@
           "name": "Conectar .250",
           "desc": "IO thread",
           "status": "active",
-          "icon": "🔌"
+          "icon": "🔌",
+          "human_summary": "Se conecta a la computadora principal para pedirle los cambios."
         },
         {
           "name": "Aplicar",
           "desc": "SQL thread",
           "status": "active",
-          "icon": "⚙️"
+          "icon": "⚙️",
+          "human_summary": "Aplica los cambios recibidos en su propia copia de la base de datos."
         },
         {
           "name": "Verificar lag",
           "desc": "Segundos",
           "status": "active",
-          "icon": "⏱"
+          "icon": "⏱",
+          "human_summary": "Revisa cuanto tiempo paso desde que el original cambio y esta copia se entero."
         }
       ]
     },
@@ -436,25 +462,29 @@
           "name": "Contar .250",
           "desc": "SELECT",
           "status": "done",
-          "icon": "🔢"
+          "icon": "🔢",
+          "human_summary": "Cuenta cuantas tablas y registros tiene la computadora principal."
         },
         {
           "name": "Contar .241",
           "desc": "SELECT",
           "status": "done",
-          "icon": "🔢"
+          "icon": "🔢",
+          "human_summary": "Cuenta cuantas tablas y registros tiene esta computadora espejo."
         },
         {
           "name": "Comparar",
           "desc": "Discrepancias",
           "status": "done",
-          "icon": "⚖️"
+          "icon": "⚖️",
+          "human_summary": "Compara los dos numeros para ver si hay algo diferente."
         },
         {
           "name": "Generar fix",
           "desc": "Script SQL",
           "status": "pending",
-          "icon": "📝"
+          "icon": "📝",
+          "human_summary": "Si hay diferencias, crea un plan para arreglarlas automaticamente."
         }
       ]
     },
@@ -473,13 +503,15 @@
           "name": "Iniciar",
           "desc": "Servicio",
           "status": "done",
-          "icon": "🚀"
+          "icon": "🚀",
+          "human_summary": "Enciende la base de datos antigua para hacer pruebas."
         },
         {
           "name": "Escuchar",
           "desc": "Test",
           "status": "active",
-          "icon": "👂"
+          "icon": "👂",
+          "human_summary": "Espera a que lleguen pruebas para verificar que todo funciona."
         }
       ]
     },
@@ -498,25 +530,29 @@
           "name": "Descargar",
           "desc": "scp .50",
           "status": "done",
-          "icon": "📦"
+          "icon": "📦",
+          "human_summary": "Descarga el archivo de respaldo desde la computadora de backups."
         },
         {
           "name": "Descomprimir",
           "desc": "/tmp",
           "status": "done",
-          "icon": "📂"
+          "icon": "📂",
+          "human_summary": "Abre el archivo comprimido para ver su contenido."
         },
         {
           "name": "Importar",
           "desc": "mysql",
           "status": "done",
-          "icon": "💾"
+          "icon": "💾",
+          "human_summary": "Carga los datos del respaldo en la base de datos de pruebas."
         },
         {
           "name": "Verificar",
           "desc": "SHOW TABLES",
           "status": "done",
-          "icon": "✅"
+          "icon": "✅",
+          "human_summary": "Revisa que todas las tablas esten presentes y funcionen."
         }
       ]
     },
@@ -535,19 +571,22 @@
           "name": "Ping",
           "desc": "SELECT 1",
           "status": "active",
-          "icon": "🔌"
+          "icon": "🔌",
+          "human_summary": "Hace una pregunta simple para verificar que la base de datos responde."
         },
         {
           "name": "Disco",
           "desc": "df -h",
           "status": "active",
-          "icon": "💿"
+          "icon": "💿",
+          "human_summary": "Revisa cuanto espacio libre queda en el disco duro."
         },
         {
           "name": "Reportar",
           "desc": "Metricas",
           "status": "active",
-          "icon": "📡"
+          "icon": "📡",
+          "human_summary": "Envia los resultados a la computadora central para que los vea el administrador."
         }
       ]
     },
@@ -566,25 +605,29 @@
           "name": "mysqldump",
           "desc": "Exporta",
           "status": "done",
-          "icon": "📤"
+          "icon": "📤",
+          "human_summary": "Saca una foto completa de todos los datos de la base de datos."
         },
         {
           "name": "Comprimir",
           "desc": "zip",
           "status": "done",
-          "icon": "🗜️"
+          "icon": "🗜️",
+          "human_summary": "Comprime la foto para que ocupe menos espacio."
         },
         {
           "name": "Verificar",
           "desc": "unzip -t",
           "status": "done",
-          "icon": "✅"
+          "icon": "✅",
+          "human_summary": "Prueba abrir el archivo comprimido para asegurarse que no este danado."
         },
         {
           "name": "Rotar",
           "desc": "7 dias",
           "status": "pending",
-          "icon": "🗑️"
+          "icon": "🗑️",
+          "human_summary": "Borra los respaldos muy viejos para no llenar el disco."
         }
       ]
     },
@@ -603,19 +646,22 @@
           "name": "Iniciar",
           "desc": "Terminal Services",
           "status": "done",
-          "icon": "🚀"
+          "icon": "🚀",
+          "human_summary": "Prepara Windows para recibir conexiones de escritorio remoto."
         },
         {
           "name": "Puerto 3389",
           "desc": "Escucha",
           "status": "active",
-          "icon": "👂"
+          "icon": "👂",
+          "human_summary": "Abre la puerta virtual para que los administradores puedan entrar desde lejos."
         },
         {
           "name": "Licencias",
           "desc": "RDS CAL",
           "status": "active",
-          "icon": "🔑"
+          "icon": "🔑",
+          "human_summary": "Verifica que haya suficientes permisos para que todos puedan conectarse."
         }
       ]
     },
@@ -634,13 +680,15 @@
           "name": "Verificar",
           "desc": "Puerto 3389",
           "status": "pending",
-          "icon": "🔌"
+          "icon": "🔌",
+          "human_summary": "Revisa si la computadora responde cuando alguien intenta conectarse."
         },
         {
           "name": "Enviar",
           "desc": "Telegram",
           "status": "pending",
-          "icon": "📨"
+          "icon": "📨",
+          "human_summary": "Manda un mensaje al administrador si detecta algun problema."
         }
       ]
     }
