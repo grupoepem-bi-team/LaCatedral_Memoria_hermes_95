@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-09T18:55:40.473997",
+    "generated_at": "2026-07-10T03:05:39.621102",
     "db_path": "/home/vm-hermes/.hermes/memory-deep/db/memory.db",
     "agent_name": "Hermes",
     "system": "La Catedral"
@@ -183,6 +183,22 @@
       "title": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO met"
     },
     {
+      "id": 23,
+      "category": "general/cron",
+      "tags": "absoluta,config,cron,ley,security,todo",
+      "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presentar, esperar 'si'/'dale'/'autorizado'. Silencio != aprobacion. Aplica a TODO: scripts, configs, crons, deploys, UPDATEs, INSERTs, scp, rm. Sin excepciones. Review completo de riesgos/stress/timing antes de deployar.",
+      "importance": 8,
+      "source": "memory_purge",
+      "status": "active",
+      "created_at": "2026-07-10T03:00:39.515109",
+      "last_accessed": "2026-07-10T03:00:39.515109",
+      "access_count": 0,
+      "vip_score": 18,
+      "parent": "general",
+      "subtema": "cron",
+      "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presenta"
+    },
+    {
       "id": 2,
       "category": "staging-99/telegram",
       "tags": "api,auditoria,monitor,staging-99,svr-monitor,telegram",
@@ -277,28 +293,128 @@
       "parent": "general",
       "subtema": "pipeline",
       "title": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_"
+    },
+    {
+      "id": 18,
+      "category": "general/cron",
+      "tags": "absoluta,config,cron,ley,security,todo",
+      "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel ('si'/'dale'/'autorizado'). Analizar, presentar, esperar. Nunca silencio=aprobacion. Aplica TODO: scripts, configs, crons, deploys, UPDATEs, scp, rm.",
+      "importance": 6,
+      "source": "memory_purge",
+      "status": "active",
+      "created_at": "2026-07-10T03:00:39.515109",
+      "last_accessed": "2026-07-10T03:00:39.515109",
+      "access_count": 0,
+      "vip_score": 16,
+      "parent": "general",
+      "subtema": "cron",
+      "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel ('si'/'dale'/'autor"
+    },
+    {
+      "id": 19,
+      "category": "prod-250/mysql",
+      "tags": "auditoria,backup-50,config,cron,espejo-241,index-system,mysql,prod-250,replica",
+      "content": "Espejo 241: corregido 09/07. 1,183 UPDATEs, 0 errores. Cron nativo 09:00. Pendiente: binlogs master 250 post-20h (cron eb518cae22b2). Index-system en ~/.hermes/indices/ (5 estantes).",
+      "importance": 6,
+      "source": "memory_purge",
+      "status": "active",
+      "created_at": "2026-07-10T03:00:39.515109",
+      "last_accessed": "2026-07-10T03:00:39.515109",
+      "access_count": 0,
+      "vip_score": 16,
+      "parent": "prod-250",
+      "subtema": "mysql",
+      "title": "Espejo 241: corregido 09/07. 1,183 UPDATEs, 0 errores. Cron nativo 09:00. Pendie"
+    },
+    {
+      "id": 20,
+      "category": "prod-250/mysql",
+      "tags": "admin-epem,all,api,auditoria,bache,backup,backup-50,chat_id,config,contract_fees,cron,detector_datos_desactualizados_espejo",
+      "content": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens). Detail in table. ALL reports via `sendRichMessage` Bot API 10.1 (POST {chat_id:-1003771914699, rich_message:{markdown:raw}}). NO pipes, NO HTML pre, NO sendMessage, NO \\n normalization. Token: Hermes→/proc/$(pgrep -f \"gateway run\")/environ; .99→/home/admin-epem/.tg_token; .250→pendiente SSH vault. .99 MySQL: SSH only (contract_fees ~25s/query, timeout=45s). Scripts: monitor-restore-99-v5.py, verificar-backup-50.sh, detector_datos_desactualizados_espejo.py. Cronjobs: no_agent=True, deliver=local.",
+      "importance": 6,
+      "source": "memory_purge",
+      "status": "active",
+      "created_at": "2026-07-10T03:00:39.515109",
+      "last_accessed": "2026-07-10T03:00:39.515109",
+      "access_count": 0,
+      "vip_score": 16,
+      "parent": "prod-250",
+      "subtema": "mysql",
+      "title": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens"
+    },
+    {
+      "id": 21,
+      "category": "espejo-241/replica",
+      "tags": "admin-epem,auditoria,config,cron,espejo-241,monitor,pipeline,replica,staging-99,telegram,vault",
+      "content": "Bot token real en vault Hermes + .99 + .241 (.vault/ chmod 600). Antes ***. Cron 241: detector_espejo_241.sh, log /home/admin-epem/logs/. Cron Hermes 711cbbab5360 pausado.",
+      "importance": 6,
+      "source": "memory_purge",
+      "status": "active",
+      "created_at": "2026-07-10T03:00:39.515109",
+      "last_accessed": "2026-07-10T03:00:39.515109",
+      "access_count": 0,
+      "vip_score": 16,
+      "parent": "espejo-241",
+      "subtema": "replica",
+      "title": "Bot token real en vault Hermes + .99 + .241 (.vault/ chmod 600). Antes ***. Cron"
+    },
+    {
+      "id": 22,
+      "category": "general/vault",
+      "tags": "catedral,disk,text-shadow,todos,vault,vip",
+      "content": "La Catedral v3: dashboard con layout predefinido (servidores en 4 esquinas, memorias orbitando). Labels 10px pergamino solido + text-shadow para TODOS los nodos. NO filtrar por VIP. Servidor labels 13px oro brillante. Radio orbita 140px + N*8. Skills en panel lateral, NO como nodos. html,body usar 100vw/100vh. Token GitHub pendiente rotar.",
+      "importance": 6,
+      "source": "memory_purge",
+      "status": "active",
+      "created_at": "2026-07-10T03:00:39.515109",
+      "last_accessed": "2026-07-10T03:00:39.515109",
+      "access_count": 0,
+      "vip_score": 16,
+      "parent": "general",
+      "subtema": "vault",
+      "title": "La Catedral v3: dashboard con layout predefinido (servidores en 4 esquinas, memo"
     }
   ],
   "relationships": [],
   "tags": [
     {
+      "nombre": "cron",
+      "count": 9
+    },
+    {
       "nombre": "backup",
-      "count": 6
+      "count": 7
+    },
+    {
+      "nombre": "espejo-241",
+      "count": 7
     },
     {
       "nombre": "staging",
       "count": 6
     },
     {
-      "nombre": "espejo-241",
-      "count": 5
+      "nombre": "vault",
+      "count": 6
+    },
+    {
+      "nombre": "config",
+      "count": 6
     },
     {
       "nombre": "bache",
-      "count": 4
+      "count": 5
     },
     {
       "nombre": "mysql",
+      "count": 5
+    },
+    {
+      "nombre": "all",
+      "count": 5
+    },
+    {
+      "nombre": "contract_fees",
       "count": 4
     },
     {
@@ -306,43 +422,67 @@
       "count": 4
     },
     {
-      "nombre": "cron",
+      "nombre": "replica",
       "count": 4
-    },
-    {
-      "nombre": "vault",
-      "count": 4
-    },
-    {
-      "nombre": "all",
-      "count": 4
-    },
-    {
-      "nombre": "contract_fees",
-      "count": 3
     },
     {
       "nombre": "telegram",
-      "count": 3
+      "count": 4
+    },
+    {
+      "nombre": "pipeline",
+      "count": 4
     },
     {
       "nombre": "epem",
       "count": 3
     },
     {
-      "nombre": "pipeline",
+      "nombre": "admin-epem",
       "count": 3
     },
     {
-      "nombre": "replica",
-      "count": 2
+      "nombre": "api",
+      "count": 3
     },
     {
-      "nombre": "api",
-      "count": 2
+      "nombre": "absoluta",
+      "count": 3
+    },
+    {
+      "nombre": "ley",
+      "count": 3
+    },
+    {
+      "nombre": "todo",
+      "count": 3
     },
     {
       "nombre": "monitor",
+      "count": 3
+    },
+    {
+      "nombre": "auditoria",
+      "count": 3
+    },
+    {
+      "nombre": "chat_id",
+      "count": 2
+    },
+    {
+      "nombre": "detector_datos_desactualizados_espejo",
+      "count": 2
+    },
+    {
+      "nombre": "disk",
+      "count": 2
+    },
+    {
+      "nombre": "security",
+      "count": 2
+    },
+    {
+      "nombre": "backup-50",
       "count": 2
     },
     {
@@ -430,59 +570,24 @@
       "count": 1
     },
     {
-      "nombre": "admin-epem",
-      "count": 1
-    },
-    {
-      "nombre": "chat_id",
-      "count": 1
-    },
-    {
-      "nombre": "detector_datos_desactualizados_espejo",
-      "count": 1
-    },
-    {
       "nombre": "auto-deploy",
       "count": 1
     },
     {
       "nombre": "deep-memory-system",
       "count": 1
-    },
-    {
-      "nombre": "grupoepem-bi-team",
-      "count": 1
-    },
-    {
-      "nombre": "memory-deep",
-      "count": 1
-    },
-    {
-      "nombre": "wal",
-      "count": 1
-    },
-    {
-      "nombre": "line",
-      "count": 1
-    },
-    {
-      "nombre": "single",
-      "count": 1
-    },
-    {
-      "nombre": "absoluta",
-      "count": 1
-    },
-    {
-      "nombre": "config",
-      "count": 1
-    },
-    {
-      "nombre": "ley",
-      "count": 1
     }
   ],
   "grafo_hist": [
+    {
+      "id": 2,
+      "fecha": "2026-07-10",
+      "nodos_count": 23,
+      "aristas_count": 0,
+      "densidad": 0.0,
+      "centralidad_max": 0.0,
+      "snapshot_json": "{\"nodos\": 23, \"aristas\": 0, \"densidad\": 0.0, \"centralidad_max\": 0}"
+    },
     {
       "id": 1,
       "fecha": "2026-07-09",
@@ -532,6 +637,15 @@
     }
   ],
   "sync_log": [
+    {
+      "id": 2,
+      "fecha": "2026-07-10T03:00:39.532614",
+      "tipo": "memory_auto",
+      "entradas": 6,
+      "duplicados_skip": 9,
+      "errores": null,
+      "backup_path": "/home/vm-hermes/.hermes/memory-deep/backups/memory-BACKUP-20260710-030039.db"
+    },
     {
       "id": 1,
       "fecha": "2026-07-09T17:53:03.776398",
@@ -970,21 +1084,21 @@
     }
   ],
   "stats": {
-    "total_entries": 17,
+    "total_entries": 23,
     "total_relationships": 0,
-    "total_tags": 64,
+    "total_tags": 74,
     "total_mistakes": 1,
     "total_outcomes": 1,
     "total_procedures": 1,
-    "vip_avg": 18.1,
+    "vip_avg": 17.6,
     "outcomes_success": 1,
     "outcomes_failure": 0,
     "outcomes_pending": 0,
     "servers": {
+      "general": 8,
       "staging-99": 6,
-      "general": 5,
-      "prod-250": 4,
-      "espejo-241": 2
+      "prod-250": 6,
+      "espejo-241": 3
     }
   }
 }
