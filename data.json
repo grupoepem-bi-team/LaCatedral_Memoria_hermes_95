@@ -1,1193 +1,264 @@
 {
   "meta": {
-    "generated_at": "2026-07-10T14:04:48.502313",
-    "total_items": 128
+    "generated_at": "2026-07-10T14:11:04.849649",
+    "version": "8.0"
   },
   "servers": [
     {
       "id": "srv-95",
       "name": "HERMES .95",
       "ip": "localhost",
-      "role": "Controlador central",
+      "role": "Cerebro del sistema",
       "status": "online",
       "color": "#d4af37",
-      "r": 55
+      "icon": "🧠",
+      "desc": "Controlador central. Coordina todos los servidores y ejecuta el agente Hermes.",
+      "services": [
+        "Hermes Agent",
+        "Dashboard",
+        "Deep Memory",
+        "Skills"
+      ]
     },
     {
       "id": "srv-250",
       "name": "PROD .250",
       "ip": "192.168.0.250",
-      "role": "MySQL Produccion",
+      "role": "Base de datos principal",
       "status": "online",
       "color": "#2e7d32",
-      "r": 42
+      "icon": "🗄️",
+      "desc": "MySQL 8.4 produccion. Datos en tiempo real del sistema EPEM.",
+      "services": [
+        "MySQL 8.4",
+        "Replicacion master"
+      ]
     },
     {
       "id": "srv-241",
       "name": "ESPEJO .241",
       "ip": "192.168.0.241",
-      "role": "Replica nativa .250",
+      "role": "Copia de seguridad viva",
       "status": "online",
       "color": "#1565c0",
-      "r": 42
+      "icon": "🪞",
+      "desc": "Replica nativa de .250. Si .250 cae, .241 tiene los datos.",
+      "services": [
+        "MySQL Replica",
+        "Detector de drift"
+      ]
     },
     {
       "id": "srv-240",
       "name": "STAGING .240",
       "ip": "192.168.0.240",
-      "role": "Staging legacy",
+      "role": "Ambiente de pruebas",
       "status": "online",
       "color": "#7b1fa2",
-      "r": 38
+      "icon": "🧪",
+      "desc": "Servidor legacy para pruebas. Ubuntu antiguo.",
+      "services": [
+        "MySQL 5.7",
+        "Test-sistema"
+      ]
     },
     {
       "id": "srv-99",
       "name": "STAGING .99",
       "ip": "192.168.0.99",
-      "role": "Staging nuevo MySQL 8.4",
+      "role": "Nuevo ambiente de pruebas",
       "status": "online",
       "color": "#00838f",
-      "r": 38
+      "icon": "🔬",
+      "desc": "Staging moderno con MySQL 8.4. Restaura backups cada noche.",
+      "services": [
+        "MySQL 8.4",
+        "Restore pipeline"
+      ]
     },
     {
       "id": "srv-50",
       "name": "BACKUP .50",
       "ip": "192.168.0.50",
-      "role": "Backups ZIP",
+      "role": "Almacen de backups",
       "status": "online",
       "color": "#c62828",
-      "r": 34
+      "icon": "💾",
+      "desc": "Guarda archivos ZIP con copias de la base de datos.",
+      "services": [
+        "ZIP backups",
+        "Verificacion diaria"
+      ]
     },
     {
       "id": "srv-43",
       "name": "RDP .43",
       "ip": "192.168.0.43",
-      "role": "Acceso remoto Windows",
+      "role": "Escritorio remoto",
       "status": "online",
       "color": "#ef6c00",
-      "r": 34
+      "icon": "🖥️",
+      "desc": "Acceso remoto Windows para administracion visual.",
+      "services": [
+        "RDP",
+        "Recordatorios"
+      ]
     }
   ],
-  "categories": [
+  "flows": [
     {
-      "id": "cat-config",
-      "name": "Configuraciones",
-      "icon": "⚙️",
-      "color": "#607d8b",
-      "desc": "Scripts, configs, credenciales"
-    },
-    {
-      "id": "cat-tareas",
-      "name": "Tareas",
-      "icon": "📋",
-      "color": "#795548",
-      "desc": "Tareas manuales y automatizadas"
-    },
-    {
-      "id": "cat-jobs",
-      "name": "Jobs",
-      "icon": "⚡",
-      "color": "#ff9800",
-      "desc": "Pipeline jobs y rebuilds"
-    },
-    {
-      "id": "cat-cron",
-      "name": "Cron Jobs",
-      "icon": "⏰",
-      "color": "#9c27b0",
-      "desc": "Tareas programadas"
-    },
-    {
-      "id": "cat-analisis",
-      "name": "Analisis",
-      "icon": "🔍",
-      "color": "#2196f3",
-      "desc": "Diagnosticos y auditorias"
-    },
-    {
-      "id": "cat-bugs",
-      "name": "Bugs",
-      "icon": "🐛",
-      "color": "#f44336",
-      "desc": "Errores conocidos y fixes"
-    },
-    {
-      "id": "cat-aprendido",
-      "name": "Aprendido",
-      "icon": "🧠",
-      "color": "#4caf50",
-      "desc": "Lecciones y memorias"
-    },
-    {
-      "id": "cat-reportes",
-      "name": "Reportes",
-      "icon": "📊",
-      "color": "#00bcd4",
-      "desc": "Historial de reportes"
-    },
-    {
-      "id": "cat-conexiones",
-      "name": "Conexiones",
-      "icon": "🔗",
-      "color": "#ffeb3b",
-      "desc": "Conexiones Telegram y APIs"
-    },
-    {
-      "id": "cat-skills",
-      "name": "Skills",
-      "icon": "🎯",
-      "color": "#e91e63",
-      "desc": "Habilidades del agente"
-    }
-  ],
-  "items": [
-    {
-      "id": "cron-1",
-      "name": "Monitor Restore .99",
-      "schedule": "*/10 * * * *",
-      "script": "monitor-restore-99-v5.py",
-      "server": "srv-99",
-      "category": "cat-cron",
+      "id": "flow-1",
+      "from": "srv-250",
+      "to": "srv-241",
+      "type": "replica",
+      "name": "Replica MySQL",
+      "desc": "Datos se copian automaticamente cada segundo",
       "status": "active",
+      "icon": "🔄"
+    },
+    {
+      "id": "flow-2",
+      "from": "srv-250",
+      "to": "srv-99",
+      "type": "restore",
+      "name": "Restore Pipeline",
+      "desc": "Backup completo se restaura cada noche",
+      "status": "active",
+      "icon": "📥"
+    },
+    {
+      "id": "flow-3",
+      "from": "srv-50",
+      "to": "srv-99",
+      "type": "backup",
+      "name": "ZIP Backup",
+      "desc": "Archivo comprimido viaja al staging",
+      "status": "active",
+      "icon": "📦"
+    },
+    {
+      "id": "flow-4",
+      "from": "srv-95",
+      "to": "srv-240",
+      "type": "ssh",
+      "name": "Diagnostico",
+      "desc": "Comandos de monitoreo remoto",
+      "status": "active",
+      "icon": "🔍"
+    },
+    {
+      "id": "flow-5",
+      "from": "srv-95",
+      "to": "srv-241",
+      "type": "ssh",
+      "name": "Detector",
+      "desc": "Verifica que .241 tenga datos actualizados",
+      "status": "active",
+      "icon": "📡"
+    },
+    {
+      "id": "flow-6",
+      "from": "srv-95",
+      "to": "srv-99",
+      "type": "ssh",
+      "name": "Monitor",
+      "desc": "Observa el restore cada 10 minutos",
+      "status": "active",
+      "icon": "👁️"
+    },
+    {
+      "id": "flow-7",
+      "from": "srv-95",
+      "to": "all",
+      "type": "telegram",
+      "name": "Alertas Telegram",
+      "desc": "Mensajes al grupo de monitoreo",
+      "status": "active",
+      "icon": "📨"
+    },
+    {
+      "id": "flow-8",
+      "from": "srv-95",
+      "to": "github",
+      "type": "deploy",
+      "name": "Deploy Web",
+      "desc": "Dashboard se publica automaticamente",
+      "status": "active",
+      "icon": "🚀"
+    }
+  ],
+  "components": [
+    {
+      "id": "comp-1",
+      "name": "Monitor Restore .99",
+      "type": "cron",
+      "server": "srv-95",
+      "target": "srv-99",
+      "status": "active",
+      "schedule": "Cada 10 minutos",
+      "human_desc": "Revisa si el restore esta corriendo bien y avisa si hay problemas.",
       "last_run": "2026-07-10T13:50",
-      "item_type": "cron"
+      "icon": "⏰"
     },
     {
-      "id": "cron-2",
+      "id": "comp-2",
       "name": "Sync Nocturno",
-      "schedule": "0 3 * * *",
-      "script": "nightly_sync.sh",
+      "type": "cron",
       "server": "srv-95",
-      "category": "cat-cron",
+      "target": "srv-95",
       "status": "active",
+      "schedule": "3:00 AM",
+      "human_desc": "Limpia memorias viejas y recalcula VIP scores.",
       "last_run": "2026-07-10T03:00",
-      "item_type": "cron"
+      "icon": "🌙"
     },
     {
-      "id": "cron-3",
+      "id": "comp-3",
       "name": "Rebuild Dashboard",
-      "schedule": "5 3 * * *",
-      "script": "rebuild_dashboard.sh",
+      "type": "cron",
       "server": "srv-95",
-      "category": "cat-jobs",
+      "target": "github",
       "status": "active",
+      "schedule": "3:05 AM",
+      "human_desc": "Genera el mapa visual y lo publica en la web.",
       "last_run": "2026-07-10T03:05",
-      "item_type": "cron"
+      "icon": "🏗️"
     },
     {
-      "id": "cron-4",
-      "name": "Detector Espejo .241",
-      "schedule": "0 9 * * *",
-      "script": "detector_espejo_241.sh",
-      "server": "srv-241",
-      "category": "cat-analisis",
+      "id": "comp-4",
+      "name": "Detector Espejo",
+      "type": "cron",
+      "server": "srv-95",
+      "target": "srv-241",
       "status": "active",
+      "schedule": "9:00 AM",
+      "human_desc": "Compara datos entre .250 y .241. Detecta diferencias.",
       "last_run": "2026-07-10T09:04",
-      "item_type": "cron"
+      "icon": "🔎"
     },
     {
-      "id": "cron-5",
+      "id": "comp-5",
       "name": "Verificar Backup .50",
-      "schedule": "0 5-8 * * *",
-      "script": "verificar-backup-50.sh",
-      "server": "srv-50",
-      "category": "cat-tareas",
+      "type": "cron",
+      "server": "srv-95",
+      "target": "srv-50",
       "status": "active",
+      "schedule": "5-8 AM",
+      "human_desc": "Comprueba que los ZIP de backup no esten corruptos.",
       "last_run": "2026-07-10T08:01",
-      "item_type": "cron"
+      "icon": "✅"
     },
     {
-      "id": "cron-6",
-      "name": "Recordatorio RDP .43",
-      "schedule": "once",
-      "script": "recordatorio-rdp-43.sh",
-      "server": "srv-43",
-      "category": "cat-tareas",
+      "id": "comp-6",
+      "name": "Recordatorio RDP",
+      "type": "cron",
+      "server": "srv-95",
+      "target": "srv-43",
       "status": "pending",
+      "schedule": "Una vez",
+      "human_desc": "Alerta cuando hay que revisar el escritorio remoto.",
       "last_run": "N/A",
-      "item_type": "cron"
-    },
-    {
-      "id": "scr-1",
-      "name": "EOF",
-      "size_kb": 0.0,
-      "server": "srv-95",
-      "category": "cat-config",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-4",
-      "name": "check_and_sync.py",
-      "size_kb": 2.1,
-      "server": "srv-95",
-      "category": "cat-config",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-5",
-      "name": "detector_datos_desactualizados_espejo.py",
-      "size_kb": 6.5,
-      "server": "srv-95",
-      "category": "cat-analisis",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-6",
-      "name": "formato-reporte.sh",
-      "size_kb": 2.8,
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-7",
-      "name": "monitor-restore-99-v2.py",
-      "size_kb": 6.9,
-      "server": "srv-95",
-      "category": "cat-jobs",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-8",
-      "name": "monitor-restore-99-v3.py",
-      "size_kb": 7.8,
-      "server": "srv-95",
-      "category": "cat-jobs",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-9",
-      "name": "monitor-restore-99-v4.py",
-      "size_kb": 9.7,
-      "server": "srv-95",
-      "category": "cat-jobs",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-10",
-      "name": "monitor-restore-99-v5.py",
-      "size_kb": 9.6,
-      "server": "srv-95",
-      "category": "cat-jobs",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-11",
-      "name": "monitor-restore-99.py",
-      "size_kb": 7.4,
-      "server": "srv-95",
-      "category": "cat-jobs",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-12",
-      "name": "nightly_sync.sh",
-      "size_kb": 0.3,
-      "server": "srv-95",
-      "category": "cat-config",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-13",
-      "name": "playbook-99-analisis.sh",
-      "size_kb": 5.0,
-      "server": "srv-95",
-      "category": "cat-config",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-14",
-      "name": "playbook-99-diario.sh",
-      "size_kb": 18.8,
-      "server": "srv-95",
-      "category": "cat-config",
-      "item_type": "script"
-    },
-    {
-      "id": "scr-15",
-      "name": "rebuild_dashboard.sh",
-      "size_kb": 0.3,
-      "server": "srv-95",
-      "category": "cat-config",
-      "item_type": "script"
-    },
-    {
-      "id": "skl-1",
-      "name": "apple-notes",
-      "category_name": "apple",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-2",
-      "name": "apple-reminders",
-      "category_name": "apple",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-3",
-      "name": "findmy",
-      "category_name": "apple",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-4",
-      "name": "imessage",
-      "category_name": "apple",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-5",
-      "name": "claude-code",
-      "category_name": "autonomous-ai-agents",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-6",
-      "name": "codex",
-      "category_name": "autonomous-ai-agents",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-7",
-      "name": "hermes-agent",
-      "category_name": "autonomous-ai-agents",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-8",
-      "name": "opencode",
-      "category_name": "autonomous-ai-agents",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-9",
-      "name": "architecture-diagram",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-10",
-      "name": "ascii-art",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-11",
-      "name": "ascii-video",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-12",
-      "name": "baoyu-infographic",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-13",
-      "name": "claude-design",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-14",
-      "name": "comfyui",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-15",
-      "name": "design-md",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-16",
-      "name": "excalidraw",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-17",
-      "name": "humanizer",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-18",
-      "name": "manim-video",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-19",
-      "name": "p5js",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-20",
-      "name": "popular-web-designs",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-21",
-      "name": "pretext",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-22",
-      "name": "sketch",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-23",
-      "name": "songwriting-and-ai-music",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-24",
-      "name": "touchdesigner-mcp",
-      "category_name": "creative",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-25",
-      "name": "jupyter-live-kernel",
-      "category_name": "data-science",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-26",
-      "name": "actualizacion-espejo-241",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-27",
-      "name": "actualizacion-staging-240",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-28",
-      "name": "bitacora-240",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-29",
-      "name": "centralizar-logs-99",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-30",
-      "name": "deep-memory-system",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-31",
-      "name": "espejo-241-ops-log",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-32",
-      "name": "mysql-cross-server-comparison",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-33",
-      "name": "mysql-replication-audit",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-34",
-      "name": "mysql-restore-pipelines",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-35",
-      "name": "mysql-staging-restore",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-36",
-      "name": "ops-playbooks",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-37",
-      "name": "qa-playbook-validation",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-38",
-      "name": "server-diagnostics-hub",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-39",
-      "name": "staging-99-restore-guide",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-40",
-      "name": "staging-99-restore-pipeline",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-41",
-      "name": "status-240",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-42",
-      "name": "telegram-reportes-staging-99",
-      "category_name": "devops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-43",
-      "name": "himalaya",
-      "category_name": "email",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-44",
-      "name": "codebase-inspection",
-      "category_name": "github",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-45",
-      "name": "github-auth",
-      "category_name": "github",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-46",
-      "name": "github-code-review",
-      "category_name": "github",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-47",
-      "name": "github-issues",
-      "category_name": "github",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-48",
-      "name": "github-pr-workflow",
-      "category_name": "github",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-49",
-      "name": "github-repo-management",
-      "category_name": "github",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-50",
-      "name": "gif-search",
-      "category_name": "media",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-51",
-      "name": "heartmula",
-      "category_name": "media",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-52",
-      "name": "songsee",
-      "category_name": "media",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-53",
-      "name": "youtube-content",
-      "category_name": "media",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-54",
-      "name": "huggingface-hub",
-      "category_name": "mlops",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-55",
-      "name": "obsidian",
-      "category_name": "note-taking",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-56",
-      "name": "airtable",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-57",
-      "name": "google-workspace",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-58",
-      "name": "index-system",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-59",
-      "name": "maps",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-60",
-      "name": "nano-pdf",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-61",
-      "name": "notion",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-62",
-      "name": "ocr-and-documents",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-63",
-      "name": "petdex",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-64",
-      "name": "powerpoint",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-65",
-      "name": "teams-meeting-pipeline",
-      "category_name": "productivity",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-66",
-      "name": "arxiv",
-      "category_name": "research",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-67",
-      "name": "blogwatcher",
-      "category_name": "research",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-68",
-      "name": "llm-wiki",
-      "category_name": "research",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-69",
-      "name": "polymarket",
-      "category_name": "research",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-70",
-      "name": "research-paper-writing",
-      "category_name": "research",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-71",
-      "name": "openhue",
-      "category_name": "smart-home",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-72",
-      "name": "xurl",
-      "category_name": "social-media",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-73",
-      "name": "hermes-agent-skill-authoring",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-74",
-      "name": "node-inspect-debugger",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-75",
-      "name": "plan",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-76",
-      "name": "python-debugpy",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-77",
-      "name": "requesting-code-review",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-78",
-      "name": "simplify-code",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-79",
-      "name": "spike",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-80",
-      "name": "systematic-debugging",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "skl-81",
-      "name": "test-driven-development",
-      "category_name": "software-development",
-      "server": "srv-95",
-      "category": "cat-skills",
-      "item_type": "skill"
-    },
-    {
-      "id": "mem-0",
-      "title": "Emmanuel V. Español, CLI real. Servers: .43(RDP), .250(PROD)",
-      "content": "Emmanuel V. Español, CLI real. Servers: .43(RDP), .250(PROD), .241(ESPEJO), .240(STAGING legacy), .99(STAGING MySQL 8.4), .50(BACKUP). SUDO REMOTO BLO",
-      "server": "srv-95",
-      "category": "cat-aprendido",
-      "item_type": "memory"
-    },
-    {
-      "id": "mem-1",
-      "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel",
-      "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel ('si'/'dale'/'autorizado'). Analizar, presentar, esperar. Nunca silencio=aprobacion. Apli",
-      "server": "srv-95",
-      "category": "cat-aprendido",
-      "item_type": "memory"
-    },
-    {
-      "id": "mem-2",
-      "title": "QA exigente: revisar scripts ANTES de deploy por COUNT vs CO",
-      "content": "QA exigente: revisar scripts ANTES de deploy por COUNT vs COUNT(*), escapes JSON, tokens ***, curl>/dev/null, f-strings sobre templates con CSS vars {",
-      "server": "srv-95",
-      "category": "cat-aprendido",
-      "item_type": "memory"
-    },
-    {
-      "id": "mem-3",
-      "title": "Telegram: sendRichMessage Bot API 10.1 (POST {chat_id:-10037",
-      "content": "Telegram: sendRichMessage Bot API 10.1 (POST {chat_id:-1003771914699, rich_message:{markdown:raw}}). NO pipes, NO HTML pre, NO sendMessage. Token: Her",
-      "server": "srv-95",
-      "category": "cat-aprendido",
-      "item_type": "memory"
-    },
-    {
-      "id": "mem-4",
-      "title": "Dashboard visual: layout predefinido OBLIGATORIO (NO force s",
-      "content": "Dashboard visual: layout predefinido OBLIGATORIO (NO force simulation). Servidores=pilares fijos. Memorias=orbitas radiales. Skills en panel, NUNCA co",
-      "server": "srv-95",
-      "category": "cat-aprendido",
-      "item_type": "memory"
-    },
-    {
-      "id": "usr-0",
-      "title": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.",
-      "content": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.",
-      "server": "srv-95",
-      "category": "cat-aprendido",
-      "item_type": "memory"
-    },
-    {
-      "id": "usr-1",
-      "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel",
-      "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presentar, esperar 'si'/'dale'/'autorizado'. Silencio != aprobacion. Aplica a ",
-      "server": "srv-95",
-      "category": "cat-aprendido",
-      "item_type": "memory"
-    },
-    {
-      "id": "usr-2",
-      "title": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline ",
-      "content": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authorized at 21:00.",
-      "server": "srv-95",
-      "category": "cat-aprendido",
-      "item_type": "memory"
-    },
-    {
-      "id": "conn-1",
-      "name": "Bot API sendRichMessage",
-      "target": "Grupo Monitor (-1003771914699)",
-      "server": "srv-95",
-      "category": "cat-conexiones",
-      "status": "active",
-      "type": "telegram",
-      "item_type": "connection"
-    },
-    {
-      "id": "conn-2",
-      "name": "Monitor Restore .99",
-      "target": "Grupo + Privado",
-      "server": "srv-99",
-      "category": "cat-conexiones",
-      "status": "active",
-      "type": "telegram",
-      "item_type": "connection"
-    },
-    {
-      "id": "conn-3",
-      "name": "Detector Espejo .241",
-      "target": "Grupo",
-      "server": "srv-241",
-      "category": "cat-conexiones",
-      "status": "active",
-      "type": "telegram",
-      "item_type": "connection"
-    },
-    {
-      "id": "conn-4",
-      "name": "GitHub → Vercel",
-      "target": "LaCatedral_Memoria_hermes_95",
-      "server": "srv-95",
-      "category": "cat-conexiones",
-      "status": "active",
-      "type": "github",
-      "item_type": "connection"
-    },
-    {
-      "id": "conn-5",
-      "name": "SSH .240",
-      "target": "admin-epem@192.168.0.240",
-      "server": "srv-240",
-      "category": "cat-conexiones",
-      "status": "active",
-      "type": "ssh",
-      "item_type": "connection"
-    },
-    {
-      "id": "conn-6",
-      "name": "SSH .99",
-      "target": "admin-epem@192.168.0.99",
-      "server": "srv-99",
-      "category": "cat-conexiones",
-      "status": "active",
-      "type": "ssh",
-      "item_type": "connection"
-    },
-    {
-      "id": "bug-1",
-      "name": "COUNT vs COUNT(*)",
-      "desc": "MySQL 8.4 diferencia COUNT(expr)",
-      "server": "srv-99",
-      "category": "cat-bugs",
-      "severity": "high",
-      "item_type": "bug"
-    },
-    {
-      "id": "bug-2",
-      "name": "json.dumps sin ensure_ascii",
-      "desc": "Problemas con caracteres UTF-8 en Telegram",
-      "server": "srv-95",
-      "category": "cat-bugs",
-      "severity": "medium",
-      "item_type": "bug"
-    },
-    {
-      "id": "bug-3",
-      "name": "curl >/dev/null silencioso",
-      "desc": "Errores de red no visibles",
-      "server": "srv-95",
-      "category": "cat-bugs",
-      "severity": "high",
-      "item_type": "bug"
-    },
-    {
-      "id": "bug-4",
-      "name": "scp sin autorizacion explicita",
-      "desc": "Riesgo de transferencias no autorizadas",
-      "server": "srv-95",
-      "category": "cat-bugs",
-      "severity": "critical",
-      "item_type": "bug"
-    },
-    {
-      "id": "rep-0",
-      "title": "[2026-07-10T03:00:39.514660] [PARSE] /home/vm-hermes/.hermes/memories/MEMORY.md:",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-1",
-      "title": "[2026-07-10T03:00:39.514974] [PARSE] /home/vm-hermes/.hermes/memories/USER.md: 7",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-2",
-      "title": "[2026-07-10T03:00:39.520576] [VOLCADO] Insertados: 6 | Duplicados skip: 9",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-3",
-      "title": "[2026-07-10T03:00:39.530888] [VIP] Recalculado: 23 entries en VIP zone",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-4",
-      "title": "[2026-07-10T03:00:39.531625] [FTS5] Optimize OK",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-5",
-      "title": "[2026-07-10T03:00:39.531889] [STALE] 0 outcomes cerrados como stale (>30 dias)",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-6",
-      "title": "[2026-07-10T03:00:39.532480] [GRAFO] Snapshot: nodos=23 aristas=0 densidad=0.000",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-7",
-      "title": "[2026-07-10T03:00:39.535732] ===================================================",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-8",
-      "title": "[2026-07-10T03:00:39.535871] FIN nightly_sync | entries=23 mistakes=1 outcomes=1",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
-    },
-    {
-      "id": "rep-9",
-      "title": "[2026-07-10T03:00:39.535992] ===================================================",
-      "server": "srv-95",
-      "category": "cat-reportes",
-      "item_type": "report"
+      "icon": "🔔"
     }
   ]
 }
