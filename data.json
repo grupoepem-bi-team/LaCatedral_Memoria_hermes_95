@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-07-10T14:11:04.849649",
-    "version": "8.0"
+    "generated_at": "2026-07-10T14:15:08.974857",
+    "version": "8.1"
   },
   "servers": [
     {
@@ -198,7 +198,44 @@
       "schedule": "Cada 10 minutos",
       "human_desc": "Revisa si el restore esta corriendo bien y avisa si hay problemas.",
       "last_run": "2026-07-10T13:50",
-      "icon": "⏰"
+      "icon": "⏰",
+      "subtasks": [
+        {
+          "id": "st-1-1",
+          "name": "Conectar SSH a .99",
+          "desc": "Establece conexion segura",
+          "status": "done",
+          "icon": "🔌"
+        },
+        {
+          "id": "st-1-2",
+          "name": "Leer estado actual",
+          "desc": "Verifica el archivo de progreso",
+          "status": "done",
+          "icon": "📄"
+        },
+        {
+          "id": "st-1-3",
+          "name": "Comparar con ejecucion anterior",
+          "desc": "Detecta si avanzo o se bloqueo",
+          "status": "done",
+          "icon": "📊"
+        },
+        {
+          "id": "st-1-4",
+          "name": "Evaluar progreso",
+          "desc": "Calcula % completado y tablas restantes",
+          "status": "active",
+          "icon": "🧮"
+        },
+        {
+          "id": "st-1-5",
+          "name": "Enviar alerta Telegram",
+          "desc": "Notifica solo si hay cambio de estado",
+          "status": "pending",
+          "icon": "📨"
+        }
+      ]
     },
     {
       "id": "comp-2",
@@ -210,7 +247,51 @@
       "schedule": "3:00 AM",
       "human_desc": "Limpia memorias viejas y recalcula VIP scores.",
       "last_run": "2026-07-10T03:00",
-      "icon": "🌙"
+      "icon": "🌙",
+      "subtasks": [
+        {
+          "id": "st-2-1",
+          "name": "Cargar MEMORY.md",
+          "desc": "Lee memorias del dia",
+          "status": "done",
+          "icon": "📂"
+        },
+        {
+          "id": "st-2-2",
+          "name": "Parsear bloques por §",
+          "desc": "Separa memorias individuales",
+          "status": "done",
+          "icon": "✂️"
+        },
+        {
+          "id": "st-2-3",
+          "name": "Calcular hashes SHA256",
+          "desc": "Deduplicacion de entradas",
+          "status": "done",
+          "icon": "#️⃣"
+        },
+        {
+          "id": "st-2-4",
+          "name": "Insertar en SQLite",
+          "desc": "Guarda en DB con WAL mode",
+          "status": "done",
+          "icon": "💾"
+        },
+        {
+          "id": "st-2-5",
+          "name": "Recalcular VIP scores",
+          "desc": "Actualiza pesos de memorias",
+          "status": "done",
+          "icon": "⚖️"
+        },
+        {
+          "id": "st-2-6",
+          "name": "Registrar en sync_log",
+          "desc": "Log de operacion completada",
+          "status": "done",
+          "icon": "📝"
+        }
+      ]
     },
     {
       "id": "comp-3",
@@ -222,11 +303,55 @@
       "schedule": "3:05 AM",
       "human_desc": "Genera el mapa visual y lo publica en la web.",
       "last_run": "2026-07-10T03:05",
-      "icon": "🏗️"
+      "icon": "🏗️",
+      "subtasks": [
+        {
+          "id": "st-3-1",
+          "name": "Consultar SQLite",
+          "desc": "Extrae datos de memorias",
+          "status": "done",
+          "icon": "🗃️"
+        },
+        {
+          "id": "st-3-2",
+          "name": "Calcular posiciones D3",
+          "desc": "Layout de nodos y aristas",
+          "status": "done",
+          "icon": "📐"
+        },
+        {
+          "id": "st-3-3",
+          "name": "Generar HTML",
+          "desc": "Renderiza template con datos",
+          "status": "done",
+          "icon": "🎨"
+        },
+        {
+          "id": "st-3-4",
+          "name": "Copiar a /tmp/LaCatedral",
+          "desc": "Prepara repo local",
+          "status": "done",
+          "icon": "📋"
+        },
+        {
+          "id": "st-3-5",
+          "name": "Git commit + push",
+          "desc": "Sube a GitHub",
+          "status": "done",
+          "icon": "⬆️"
+        },
+        {
+          "id": "st-3-6",
+          "name": "Verificar Vercel deploy",
+          "desc": "Confirma que la web esta viva",
+          "status": "done",
+          "icon": "✅"
+        }
+      ]
     },
     {
       "id": "comp-4",
-      "name": "Detector Espejo",
+      "name": "Detector Espejo .241",
       "type": "cron",
       "server": "srv-95",
       "target": "srv-241",
@@ -234,7 +359,51 @@
       "schedule": "9:00 AM",
       "human_desc": "Compara datos entre .250 y .241. Detecta diferencias.",
       "last_run": "2026-07-10T09:04",
-      "icon": "🔎"
+      "icon": "🔎",
+      "subtasks": [
+        {
+          "id": "st-4-1",
+          "name": "Conectar a .250 (master)",
+          "desc": "SSH a produccion",
+          "status": "done",
+          "icon": "🔌"
+        },
+        {
+          "id": "st-4-2",
+          "name": "Contar tablas en .250",
+          "desc": "SELECT COUNT(*)",
+          "status": "done",
+          "icon": "🔢"
+        },
+        {
+          "id": "st-4-3",
+          "name": "Conectar a .241 (espejo)",
+          "desc": "SSH a replica",
+          "status": "done",
+          "icon": "🔌"
+        },
+        {
+          "id": "st-4-4",
+          "name": "Contar tablas en .241",
+          "desc": "SELECT COUNT(*)",
+          "status": "done",
+          "icon": "🔢"
+        },
+        {
+          "id": "st-4-5",
+          "name": "Comparar resultados",
+          "desc": "Detecta drift",
+          "status": "done",
+          "icon": "⚖️"
+        },
+        {
+          "id": "st-4-6",
+          "name": "Generar SQL de sincronizacion",
+          "desc": "Crea script de fix",
+          "status": "pending",
+          "icon": "📝"
+        }
+      ]
     },
     {
       "id": "comp-5",
@@ -246,11 +415,41 @@
       "schedule": "5-8 AM",
       "human_desc": "Comprueba que los ZIP de backup no esten corruptos.",
       "last_run": "2026-07-10T08:01",
-      "icon": "✅"
+      "icon": "✅",
+      "subtasks": [
+        {
+          "id": "st-5-1",
+          "name": "Listar ZIP en .50",
+          "desc": "ls /backups/*.zip",
+          "status": "done",
+          "icon": "📂"
+        },
+        {
+          "id": "st-5-2",
+          "name": "Verificar fecha",
+          "desc": "Comprueba que no sea mayor a 48h",
+          "status": "done",
+          "icon": "📅"
+        },
+        {
+          "id": "st-5-3",
+          "name": "Test de integridad",
+          "desc": "unzip -t para validar",
+          "status": "active",
+          "icon": "🔧"
+        },
+        {
+          "id": "st-5-4",
+          "name": "Comprobar espacio disco",
+          "desc": "df -h /backups",
+          "status": "pending",
+          "icon": "💿"
+        }
+      ]
     },
     {
       "id": "comp-6",
-      "name": "Recordatorio RDP",
+      "name": "Recordatorio RDP .43",
       "type": "cron",
       "server": "srv-95",
       "target": "srv-43",
@@ -258,7 +457,30 @@
       "schedule": "Una vez",
       "human_desc": "Alerta cuando hay que revisar el escritorio remoto.",
       "last_run": "N/A",
-      "icon": "🔔"
+      "icon": "🔔",
+      "subtasks": [
+        {
+          "id": "st-6-1",
+          "name": "Verificar conexion RDP",
+          "desc": "Test de puerto 3389",
+          "status": "pending",
+          "icon": "🔌"
+        },
+        {
+          "id": "st-6-2",
+          "name": "Comprobar licencias",
+          "desc": "RDS CAL disponibles",
+          "status": "pending",
+          "icon": "🔑"
+        },
+        {
+          "id": "st-6-3",
+          "name": "Enviar recordatorio",
+          "desc": "Telegram a admin",
+          "status": "pending",
+          "icon": "📨"
+        }
+      ]
     }
   ]
 }
