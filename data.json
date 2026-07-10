@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-07-10T15:19:27.851595",
-    "version": "12.0"
+    "generated_at": "2026-07-10T15:41:36.278137",
+    "version": "12.1"
   },
   "servers": [
     {
@@ -200,45 +200,45 @@
       "subtasks": [
         {
           "name": "Cargar MEMORY.md",
-          "desc": "Lee archivo de texto",
+          "desc": "Lee archivo",
           "status": "done",
           "icon": "📂",
-          "human_summary": "Abre el archivo donde guardamos todo lo aprendido durante el dia."
+          "human_summary": "Abre el archivo donde guardamos todo lo aprendido."
         },
         {
           "name": "Parsear bloques",
-          "desc": "Separa por §",
+          "desc": "Separa",
           "status": "done",
           "icon": "✂️",
-          "human_summary": "Divide el texto en partes separadas por el simbolo especial §."
+          "human_summary": "Divide el texto en partes separadas por §."
         },
         {
           "name": "Calcular hashes",
           "desc": "SHA256",
           "status": "done",
           "icon": "#️⃣",
-          "human_summary": "Crea un codigo unico para cada parte para saber si ya existe."
+          "human_summary": "Crea un codigo unico para cada parte."
         },
         {
           "name": "Insertar SQLite",
-          "desc": "WAL mode",
+          "desc": "WAL",
           "status": "done",
           "icon": "💾",
-          "human_summary": "Guarda las nuevas partes en la base de datos sin perder las viejas."
+          "human_summary": "Guarda las nuevas partes en la base de datos."
         },
         {
           "name": "Recalcular VIP",
           "desc": "Pesos",
           "status": "done",
           "icon": "⚖️",
-          "human_summary": "Revisa que tan importantes son las memorias y les da una puntuacion."
+          "human_summary": "Revisa que tan importantes son las memorias."
         },
         {
           "name": "Registrar log",
           "desc": "sync_log",
           "status": "done",
           "icon": "📝",
-          "human_summary": "Escribe un registro de lo que hizo para poder revisarlo despues."
+          "human_summary": "Escribe un registro de lo que hizo."
         }
       ]
     },
@@ -255,45 +255,45 @@
       "subtasks": [
         {
           "name": "Consultar SQLite",
-          "desc": "Extrae datos",
+          "desc": "Extrae",
           "status": "done",
           "icon": "🗃️",
-          "human_summary": "Pide a la base de datos toda la informacion del sistema."
+          "human_summary": "Pide toda la informacion del sistema."
         },
         {
           "name": "Layout D3",
-          "desc": "Posiciones",
+          "desc": "Pos",
           "status": "done",
           "icon": "📐",
-          "human_summary": "Calcula donde poner cada servidor y cada tarea en el mapa."
+          "human_summary": "Calcula donde poner cada servidor y tarea."
         },
         {
           "name": "Generar HTML",
-          "desc": "Template",
+          "desc": "Tpl",
           "status": "done",
           "icon": "🎨",
-          "human_summary": "Crea la pagina web con colores, formas y texto."
+          "human_summary": "Crea la pagina con colores y formas."
         },
         {
           "name": "Copiar repo",
-          "desc": "/tmp/LaCatedral",
+          "desc": "/tmp",
           "status": "done",
           "icon": "📋",
-          "human_summary": "Guarda el archivo en la carpeta que sincroniza con internet."
+          "human_summary": "Guarda en la carpeta que sincroniza con internet."
         },
         {
           "name": "Git push",
-          "desc": "GitHub",
+          "desc": "Git",
           "status": "done",
           "icon": "⬆️",
-          "human_summary": "Sube la pagina a internet para que todos la puedan ver."
+          "human_summary": "Sube la pagina a internet."
         },
         {
           "name": "Verificar",
           "desc": "Vercel",
           "status": "done",
           "icon": "✅",
-          "human_summary": "Revisa que la pagina este funcionando correctamente en la web."
+          "human_summary": "Revisa que la pagina funcione en la web."
         }
       ]
     },
@@ -310,31 +310,31 @@
       "subtasks": [
         {
           "name": "Obtener token",
-          "desc": "Gateway",
+          "desc": "GW",
           "status": "done",
           "icon": "🔑",
-          "human_summary": "Consigue la contrasena secreta para poder enviar mensajes al grupo."
+          "human_summary": "Consigue la contrasena secreta para mensajes."
         },
         {
           "name": "Formatear",
-          "desc": "rich_message",
+          "desc": "rich",
           "status": "done",
           "icon": "📝",
-          "human_summary": "Prepara el mensaje con titulos, tablas y colores bonitos."
+          "human_summary": "Prepara el mensaje con titulos y colores."
         },
         {
           "name": "POST API",
-          "desc": "sendRichMessage",
+          "desc": "send",
           "status": "active",
           "icon": "📤",
-          "human_summary": "Envia el mensaje formateado al grupo de Telegram."
+          "human_summary": "Envia el mensaje formateado al grupo."
         },
         {
           "name": "Verificar",
-          "desc": "HTTP 200",
+          "desc": "200",
           "status": "pending",
           "icon": "✓",
-          "human_summary": "Confirma que Telegram recibio el mensaje sin errores."
+          "human_summary": "Confirma que Telegram recibio sin errores."
         }
       ]
     },
@@ -351,31 +351,31 @@
       "subtasks": [
         {
           "name": "Iniciar",
-          "desc": "Puerto 3306",
+          "desc": "3306",
           "status": "done",
           "icon": "🚀",
-          "human_summary": "Enciende el motor de base de datos para que pueda recibir preguntas."
+          "human_summary": "Enciende el motor de base de datos."
         },
         {
           "name": "Escuchar",
-          "desc": "Queries",
+          "desc": "Q",
           "status": "active",
           "icon": "👂",
-          "human_summary": "Espera a que las aplicaciones le pidan informacion."
+          "human_summary": "Espera a que las aplicaciones pidan informacion."
         },
         {
           "name": "Binlog",
-          "desc": "Replica",
+          "desc": "Rep",
           "status": "active",
           "icon": "📝",
-          "human_summary": "Guarda un registro de todos los cambios para copiarlos a otra computadora."
+          "human_summary": "Guarda registro de cambios para copiar."
         },
         {
           "name": "Mantenimiento",
-          "desc": "OPTIMIZE",
+          "desc": "OPT",
           "status": "pending",
           "icon": "🔧",
-          "human_summary": "Limpia y organiza los archivos para que todo funcione mas rapido."
+          "human_summary": "Limpia y organiza archivos."
         }
       ]
     },
@@ -392,24 +392,24 @@
       "subtasks": [
         {
           "name": "Leer binlog",
-          "desc": "Cambios",
+          "desc": "Camb",
           "status": "active",
           "icon": "📄",
-          "human_summary": "Lee el diario de cambios que escribio el motor de base de datos."
+          "human_summary": "Lee el diario de cambios."
         },
         {
           "name": "Enviar",
-          "desc": "Stream",
+          "desc": "Str",
           "status": "active",
           "icon": "📡",
-          "human_summary": "Manda esos cambios por internet a la computadora espejo."
+          "human_summary": "Manda cambios por internet al espejo."
         },
         {
           "name": "ACK",
-          "desc": "Confirmacion",
+          "desc": "Conf",
           "status": "active",
           "icon": "✓",
-          "human_summary": "Espera a que la otra computadora diga que recibio todo bien."
+          "human_summary": "Espera confirmacion de recepcion."
         }
       ]
     },
@@ -426,24 +426,24 @@
       "subtasks": [
         {
           "name": "Conectar .250",
-          "desc": "IO thread",
+          "desc": "IO",
           "status": "active",
           "icon": "🔌",
-          "human_summary": "Se conecta a la computadora principal para pedirle los cambios."
+          "human_summary": "Se conecta al principal para pedir cambios."
         },
         {
           "name": "Aplicar",
-          "desc": "SQL thread",
+          "desc": "SQL",
           "status": "active",
           "icon": "⚙️",
-          "human_summary": "Aplica los cambios recibidos en su propia copia de la base de datos."
+          "human_summary": "Aplica cambios en su propia copia."
         },
         {
           "name": "Verificar lag",
-          "desc": "Segundos",
+          "desc": "Seg",
           "status": "active",
           "icon": "⏱",
-          "human_summary": "Revisa cuanto tiempo paso desde que el original cambio y esta copia se entero."
+          "human_summary": "Revisa el retraso respecto al original."
         }
       ]
     },
@@ -460,31 +460,31 @@
       "subtasks": [
         {
           "name": "Contar .250",
-          "desc": "SELECT",
+          "desc": "SEL",
           "status": "done",
           "icon": "🔢",
-          "human_summary": "Cuenta cuantas tablas y registros tiene la computadora principal."
+          "human_summary": "Cuenta tablas y registros del principal."
         },
         {
           "name": "Contar .241",
-          "desc": "SELECT",
+          "desc": "SEL",
           "status": "done",
           "icon": "🔢",
-          "human_summary": "Cuenta cuantas tablas y registros tiene esta computadora espejo."
+          "human_summary": "Cuenta tablas y registros del espejo."
         },
         {
           "name": "Comparar",
-          "desc": "Discrepancias",
+          "desc": "Disc",
           "status": "done",
           "icon": "⚖️",
-          "human_summary": "Compara los dos numeros para ver si hay algo diferente."
+          "human_summary": "Compara ambos numeros."
         },
         {
           "name": "Generar fix",
-          "desc": "Script SQL",
+          "desc": "SQL",
           "status": "pending",
           "icon": "📝",
-          "human_summary": "Si hay diferencias, crea un plan para arreglarlas automaticamente."
+          "human_summary": "Crea plan para arreglar diferencias."
         }
       ]
     },
@@ -501,17 +501,17 @@
       "subtasks": [
         {
           "name": "Iniciar",
-          "desc": "Servicio",
+          "desc": "Svc",
           "status": "done",
           "icon": "🚀",
-          "human_summary": "Enciende la base de datos antigua para hacer pruebas."
+          "human_summary": "Enciende la base de datos antigua."
         },
         {
           "name": "Escuchar",
-          "desc": "Test",
+          "desc": "Tst",
           "status": "active",
           "icon": "👂",
-          "human_summary": "Espera a que lleguen pruebas para verificar que todo funciona."
+          "human_summary": "Espera pruebas para verificar funcionamiento."
         }
       ]
     },
@@ -528,31 +528,31 @@
       "subtasks": [
         {
           "name": "Descargar",
-          "desc": "scp .50",
+          "desc": "scp",
           "status": "done",
           "icon": "📦",
-          "human_summary": "Descarga el archivo de respaldo desde la computadora de backups."
+          "human_summary": "Descarga respaldo desde backups."
         },
         {
           "name": "Descomprimir",
           "desc": "/tmp",
           "status": "done",
           "icon": "📂",
-          "human_summary": "Abre el archivo comprimido para ver su contenido."
+          "human_summary": "Abre el archivo comprimido."
         },
         {
           "name": "Importar",
-          "desc": "mysql",
+          "desc": "sql",
           "status": "done",
           "icon": "💾",
-          "human_summary": "Carga los datos del respaldo en la base de datos de pruebas."
+          "human_summary": "Carga datos en base de datos de pruebas."
         },
         {
           "name": "Verificar",
-          "desc": "SHOW TABLES",
+          "desc": "SHOW",
           "status": "done",
           "icon": "✅",
-          "human_summary": "Revisa que todas las tablas esten presentes y funcionen."
+          "human_summary": "Revisa que todas las tablas esten."
         }
       ]
     },
@@ -569,24 +569,24 @@
       "subtasks": [
         {
           "name": "Ping",
-          "desc": "SELECT 1",
+          "desc": "SEL1",
           "status": "active",
           "icon": "🔌",
-          "human_summary": "Hace una pregunta simple para verificar que la base de datos responde."
+          "human_summary": "Pregunta simple para verificar respuesta."
         },
         {
           "name": "Disco",
-          "desc": "df -h",
+          "desc": "df",
           "status": "active",
           "icon": "💿",
-          "human_summary": "Revisa cuanto espacio libre queda en el disco duro."
+          "human_summary": "Revisa espacio libre en disco."
         },
         {
           "name": "Reportar",
-          "desc": "Metricas",
+          "desc": "Met",
           "status": "active",
           "icon": "📡",
-          "human_summary": "Envia los resultados a la computadora central para que los vea el administrador."
+          "human_summary": "Envia resultados al administrador."
         }
       ]
     },
@@ -603,31 +603,31 @@
       "subtasks": [
         {
           "name": "mysqldump",
-          "desc": "Exporta",
+          "desc": "Exp",
           "status": "done",
           "icon": "📤",
-          "human_summary": "Saca una foto completa de todos los datos de la base de datos."
+          "human_summary": "Saca foto completa de los datos."
         },
         {
           "name": "Comprimir",
           "desc": "zip",
           "status": "done",
           "icon": "🗜️",
-          "human_summary": "Comprime la foto para que ocupe menos espacio."
+          "human_summary": "Comprime para ocupar menos espacio."
         },
         {
           "name": "Verificar",
-          "desc": "unzip -t",
+          "desc": "unzip",
           "status": "done",
           "icon": "✅",
-          "human_summary": "Prueba abrir el archivo comprimido para asegurarse que no este danado."
+          "human_summary": "Prueba que el archivo no este danado."
         },
         {
           "name": "Rotar",
-          "desc": "7 dias",
+          "desc": "7d",
           "status": "pending",
           "icon": "🗑️",
-          "human_summary": "Borra los respaldos muy viejos para no llenar el disco."
+          "human_summary": "Borra respaldos muy viejos."
         }
       ]
     },
@@ -644,24 +644,24 @@
       "subtasks": [
         {
           "name": "Iniciar",
-          "desc": "Terminal Services",
+          "desc": "TS",
           "status": "done",
           "icon": "🚀",
-          "human_summary": "Prepara Windows para recibir conexiones de escritorio remoto."
+          "human_summary": "Prepara Windows para conexiones remotas."
         },
         {
           "name": "Puerto 3389",
-          "desc": "Escucha",
+          "desc": "Esc",
           "status": "active",
           "icon": "👂",
-          "human_summary": "Abre la puerta virtual para que los administradores puedan entrar desde lejos."
+          "human_summary": "Abre puerta virtual para administradores."
         },
         {
           "name": "Licencias",
-          "desc": "RDS CAL",
+          "desc": "CAL",
           "status": "active",
           "icon": "🔑",
-          "human_summary": "Verifica que haya suficientes permisos para que todos puedan conectarse."
+          "human_summary": "Verifica permisos suficientes."
         }
       ]
     },
@@ -678,17 +678,17 @@
       "subtasks": [
         {
           "name": "Verificar",
-          "desc": "Puerto 3389",
+          "desc": "3389",
           "status": "pending",
           "icon": "🔌",
-          "human_summary": "Revisa si la computadora responde cuando alguien intenta conectarse."
+          "human_summary": "Revisa si responde al intento de conexion."
         },
         {
           "name": "Enviar",
-          "desc": "Telegram",
+          "desc": "TG",
           "status": "pending",
           "icon": "📨",
-          "human_summary": "Manda un mensaje al administrador si detecta algun problema."
+          "human_summary": "Manda mensaje al administrador."
         }
       ]
     }
