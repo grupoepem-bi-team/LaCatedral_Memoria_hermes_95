@@ -1,1104 +1,270 @@
 {
   "meta": {
-    "generated_at": "2026-07-10T03:05:39.621102",
-    "db_path": "/home/vm-hermes/.hermes/memory-deep/db/memory.db",
-    "agent_name": "Hermes",
-    "system": "La Catedral"
+    "generated_at": "2026-07-10T13:53:46.261871"
   },
-  "entries": [
+  "servers": [
     {
-      "id": 1,
-      "category": "prod-250/mysql",
-      "tags": "auditoria,bache,backup-50,cause,espejo-241,mysql,prod-250,replica,root,sql_log_bin",
-      "content": "El espejo 241 tiene replica MySQL nativa desde 250 con lag=0s. ROOT CAUSE de baches: production batch jobs usan sql_log_bin=0",
-      "importance": 8,
-      "source": "user_stated_confirmed",
-      "status": "active",
-      "created_at": "2026-07-09T17:52:53.819484",
-      "last_accessed": "2026-07-09T18:49:31.352827",
-      "access_count": 2,
-      "vip_score": 24,
-      "parent": "prod-250",
-      "subtema": "mysql",
-      "title": "El espejo 241 tiene replica MySQL nativa desde 250 con lag=0s. ROOT CAUSE de bac"
+      "id": "srv-95",
+      "name": "HERMES .95",
+      "type": "server",
+      "role": "Controlador central",
+      "status": "online",
+      "color": "#d4af37",
+      "x": 0.5,
+      "y": 0.5,
+      "r": 45
     },
     {
-      "id": 15,
-      "category": "prod-250/validation",
-      "tags": "backup-50,espejo-241,prod-250,staging-99,validation",
-      "content": "User tests new operational patterns on .99 ('conejo de indias') before rolling to .250 and .241.",
-      "importance": 8,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T18:49:31.352827",
-      "access_count": 1,
-      "vip_score": 21,
-      "parent": "prod-250",
-      "subtema": "validation",
-      "title": "User tests new operational patterns on .99 ('conejo de indias') before rolling t"
+      "id": "srv-250",
+      "name": "PROD .250",
+      "type": "server",
+      "role": "Produccion MySQL",
+      "status": "online",
+      "color": "#2e7d32",
+      "x": 0.2,
+      "y": 0.2,
+      "r": 35
     },
     {
-      "id": 3,
-      "category": "prod-250/backup",
-      "tags": "backup,backup-50,bloqueado,cli,espejo-241,explicit,prod-250,rdp-43,remoto,security,staging-240,sudo",
-      "content": "User: espanol, CLI real. Servers: 43, 250, 241, 240, backup(.50). SUDO REMOTO BLOQUEADO. Destructive ops require EXPLICIT OK.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T18:49:31.352827",
-      "access_count": 1,
-      "vip_score": 19,
-      "parent": "prod-250",
-      "subtema": "backup",
-      "title": "User: espanol, CLI real. Servers: 43, 250, 241, 240, backup(.50). SUDO REMOTO BL"
+      "id": "srv-241",
+      "name": "ESPEJO .241",
+      "type": "server",
+      "role": "Replica nativa .250",
+      "status": "online",
+      "color": "#1565c0",
+      "x": 0.8,
+      "y": 0.2,
+      "r": 35
     },
     {
-      "id": 6,
-      "category": "prod-250/mysql",
-      "tags": "auditoria,bache,backup-50,contract_fees,corrected,cron,espejo-241,fully,mysql,prod-250,replica,sql_log_bin",
-      "content": "Espejo (241): MySQL native replica from 250 (lag=0s). Baches por sql_log_bin=0. Jun 2026 FULLY CORRECTED 09/07: 1,087 UPDATEs total. Diff final +2 (normal). Cron nativo 241 daily 09:00 Telegram. Rastrillaje: solo contract_fees tiene baches reales.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T18:49:31.352827",
-      "access_count": 1,
-      "vip_score": 19,
-      "parent": "prod-250",
-      "subtema": "mysql",
-      "title": "Espejo (241): MySQL native replica from 250 (lag=0s). Baches por sql_log_bin=0. "
+      "id": "srv-240",
+      "name": "STAGING .240",
+      "type": "server",
+      "role": "Staging legacy",
+      "status": "online",
+      "color": "#7b1fa2",
+      "x": 0.15,
+      "y": 0.7,
+      "r": 30
     },
     {
-      "id": 9,
-      "category": "espejo-241/telegram",
-      "tags": "config,espejo-241,staging-99,telegram,vault",
-      "content": "Bot token real guardado en vault Hermes + .99 + .241 (chmod 600). Antes enmascarado ***.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T18:49:31.352827",
-      "access_count": 1,
-      "vip_score": 19,
-      "parent": "espejo-241",
-      "subtema": "telegram",
-      "title": "Bot token real guardado en vault Hermes + .99 + .241 (chmod 600). Antes enmascar"
+      "id": "srv-99",
+      "name": "STAGING .99",
+      "type": "server",
+      "role": "Staging nuevo (MySQL 8.4)",
+      "status": "online",
+      "color": "#00838f",
+      "x": 0.35,
+      "y": 0.75,
+      "r": 30
     },
     {
-      "id": 11,
-      "category": "general/mysql",
-      "tags": "line,mysql,single",
-      "content": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks.",
-      "importance": 8,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 18,
-      "parent": "general",
-      "subtema": "mysql",
-      "title": "MySQL commands: SINGLE LINE, `;` terminator, no line breaks."
+      "id": "srv-50",
+      "name": "BACKUP .50",
+      "type": "server",
+      "role": "Backups ZIP",
+      "status": "online",
+      "color": "#c62828",
+      "x": 0.65,
+      "y": 0.75,
+      "r": 28
     },
     {
-      "id": 12,
-      "category": "general/cron",
-      "tags": "absoluta,config,cron,ley,security,todo",
-      "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presentar, esperar 'si'/'dale'/'autorizado'. Silencio != aprobacion. Aplica a TODO: scripts, configs, crons, deploys, UPDATEs, INSERTs, scp, rm. Sin excepciones.",
-      "importance": 8,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 18,
-      "parent": "general",
-      "subtema": "cron",
-      "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presenta"
-    },
-    {
-      "id": 13,
-      "category": "staging-99/pipeline",
-      "tags": "auto-run,disk,pipeline,ram,space,staging-99",
-      "content": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authorized at 21:00.",
-      "importance": 8,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 18,
-      "parent": "staging-99",
-      "subtema": "pipeline",
-      "title": "User uses 'memoria' to mean DISK SPACE, never RAM. Pipeline .99 auto-run authori"
-    },
-    {
-      "id": 14,
-      "category": "general/pipeline",
-      "tags": "all,pipeline,qa-playbook-shell,validation",
-      "content": "User expects automated QA (qa-playbook-shell.sh) on ALL pipeline scripts before trusting them. Zero FAILs required. User was very upset about typo bugs: 'Es inadmisible que tengamos estos errores'.",
-      "importance": 8,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 18,
-      "parent": "general",
-      "subtema": "pipeline",
-      "title": "User expects automated QA (qa-playbook-shell.sh) on ALL pipeline scripts before "
-    },
-    {
-      "id": 16,
-      "category": "staging-99/telegram",
-      "tags": "all,auditoria,monitor,staging-99,telegram,vault",
-      "content": "Emmanuel V. Vault update on credential share. Bot @Staging99Bot. Private: 8846593692. Group 'svr - monitor': -1003771914699. ALL reports to group, not just private.",
-      "importance": 8,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 18,
-      "parent": "staging-99",
-      "subtema": "telegram",
-      "title": "Emmanuel V. Vault update on credential share. Bot @Staging99Bot. Private: 884659"
-    },
-    {
-      "id": 17,
-      "category": "staging-99/pipeline",
-      "tags": "all,and,api,auditoria,clean,examples,html,max,monitor,monitor-restore,only,pipeline",
-      "content": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO metrics/parens/jargon in title. Detail in table | Métrica | Valor | MAX detail. Summary | Sistema | Estado | Detalle |. NO bullets. EXAMPLES before approving. ALL reports to group AND private. Tablas nativas grupo: `sendRichMessage` Bot API 10.1 (monitor-restore-99-v5.py). NO sendMessage Markdown. NO HTML pre monospace (RECHAZADO). Persist on native rendering.",
-      "importance": 8,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 18,
-      "parent": "staging-99",
-      "subtema": "pipeline",
-      "title": "Report titles CLEAN: emoji [#n] Service | YYYY-MM-DD HH:MM | Status ONLY. NO met"
-    },
-    {
-      "id": 23,
-      "category": "general/cron",
-      "tags": "absoluta,config,cron,ley,security,todo",
-      "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presentar, esperar 'si'/'dale'/'autorizado'. Silencio != aprobacion. Aplica a TODO: scripts, configs, crons, deploys, UPDATEs, INSERTs, scp, rm. Sin excepciones. Review completo de riesgos/stress/timing antes de deployar.",
-      "importance": 8,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-10T03:00:39.515109",
-      "last_accessed": "2026-07-10T03:00:39.515109",
-      "access_count": 0,
-      "vip_score": 18,
-      "parent": "general",
-      "subtema": "cron",
-      "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel. Analizar, presenta"
-    },
-    {
-      "id": 2,
-      "category": "staging-99/telegram",
-      "tags": "api,auditoria,monitor,staging-99,svr-monitor,telegram",
-      "content": "Telegram bot @Staging99Bot envia reportes al grupo svr-monitor. Tablas nativas con sendRichMessage Bot API 10.1",
-      "importance": 7,
-      "source": "confirmed",
-      "status": "active",
-      "created_at": "2026-07-09T17:52:53.888046",
-      "last_accessed": "2026-07-09T17:52:53.888046",
-      "access_count": 0,
-      "vip_score": 17,
-      "parent": "staging-99",
-      "subtema": "telegram",
-      "title": "Telegram bot @Staging99Bot envia reportes al grupo svr-monitor. Tablas nativas c"
-    },
-    {
-      "id": 4,
-      "category": "general/general",
-      "tags": "analyze,analyze-first,first",
-      "content": "User wants ANALYZE-FIRST before action. Said 'vamos a hacer todas las averiguaciones y analisis antes de tomar una decision'. Present findings, wait explicit authorization.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "general",
-      "subtema": "general",
-      "title": "User wants ANALYZE-FIRST before action. Said 'vamos a hacer todas las averiguaci"
-    },
-    {
-      "id": 5,
-      "category": "staging-99/mysql",
-      "tags": "backup,backup-50,mysql,not,pipeline,replica,restore,staging-99,zip",
-      "content": "Staging .99: Ubuntu 26.04, MySQL 8.4.10. Pipeline restores epem from ZIP .50 at 21:00. NOT authoritative for July 2026+ (backup lag).",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "staging-99",
-      "subtema": "mysql",
-      "title": "Staging .99: Ubuntu 26.04, MySQL 8.4.10. Pipeline restores epem from ZIP .50 at "
-    },
-    {
-      "id": 7,
-      "category": "staging-99/vault",
-      "tags": "antes,count,json,monitor,staging-99,validation,vault",
-      "content": "User exige revisar scripts por errores comunes (COUNT vs COUNT(*), escapes JSON, token ***, errores silenciosos curl>/dev/null) ANTES de deploy. Leccion .99: notificaciones erronas por bugs de script. Siempre validar con prueba real. scp requiere autorizacion explicita.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "staging-99",
-      "subtema": "vault",
-      "title": "User exige revisar scripts por errores comunes (COUNT vs COUNT(*), escapes JSON,"
-    },
-    {
-      "id": 8,
-      "category": "espejo-241/mysql",
-      "tags": "admin-epem,all,api,auditoria,bache,backup,backup-50,chat_id,config,contract_fees,cron,detector_datos_desactualizados_espejo",
-      "content": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens). Detail in table. ALL reports via `sendRichMessage` Bot API 10.1 (POST {chat_id:-1003771914699, rich_message:{markdown:raw}}). NO pipes, NO HTML pre, NO sendMessage, NO \n→\n\n normalization. Token: Hermes→/proc/$(pgrep -f \"gateway run\")/environ; .99→/home/admin-epem/.tg_token. .99 MySQL: SSH only (contract_fees ~25s/query, timeout=45s). Scripts: monitor-restore-99-v5.py, verificar-backup-50.sh, detector_datos_desactualizados_espejo.py. Cronjobs: no_agent=True, deliver=local.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "espejo-241",
-      "subtema": "mysql",
-      "title": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens"
-    },
-    {
-      "id": 10,
-      "category": "general/pipeline",
-      "tags": "auto-deploy,catedral,config,deep-memory-system,disk,grupoepem-bi-team,memory-deep,pipeline,telegram,vault,wal",
-      "content": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_hermes_95, Vercel auto-deploy. DB ~/.hermes/memory-deep/db/memory.db (10 tablas WAL+FTS5). Skill deep-memory-system. Fase 1 motor pendiente. Token GitHub pendiente rotar.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-09T17:53:03.761500",
-      "last_accessed": "2026-07-09T17:53:03.761500",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "general",
-      "subtema": "pipeline",
-      "title": "La Catedral: memoria profunda Hermes. Repo grupoepem-bi-team/LaCatedral_Memoria_"
-    },
-    {
-      "id": 18,
-      "category": "general/cron",
-      "tags": "absoluta,config,cron,ley,security,todo",
-      "content": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel ('si'/'dale'/'autorizado'). Analizar, presentar, esperar. Nunca silencio=aprobacion. Aplica TODO: scripts, configs, crons, deploys, UPDATEs, scp, rm.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-10T03:00:39.515109",
-      "last_accessed": "2026-07-10T03:00:39.515109",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "general",
-      "subtema": "cron",
-      "title": "LEY ABSOLUTA: Cero cambios sin permiso explicito de Emmanuel ('si'/'dale'/'autor"
-    },
-    {
-      "id": 19,
-      "category": "prod-250/mysql",
-      "tags": "auditoria,backup-50,config,cron,espejo-241,index-system,mysql,prod-250,replica",
-      "content": "Espejo 241: corregido 09/07. 1,183 UPDATEs, 0 errores. Cron nativo 09:00. Pendiente: binlogs master 250 post-20h (cron eb518cae22b2). Index-system en ~/.hermes/indices/ (5 estantes).",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-10T03:00:39.515109",
-      "last_accessed": "2026-07-10T03:00:39.515109",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "prod-250",
-      "subtema": "mysql",
-      "title": "Espejo 241: corregido 09/07. 1,183 UPDATEs, 0 errores. Cron nativo 09:00. Pendie"
-    },
-    {
-      "id": 20,
-      "category": "prod-250/mysql",
-      "tags": "admin-epem,all,api,auditoria,bache,backup,backup-50,chat_id,config,contract_fees,cron,detector_datos_desactualizados_espejo",
-      "content": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens). Detail in table. ALL reports via `sendRichMessage` Bot API 10.1 (POST {chat_id:-1003771914699, rich_message:{markdown:raw}}). NO pipes, NO HTML pre, NO sendMessage, NO \\n normalization. Token: Hermes→/proc/$(pgrep -f \"gateway run\")/environ; .99→/home/admin-epem/.tg_token; .250→pendiente SSH vault. .99 MySQL: SSH only (contract_fees ~25s/query, timeout=45s). Scripts: monitor-restore-99-v5.py, verificar-backup-50.sh, detector_datos_desactualizados_espejo.py. Cronjobs: no_agent=True, deliver=local.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-10T03:00:39.515109",
-      "last_accessed": "2026-07-10T03:00:39.515109",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "prod-250",
-      "subtema": "mysql",
-      "title": "Telegram: title `emoji [#n] System | date HH:MM | Status` (NO metrics, NO parens"
-    },
-    {
-      "id": 21,
-      "category": "espejo-241/replica",
-      "tags": "admin-epem,auditoria,config,cron,espejo-241,monitor,pipeline,replica,staging-99,telegram,vault",
-      "content": "Bot token real en vault Hermes + .99 + .241 (.vault/ chmod 600). Antes ***. Cron 241: detector_espejo_241.sh, log /home/admin-epem/logs/. Cron Hermes 711cbbab5360 pausado.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-10T03:00:39.515109",
-      "last_accessed": "2026-07-10T03:00:39.515109",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "espejo-241",
-      "subtema": "replica",
-      "title": "Bot token real en vault Hermes + .99 + .241 (.vault/ chmod 600). Antes ***. Cron"
-    },
-    {
-      "id": 22,
-      "category": "general/vault",
-      "tags": "catedral,disk,text-shadow,todos,vault,vip",
-      "content": "La Catedral v3: dashboard con layout predefinido (servidores en 4 esquinas, memorias orbitando). Labels 10px pergamino solido + text-shadow para TODOS los nodos. NO filtrar por VIP. Servidor labels 13px oro brillante. Radio orbita 140px + N*8. Skills en panel lateral, NO como nodos. html,body usar 100vw/100vh. Token GitHub pendiente rotar.",
-      "importance": 6,
-      "source": "memory_purge",
-      "status": "active",
-      "created_at": "2026-07-10T03:00:39.515109",
-      "last_accessed": "2026-07-10T03:00:39.515109",
-      "access_count": 0,
-      "vip_score": 16,
-      "parent": "general",
-      "subtema": "vault",
-      "title": "La Catedral v3: dashboard con layout predefinido (servidores en 4 esquinas, memo"
+      "id": "srv-43",
+      "name": "RDP .43",
+      "type": "server",
+      "role": "Acceso remoto",
+      "status": "online",
+      "color": "#ef6c00",
+      "x": 0.85,
+      "y": 0.7,
+      "r": 28
     }
   ],
-  "relationships": [],
-  "tags": [
+  "subsystems": [
     {
-      "nombre": "cron",
-      "count": 9
+      "id": "sub-catedral",
+      "name": "La Catedral",
+      "type": "subsystem",
+      "parent": "srv-95",
+      "desc": "Deep Memory + Dashboard visual",
+      "color": "#ffd700",
+      "r": 22
     },
     {
-      "nombre": "backup",
-      "count": 7
+      "id": "sub-telegram",
+      "name": "Telegram Bot",
+      "type": "subsystem",
+      "parent": "srv-95",
+      "desc": "Notificaciones via sendRichMessage",
+      "color": "#0088cc",
+      "r": 18
     },
     {
-      "nombre": "espejo-241",
-      "count": 7
+      "id": "sub-cron",
+      "name": "Cron Jobs",
+      "type": "subsystem",
+      "parent": "srv-95",
+      "desc": "6 jobs activos (monitor, sync, detect)",
+      "color": "#ff9800",
+      "r": 20
     },
     {
-      "nombre": "staging",
-      "count": 6
+      "id": "sub-skills",
+      "name": "Skills Manager",
+      "type": "subsystem",
+      "parent": "srv-95",
+      "desc": "87 skills en 14 categorias",
+      "color": "#4caf50",
+      "r": 20
     },
     {
-      "nombre": "vault",
-      "count": 6
+      "id": "sub-indices",
+      "name": "Indices Tematicos",
+      "type": "subsystem",
+      "parent": "srv-95",
+      "desc": "5 estantes de conocimiento",
+      "color": "#9c27b0",
+      "r": 18
     },
     {
-      "nombre": "config",
-      "count": 6
+      "id": "sub-vault",
+      "name": "Vault",
+      "type": "subsystem",
+      "parent": "srv-95",
+      "desc": "Gestion segura de credenciales",
+      "color": "#607d8b",
+      "r": 16
     },
     {
-      "nombre": "bache",
-      "count": 5
-    },
-    {
-      "nombre": "mysql",
-      "count": 5
-    },
-    {
-      "nombre": "all",
-      "count": 5
-    },
-    {
-      "nombre": "contract_fees",
-      "count": 4
-    },
-    {
-      "nombre": "produccion",
-      "count": 4
-    },
-    {
-      "nombre": "replica",
-      "count": 4
-    },
-    {
-      "nombre": "telegram",
-      "count": 4
-    },
-    {
-      "nombre": "pipeline",
-      "count": 4
-    },
-    {
-      "nombre": "epem",
-      "count": 3
-    },
-    {
-      "nombre": "admin-epem",
-      "count": 3
-    },
-    {
-      "nombre": "api",
-      "count": 3
-    },
-    {
-      "nombre": "absoluta",
-      "count": 3
-    },
-    {
-      "nombre": "ley",
-      "count": 3
-    },
-    {
-      "nombre": "todo",
-      "count": 3
-    },
-    {
-      "nombre": "monitor",
-      "count": 3
-    },
-    {
-      "nombre": "auditoria",
-      "count": 3
-    },
-    {
-      "nombre": "chat_id",
-      "count": 2
-    },
-    {
-      "nombre": "detector_datos_desactualizados_espejo",
-      "count": 2
-    },
-    {
-      "nombre": "disk",
-      "count": 2
-    },
-    {
-      "nombre": "security",
-      "count": 2
-    },
-    {
-      "nombre": "backup-50",
-      "count": 2
-    },
-    {
-      "nombre": "cause",
-      "count": 1
-    },
-    {
-      "nombre": "root",
-      "count": 1
-    },
-    {
-      "nombre": "sql_log_bin",
-      "count": 1
-    },
-    {
-      "nombre": "bot",
-      "count": 1
-    },
-    {
-      "nombre": "bloqueado",
-      "count": 1
-    },
-    {
-      "nombre": "cli",
-      "count": 1
-    },
-    {
-      "nombre": "explicit",
-      "count": 1
-    },
-    {
-      "nombre": "rdp",
-      "count": 1
-    },
-    {
-      "nombre": "remoto",
-      "count": 1
-    },
-    {
-      "nombre": "sudo",
-      "count": 1
-    },
-    {
-      "nombre": "analyze",
-      "count": 1
-    },
-    {
-      "nombre": "analyze-first",
-      "count": 1
-    },
-    {
-      "nombre": "first",
-      "count": 1
-    },
-    {
-      "nombre": "not",
-      "count": 1
-    },
-    {
-      "nombre": "restore",
-      "count": 1
-    },
-    {
-      "nombre": "zip",
-      "count": 1
-    },
-    {
-      "nombre": "corrected",
-      "count": 1
-    },
-    {
-      "nombre": "fully",
-      "count": 1
-    },
-    {
-      "nombre": "antes",
-      "count": 1
-    },
-    {
-      "nombre": "count",
-      "count": 1
-    },
-    {
-      "nombre": "json",
-      "count": 1
-    },
-    {
-      "nombre": "auto-deploy",
-      "count": 1
-    },
-    {
-      "nombre": "deep-memory-system",
-      "count": 1
+      "id": "sub-memoria",
+      "name": "Memoria Contextual",
+      "type": "subsystem",
+      "parent": "srv-95",
+      "desc": "MEMORY.md + USER.md",
+      "color": "#795548",
+      "r": 16
     }
   ],
-  "grafo_hist": [
+  "cronjobs": [
     {
-      "id": 2,
-      "fecha": "2026-07-10",
-      "nodos_count": 23,
-      "aristas_count": 0,
-      "densidad": 0.0,
-      "centralidad_max": 0.0,
-      "snapshot_json": "{\"nodos\": 23, \"aristas\": 0, \"densidad\": 0.0, \"centralidad_max\": 0}"
+      "id": "cron-restore",
+      "name": "Monitor Restore .99",
+      "type": "cron",
+      "parent": "sub-cron",
+      "schedule": "*/10 * * * *",
+      "status": "active",
+      "r": 10
     },
     {
-      "id": 1,
-      "fecha": "2026-07-09",
-      "nodos_count": 17,
-      "aristas_count": 0,
-      "densidad": 0.0,
-      "centralidad_max": 0.0,
-      "snapshot_json": "{\"nodos\": 17, \"aristas\": 0, \"densidad\": 0.0, \"centralidad_max\": 0}"
+      "id": "cron-sync",
+      "name": "Sync Nocturno",
+      "type": "cron",
+      "parent": "sub-cron",
+      "schedule": "0 3 * * *",
+      "status": "active",
+      "r": 10
+    },
+    {
+      "id": "cron-rebuild",
+      "name": "Rebuild Dashboard",
+      "type": "cron",
+      "parent": "sub-cron",
+      "schedule": "5 3 * * *",
+      "status": "active",
+      "r": 10
+    },
+    {
+      "id": "cron-detector",
+      "name": "Detector Espejo",
+      "type": "cron",
+      "parent": "sub-cron",
+      "schedule": "0 9 * * *",
+      "status": "active",
+      "r": 10
+    },
+    {
+      "id": "cron-backup",
+      "name": "Verificar Backup",
+      "type": "cron",
+      "parent": "sub-cron",
+      "schedule": "0 5-8 * * *",
+      "status": "active",
+      "r": 10
+    },
+    {
+      "id": "cron-rdp",
+      "name": "Recordatorio RDP",
+      "type": "cron",
+      "parent": "sub-cron",
+      "schedule": "once",
+      "status": "pending",
+      "r": 8
     }
   ],
-  "mistakes": [
+  "skills": [],
+  "indices": [],
+  "links": [],
+  "flows": [
     {
-      "id": 1,
-      "entry_id": 1,
-      "mistake_type": "wrong_assumption",
-      "description": "Asumi que staging .99 tenia datos completos pero tiene 32M vs 156M del espejo",
-      "user_reaction": "Usuario corrigio: staging no es copia completa",
-      "correction": "Usar espejo como autoritativo para datos recientes",
-      "created_at": "2026-07-09T17:52:54.088402",
-      "access_count": 0
+      "source": "srv-250",
+      "target": "srv-241",
+      "type": "replica",
+      "label": "MySQL nativa"
+    },
+    {
+      "source": "srv-250",
+      "target": "srv-99",
+      "type": "restore",
+      "label": "Restore pipeline"
+    },
+    {
+      "source": "srv-50",
+      "target": "srv-99",
+      "type": "backup",
+      "label": "ZIP backup"
+    },
+    {
+      "source": "srv-95",
+      "target": "srv-240",
+      "type": "ssh",
+      "label": "SSH diagnostico"
+    },
+    {
+      "source": "srv-95",
+      "target": "srv-241",
+      "type": "ssh",
+      "label": "SSH detector"
+    },
+    {
+      "source": "srv-95",
+      "target": "srv-99",
+      "type": "ssh",
+      "label": "SSH monitor"
+    },
+    {
+      "source": "sub-catedral",
+      "target": "sub-telegram",
+      "type": "notify",
+      "label": "sendRichMessage"
+    },
+    {
+      "source": "sub-cron",
+      "target": "sub-telegram",
+      "type": "notify",
+      "label": "Alertas"
+    },
+    {
+      "source": "sub-catedral",
+      "target": "srv-250",
+      "type": "data",
+      "label": "MySQL audit"
+    },
+    {
+      "source": "sub-catedral",
+      "target": "srv-241",
+      "type": "data",
+      "label": "Replica status"
     }
-  ],
-  "outcomes": [
-    {
-      "id": 1,
-      "entry_id": 1,
-      "action_summary": "Corregido bache 24/06 con 871 UPDATEs al espejo 241",
-      "outcome_status": "success",
-      "user_verdict": "Usuario aprobo",
-      "next_action": "Monitorear proximos baches",
-      "session_id": null,
-      "created_at": "2026-07-09T17:52:54.130101",
-      "closed_at": "2026-07-09T17:52:54.130101"
-    }
-  ],
-  "procedures": [
-    {
-      "id": 1,
-      "skill_name": "nightly_sync",
-      "procedure_name": "volcar",
-      "version": "1.0.0",
-      "content": "1. Backup DB 2. Integrity check 3. Leer MEMORY.md 4. Insertar entries 5. Recalcular VIP 6. OPTIMIZE FTS5",
-      "tags": "cron,backup,nightly",
-      "last_tested": "2026-07-09T17:52:54.175249",
-      "test_result": "ok",
-      "status": "active"
-    }
-  ],
-  "sync_log": [
-    {
-      "id": 2,
-      "fecha": "2026-07-10T03:00:39.532614",
-      "tipo": "memory_auto",
-      "entradas": 6,
-      "duplicados_skip": 9,
-      "errores": null,
-      "backup_path": "/home/vm-hermes/.hermes/memory-deep/backups/memory-BACKUP-20260710-030039.db"
-    },
-    {
-      "id": 1,
-      "fecha": "2026-07-09T17:53:03.776398",
-      "tipo": "memory_auto",
-      "entradas": 15,
-      "duplicados_skip": 0,
-      "errores": null,
-      "backup_path": "/home/vm-hermes/.hermes/memory-deep/backups/memory-BACKUP-20260709-175303.db"
-    }
-  ],
-  "skills": [
-    {
-      "name": "findmy",
-      "description": "Track Apple devices/AirTags via FindMy.app on macOS.",
-      "category": "apple"
-    },
-    {
-      "name": "apple-notes",
-      "description": "Manage Apple Notes via memo CLI: create, search, edit.",
-      "category": "apple"
-    },
-    {
-      "name": "imessage",
-      "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.",
-      "category": "apple"
-    },
-    {
-      "name": "apple-reminders",
-      "description": "Apple Reminders via remindctl: add, list, complete.",
-      "category": "apple"
-    },
-    {
-      "name": "opencode",
-      "description": "Delegate coding to OpenCode CLI (features, PR review).",
-      "category": "autonomous-ai-agents"
-    },
-    {
-      "name": "hermes-agent",
-      "description": "Configure, extend, or contribute to Hermes Agent.",
-      "category": "autonomous-ai-agents"
-    },
-    {
-      "name": "codex",
-      "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
-      "category": "autonomous-ai-agents"
-    },
-    {
-      "name": "claude-code",
-      "description": "Delegate coding to Claude Code CLI (features, PRs).",
-      "category": "autonomous-ai-agents"
-    },
-    {
-      "name": "computer-use",
-      "description": "|",
-      "category": "computer-use"
-    },
-    {
-      "name": "humanizer",
-      "description": "Humanize text: strip AI-isms and add real voice.",
-      "category": "creative"
-    },
-    {
-      "name": "songwriting-and-ai-music",
-      "description": "Songwriting craft and Suno AI music prompts.",
-      "category": "creative"
-    },
-    {
-      "name": "design-md",
-      "description": "Author/validate/export Google's DESIGN.md token spec files.",
-      "category": "creative"
-    },
-    {
-      "name": "architecture-diagram",
-      "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
-      "category": "creative"
-    },
-    {
-      "name": "pretext",
-      "description": "Use when building creative browser demos with @chenglou/pretext — DOM-free text layout for ASCII art, typographic flow around obstacles, text-as-geometry games, kinetic typography, and text-powered ge",
-      "category": "creative"
-    },
-    {
-      "name": "popular-web-designs",
-      "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
-      "category": "creative"
-    },
-    {
-      "name": "ascii-art",
-      "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.",
-      "category": "creative"
-    },
-    {
-      "name": "baoyu-infographic",
-      "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
-      "category": "creative"
-    },
-    {
-      "name": "p5js",
-      "description": "p5.js sketches: gen art, shaders, interactive, 3D.",
-      "category": "creative"
-    },
-    {
-      "name": "claude-design",
-      "description": "Design one-off HTML artifacts (landing, deck, prototype).",
-      "category": "creative"
-    },
-    {
-      "name": "excalidraw",
-      "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).",
-      "category": "creative"
-    },
-    {
-      "name": "sketch",
-      "description": "Throwaway HTML mockups: 2-3 design variants to compare.",
-      "category": "creative"
-    },
-    {
-      "name": "comfyui",
-      "description": "Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter injection. Uses the official comfy-cli for lifecycle and direct REST/WebSocket API f",
-      "category": "creative"
-    },
-    {
-      "name": "touchdesigner-mcp",
-      "description": "Control a running TouchDesigner instance via twozero MCP — create operators, set parameters, wire connections, execute Python, build real-time visuals. 36 native tools.",
-      "category": "creative"
-    },
-    {
-      "name": "ascii-video",
-      "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
-      "category": "creative"
-    },
-    {
-      "name": "manim-video",
-      "description": "Manim CE animations: 3Blue1Brown math/algo videos.",
-      "category": "creative"
-    },
-    {
-      "name": "jupyter-live-kernel",
-      "description": "Iterative Python via live Jupyter kernel (hamelnb).",
-      "category": "data-science"
-    },
-    {
-      "name": "espejo-241-ops-log",
-      "description": "Operational record for Espejo 241: drift fix, monitoring, pipeline deprecation.",
-      "category": "devops"
-    },
-    {
-      "name": "bitacora-240",
-      "description": "Agente de bitacora para servidor 192.168.0.240 (srv-mysql2 / test-sistema). Registra todo lo realizado en cada sesion para referencia futura.",
-      "category": "devops"
-    },
-    {
-      "name": "server-diagnostics-hub",
-      "description": "Patron de hub de diagnostico remoto: recolectar estado 360 (sistema, MySQL, logs, config) desde servidores via SSH, almacenar en snapshots timestamped, detectar incidencias automaticamente, limpiar po",
-      "category": "devops"
-    },
-    {
-      "name": "actualizacion-staging-240",
-      "description": "Pipeline diario de actualizacion staging (192.168.0.240 legado y 192.168.0.99 nuevo). Topologia, cronjobs, sync hibrido epem_temp -> epem, logs y monitoreo.",
-      "category": "devops"
-    },
-    {
-      "name": "mysql-restore-pipelines",
-      "description": ">",
-      "category": "devops"
-    },
-    {
-      "name": "staging-99-restore-guide",
-      "description": "Guia completa en espanol no tecnico para el restore del Staging .99 (192.168.0.99). Incluye pasos para LLM y para usuario humano, playbooks con rollback, plan de contingencia, monitoreo por Telegram y",
-      "category": "devops"
-    },
-    {
-      "name": "mysql-cross-server-comparison",
-      "description": "Compare row counts, daily aggregates, and specific column values between two MySQL servers to detect data drift, missing replication windows, or sync issues.",
-      "category": "devops"
-    },
-    {
-      "name": "mysql-replication-audit",
-      "description": "Detect replication gaps between MySQL master and slave without stressing servers. Generates sync SQLs.",
-      "category": "devops"
-    },
-    {
-      "name": "mysql-staging-restore",
-      "description": "Restore completo de MySQL en staging 192.168.0.240. Pre-flight checks, collation fix + functional index removal (MySQL 8.0→5.7), restore, monitoreo, e incremental sync epem_temp → epem",
-      "category": "devops"
-    },
-    {
-      "name": "ops-playbooks",
-      "description": "AI-executable runbooks for staging/prod operations with IF/ELSE decision trees, phase-based logs, and Vault credential integration",
-      "category": "devops"
-    },
-    {
-      "name": "staging-99-restore-pipeline",
-      "description": "Pipeline diario de restore de epem en Staging .99 (192.168.0.99) con lecciones aprendidas, troubleshooting y mejoras.",
-      "category": "devops"
-    },
-    {
-      "name": "actualizacion-espejo-241",
-      "description": "Pipeline de actualizacion espejo 241 (192.168.0.241). MySQL espejo con replicacion automatica desde produccion (250). Topologia, sync, monitoreo y diferencias con staging 240.",
-      "category": "devops"
-    },
-    {
-      "name": "deep-memory-system",
-      "description": "Sistema de memoria profunda para Hermes: SQLite + FTS5 + VIP scoring + mistakes/outcomes + dashboard visual. Arquitectura, schema unificado, scripts CLI, crons, y deploy a Vercel.",
-      "category": "devops"
-    },
-    {
-      "name": "telegram-reportes-staging-99",
-      "description": "Formato estandarizado de reportes operativos para Telegram del pipeline Staging .99. Define estructura visual, emojis, tablas Markdown y librerias Bash/Python reutilizables.",
-      "category": "devops"
-    },
-    {
-      "name": "qa-playbook-validation",
-      "description": "Validacion automatica de playbooks bash antes de deploy. Detecta bugs silenciosos como captura de $? despues de asignacion, mysql_exec que oculta errores, y sleep sin retry loops.",
-      "category": "devops"
-    },
-    {
-      "name": "centralizar-logs-99",
-      "description": "",
-      "category": "devops"
-    },
-    {
-      "name": "status-240",
-      "description": "Resumen completo de servidores staging 192.168.0.240 y 192.168.0.99 cuando el usuario pide status",
-      "category": "devops"
-    },
-    {
-      "name": "dogfood",
-      "description": "Exploratory QA of web apps: find bugs, evidence, reports.",
-      "category": "dogfood"
-    },
-    {
-      "name": "himalaya",
-      "description": "Himalaya CLI: IMAP/SMTP email from terminal.",
-      "category": "email"
-    },
-    {
-      "name": "codebase-inspection",
-      "description": "Inspect codebases w/ pygount: LOC, languages, ratios.",
-      "category": "github"
-    },
-    {
-      "name": "github-auth",
-      "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.",
-      "category": "github"
-    },
-    {
-      "name": "github-code-review",
-      "description": "Review PRs: diffs, inline comments via gh or REST.",
-      "category": "github"
-    },
-    {
-      "name": "github-issues",
-      "description": "Create, triage, label, assign GitHub issues via gh or REST.",
-      "category": "github"
-    },
-    {
-      "name": "github-repo-management",
-      "description": "Clone/create/fork repos; manage remotes, releases.",
-      "category": "github"
-    },
-    {
-      "name": "github-pr-workflow",
-      "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.",
-      "category": "github"
-    },
-    {
-      "name": "songsee",
-      "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.",
-      "category": "media"
-    },
-    {
-      "name": "heartmula",
-      "description": "HeartMuLa: Suno-like song generation from lyrics + tags.",
-      "category": "media"
-    },
-    {
-      "name": "gif-search",
-      "description": "Search/download GIFs from Tenor via curl + jq.",
-      "category": "media"
-    },
-    {
-      "name": "youtube-content",
-      "description": "YouTube transcripts to summaries, threads, blogs.",
-      "category": "media"
-    },
-    {
-      "name": "huggingface-hub",
-      "description": "HuggingFace hf CLI: search/download/upload models, datasets.",
-      "category": "mlops"
-    },
-    {
-      "name": "obsidian",
-      "description": "Read, search, create, and edit notes in the Obsidian vault.",
-      "category": "note-taking"
-    },
-    {
-      "name": "teams-meeting-pipeline",
-      "description": "Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscriptions.",
-      "category": "productivity"
-    },
-    {
-      "name": "petdex",
-      "description": "Install and select animated petdex mascots for Hermes.",
-      "category": "productivity"
-    },
-    {
-      "name": "ocr-and-documents",
-      "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).",
-      "category": "productivity"
-    },
-    {
-      "name": "airtable",
-      "description": "Airtable REST API via curl. Records CRUD, filters, upserts.",
-      "category": "productivity"
-    },
-    {
-      "name": "index-system",
-      "description": "Sistema de indices tematicos para organizar conocimiento del agente en estantes con INDEX.md jerarquico.",
-      "category": "productivity"
-    },
-    {
-      "name": "powerpoint",
-      "description": "Create, read, edit .pptx decks, slides, notes, templates.",
-      "category": "productivity"
-    },
-    {
-      "name": "google-workspace",
-      "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.",
-      "category": "productivity"
-    },
-    {
-      "name": "notion",
-      "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.",
-      "category": "productivity"
-    },
-    {
-      "name": "nano-pdf",
-      "description": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).",
-      "category": "productivity"
-    },
-    {
-      "name": "maps",
-      "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
-      "category": "productivity"
-    },
-    {
-      "name": "blogwatcher",
-      "description": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.",
-      "category": "research"
-    },
-    {
-      "name": "arxiv",
-      "description": "Search arXiv papers by keyword, author, category, or ID.",
-      "category": "research"
-    },
-    {
-      "name": "polymarket",
-      "description": "Query Polymarket: markets, prices, orderbooks, history.",
-      "category": "research"
-    },
-    {
-      "name": "llm-wiki",
-      "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.",
-      "category": "research"
-    },
-    {
-      "name": "research-paper-writing",
-      "description": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.",
-      "category": "research"
-    },
-    {
-      "name": "openhue",
-      "description": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.",
-      "category": "smart-home"
-    },
-    {
-      "name": "xurl",
-      "description": "X/Twitter via xurl CLI: post, search, DM, media, v2 API.",
-      "category": "social-media"
-    },
-    {
-      "name": "requesting-code-review",
-      "description": "Pre-commit review: security scan, quality gates, auto-fix.",
-      "category": "software-development"
-    },
-    {
-      "name": "test-driven-development",
-      "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
-      "category": "software-development"
-    },
-    {
-      "name": "python-debugpy",
-      "description": "Debug Python: pdb REPL + debugpy remote (DAP).",
-      "category": "software-development"
-    },
-    {
-      "name": "spike",
-      "description": "Throwaway experiments to validate an idea before build.",
-      "category": "software-development"
-    },
-    {
-      "name": "systematic-debugging",
-      "description": "4-phase root cause debugging: understand bugs before fixing.",
-      "category": "software-development"
-    },
-    {
-      "name": "node-inspect-debugger",
-      "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
-      "category": "software-development"
-    },
-    {
-      "name": "plan",
-      "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution. Bite-sized tasks, exact paths, complete code.",
-      "category": "software-development"
-    },
-    {
-      "name": "simplify-code",
-      "description": "Parallel 3-agent cleanup of recent code changes.",
-      "category": "software-development"
-    },
-    {
-      "name": "hermes-agent-skill-authoring",
-      "description": "Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles.",
-      "category": "software-development"
-    },
-    {
-      "name": "vault",
-      "description": "Patron de agente de gestion segura de credenciales con matriz de permisos, auditoria, auto-deteccion y redaccion automatica. Aplicable a cualquier sistema multi-agente que necesite centralizar secreto",
-      "category": "vault"
-    },
-    {
-      "name": "yuanbao",
-      "description": "Yuanbao (元宝) groups: @mention users, query info/members.",
-      "category": "yuanbao"
-    }
-  ],
-  "stats": {
-    "total_entries": 23,
-    "total_relationships": 0,
-    "total_tags": 74,
-    "total_mistakes": 1,
-    "total_outcomes": 1,
-    "total_procedures": 1,
-    "vip_avg": 17.6,
-    "outcomes_success": 1,
-    "outcomes_failure": 0,
-    "outcomes_pending": 0,
-    "servers": {
-      "general": 8,
-      "staging-99": 6,
-      "prod-250": 6,
-      "espejo-241": 3
-    }
-  }
+  ]
 }
