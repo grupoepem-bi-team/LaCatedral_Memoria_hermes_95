@@ -1,22 +1,22 @@
 {
   "meta": {
-    "generated_at": "2026-07-10T14:29:14.595314",
-    "version": "8.4"
+    "generated_at": "2026-07-10T14:35:05.721198",
+    "version": "9.0"
   },
   "servers": [
     {
       "id": "srv-95",
       "name": "HERMES .95",
       "ip": "localhost",
-      "role": "Cerebro del sistema",
+      "role": "Cerebro",
       "status": "online",
       "color": "#d4af37",
       "icon": "🧠",
-      "desc": "Controlador central. Coordina todos los servidores.",
+      "desc": "Controlador central",
       "services": [
-        "Hermes Agent",
+        "Hermes",
         "Dashboard",
-        "Deep Memory",
+        "Memory",
         "Skills"
       ]
     },
@@ -24,70 +24,69 @@
       "id": "srv-250",
       "name": "PROD .250",
       "ip": "192.168.0.250",
-      "role": "Base de datos principal",
+      "role": "Base datos",
       "status": "online",
       "color": "#2e7d32",
       "icon": "🗄️",
-      "desc": "MySQL 8.4 produccion. Datos en tiempo real del sistema EPEM.",
+      "desc": "MySQL 8.4 produccion",
       "services": [
-        "MySQL 8.4",
-        "Replicacion master"
+        "MySQL",
+        "Replica"
       ]
     },
     {
       "id": "srv-241",
       "name": "ESPEJO .241",
       "ip": "192.168.0.241",
-      "role": "Copia de seguridad viva",
+      "role": "Backup vivo",
       "status": "online",
       "color": "#1565c0",
       "icon": "🪞",
-      "desc": "Replica nativa de .250. Si .250 cae, .241 tiene los datos.",
+      "desc": "Replica nativa de .250",
       "services": [
         "MySQL Replica",
-        "Detector de drift"
+        "Detector"
       ]
     },
     {
       "id": "srv-240",
       "name": "STAGING .240",
       "ip": "192.168.0.240",
-      "role": "Ambiente de pruebas",
+      "role": "Pruebas legacy",
       "status": "online",
       "color": "#7b1fa2",
       "icon": "🧪",
-      "desc": "Servidor legacy para pruebas. Ubuntu antiguo.",
+      "desc": "Ubuntu antiguo",
       "services": [
-        "MySQL 5.7",
-        "Test-sistema"
+        "MySQL 5.7"
       ]
     },
     {
       "id": "srv-99",
       "name": "STAGING .99",
       "ip": "192.168.0.99",
-      "role": "Nuevo ambiente de pruebas",
+      "role": "Pruebas moderno",
       "status": "online",
       "color": "#00838f",
       "icon": "🔬",
-      "desc": "Staging moderno con MySQL 8.4. Restaura backups cada noche.",
+      "desc": "MySQL 8.4 staging",
       "services": [
         "MySQL 8.4",
-        "Restore pipeline"
+        "Restore"
       ]
     },
     {
       "id": "srv-50",
       "name": "BACKUP .50",
       "ip": "192.168.0.50",
-      "role": "Almacen de backups",
+      "role": "Almacen",
       "status": "online",
       "color": "#c62828",
       "icon": "💾",
-      "desc": "Guarda archivos ZIP con copias de la base de datos.",
+      "desc": "ZIPs de base de datos",
       "services": [
-        "ZIP backups",
-        "Verificacion diaria"
+        "Backups",
+        "Verificacion"
       ]
     },
     {
@@ -98,10 +97,10 @@
       "status": "online",
       "color": "#ef6c00",
       "icon": "🖥️",
-      "desc": "Acceso remoto Windows para administracion visual.",
+      "desc": "Windows RDP",
       "services": [
         "RDP",
-        "Recordatorios"
+        "Licencias"
       ]
     }
   ],
@@ -112,7 +111,7 @@
       "to": "srv-241",
       "type": "replica",
       "name": "Replica MySQL",
-      "desc": "Datos se copian automaticamente cada segundo",
+      "desc": "Datos cada segundo",
       "status": "active",
       "icon": "🔄"
     },
@@ -121,8 +120,8 @@
       "from": "srv-250",
       "to": "srv-99",
       "type": "restore",
-      "name": "Restore Pipeline",
-      "desc": "Backup completo se restaura cada noche",
+      "name": "Restore",
+      "desc": "Backup noche",
       "status": "active",
       "icon": "📥"
     },
@@ -131,8 +130,8 @@
       "from": "srv-50",
       "to": "srv-99",
       "type": "backup",
-      "name": "ZIP Backup",
-      "desc": "Archivo comprimido viaja al staging",
+      "name": "ZIP",
+      "desc": "Archivo comprimido",
       "status": "active",
       "icon": "📦"
     },
@@ -142,7 +141,7 @@
       "to": "srv-240",
       "type": "ssh",
       "name": "Diagnostico",
-      "desc": "Comandos de monitoreo remoto",
+      "desc": "Monitoreo remoto",
       "status": "active",
       "icon": "🔍"
     },
@@ -152,7 +151,7 @@
       "to": "srv-241",
       "type": "ssh",
       "name": "Detector",
-      "desc": "Verifica que .241 tenga datos actualizados",
+      "desc": "Verifica datos",
       "status": "active",
       "icon": "📡"
     },
@@ -162,7 +161,7 @@
       "to": "srv-99",
       "type": "ssh",
       "name": "Monitor",
-      "desc": "Observa el restore cada 10 minutos",
+      "desc": "Cada 10 min",
       "status": "active",
       "icon": "👁️"
     },
@@ -171,8 +170,8 @@
       "from": "srv-95",
       "to": "all",
       "type": "telegram",
-      "name": "Alertas Telegram",
-      "desc": "Mensajes al grupo de monitoreo",
+      "name": "Alertas",
+      "desc": "Grupo monitoreo",
       "status": "active",
       "icon": "📨"
     },
@@ -181,8 +180,8 @@
       "from": "srv-95",
       "to": "github",
       "type": "deploy",
-      "name": "Deploy Web",
-      "desc": "Dashboard se publica automaticamente",
+      "name": "Deploy",
+      "desc": "Publica web",
       "status": "active",
       "icon": "🚀"
     }
@@ -195,47 +194,41 @@
       "server": "srv-95",
       "status": "active",
       "schedule": "3:00 AM",
-      "human_desc": "Limpia memorias viejas y recalcula VIP scores.",
-      "last_run": "2026-07-10T03:00",
+      "human_desc": "Limpia memorias y recalcula VIP.",
+      "last_run": "03:00",
       "icon": "🌙",
       "subtasks": [
         {
-          "id": "st-95-1-1",
           "name": "Cargar MEMORY.md",
-          "desc": "Lee memorias del dia",
+          "desc": "Lee memorias",
           "status": "done",
           "icon": "📂"
         },
         {
-          "id": "st-95-1-2",
           "name": "Parsear bloques",
           "desc": "Separa por §",
           "status": "done",
           "icon": "✂️"
         },
         {
-          "id": "st-95-1-3",
           "name": "Calcular hashes",
-          "desc": "SHA256 deduplicacion",
+          "desc": "SHA256",
           "status": "done",
           "icon": "#️⃣"
         },
         {
-          "id": "st-95-1-4",
-          "name": "Insertar en SQLite",
+          "name": "Insertar SQLite",
           "desc": "WAL mode",
           "status": "done",
           "icon": "💾"
         },
         {
-          "id": "st-95-1-5",
           "name": "Recalcular VIP",
-          "desc": "Actualiza pesos",
+          "desc": "Pesos",
           "status": "done",
           "icon": "⚖️"
         },
         {
-          "id": "st-95-1-6",
           "name": "Registrar log",
           "desc": "sync_log",
           "status": "done",
@@ -250,48 +243,42 @@
       "server": "srv-95",
       "status": "active",
       "schedule": "3:05 AM",
-      "human_desc": "Genera el mapa visual y lo publica.",
-      "last_run": "2026-07-10T03:05",
+      "human_desc": "Genera mapa visual.",
+      "last_run": "03:05",
       "icon": "🏗️",
       "subtasks": [
         {
-          "id": "st-95-2-1",
           "name": "Consultar SQLite",
           "desc": "Extrae datos",
           "status": "done",
           "icon": "🗃️"
         },
         {
-          "id": "st-95-2-2",
           "name": "Layout D3",
           "desc": "Posiciones",
           "status": "done",
           "icon": "📐"
         },
         {
-          "id": "st-95-2-3",
           "name": "Generar HTML",
           "desc": "Template",
           "status": "done",
           "icon": "🎨"
         },
         {
-          "id": "st-95-2-4",
           "name": "Copiar repo",
           "desc": "/tmp/LaCatedral",
           "status": "done",
           "icon": "📋"
         },
         {
-          "id": "st-95-2-5",
           "name": "Git push",
-          "desc": "Sube a GitHub",
+          "desc": "GitHub",
           "status": "done",
           "icon": "⬆️"
         },
         {
-          "id": "st-95-2-6",
-          "name": "Verificar deploy",
+          "name": "Verificar",
           "desc": "Vercel",
           "status": "done",
           "icon": "✅"
@@ -306,32 +293,28 @@
       "status": "active",
       "schedule": "Continuo",
       "human_desc": "Envia alertas al grupo.",
-      "last_run": "2026-07-10T14:15",
+      "last_run": "14:15",
       "icon": "📨",
       "subtasks": [
         {
-          "id": "st-95-3-1",
           "name": "Obtener token",
-          "desc": "Gateway proceso",
+          "desc": "Gateway",
           "status": "done",
           "icon": "🔑"
         },
         {
-          "id": "st-95-3-2",
-          "name": "Formatear mensaje",
+          "name": "Formatear",
           "desc": "rich_message",
           "status": "done",
           "icon": "📝"
         },
         {
-          "id": "st-95-3-3",
-          "name": "POST Bot API",
+          "name": "POST API",
           "desc": "sendRichMessage",
           "status": "active",
           "icon": "📤"
         },
         {
-          "id": "st-95-3-4",
           "name": "Verificar",
           "desc": "HTTP 200",
           "status": "pending",
@@ -346,33 +329,29 @@
       "server": "srv-250",
       "status": "active",
       "schedule": "24/7",
-      "human_desc": "Base de datos principal EPEM.",
-      "last_run": "2026-07-10T14:20",
+      "human_desc": "Base datos principal EPEM.",
+      "last_run": "14:20",
       "icon": "🗄️",
       "subtasks": [
         {
-          "id": "st-250-1-1",
-          "name": "Iniciar mysqld",
+          "name": "Iniciar",
           "desc": "Puerto 3306",
           "status": "done",
           "icon": "🚀"
         },
         {
-          "id": "st-250-1-2",
-          "name": "Esperar conexiones",
+          "name": "Escuchar",
           "desc": "Queries",
           "status": "active",
           "icon": "👂"
         },
         {
-          "id": "st-250-1-3",
-          "name": "Escribir binlog",
+          "name": "Binlog",
           "desc": "Replica",
           "status": "active",
           "icon": "📝"
         },
         {
-          "id": "st-250-1-4",
           "name": "Mantenimiento",
           "desc": "OPTIMIZE",
           "status": "pending",
@@ -382,33 +361,30 @@
     },
     {
       "id": "comp-250-2",
-      "name": "Replicacion a .241",
+      "name": "Replicacion",
       "type": "service",
       "server": "srv-250",
       "status": "active",
       "schedule": "Continuo",
       "human_desc": "Envia binlog a .241.",
-      "last_run": "2026-07-10T14:20",
+      "last_run": "14:20",
       "icon": "🔄",
       "subtasks": [
         {
-          "id": "st-250-2-1",
           "name": "Leer binlog",
           "desc": "Cambios",
           "status": "active",
           "icon": "📄"
         },
         {
-          "id": "st-250-2-2",
-          "name": "Enviar a .241",
+          "name": "Enviar",
           "desc": "Stream",
           "status": "active",
           "icon": "📡"
         },
         {
-          "id": "st-250-2-3",
-          "name": "Confirmar ACK",
-          "desc": "Espera",
+          "name": "ACK",
+          "desc": "Confirmacion",
           "status": "active",
           "icon": "✓"
         }
@@ -421,26 +397,23 @@
       "server": "srv-241",
       "status": "active",
       "schedule": "24/7",
-      "human_desc": "Recibe datos de .250.",
-      "last_run": "2026-07-10T14:20",
+      "human_desc": "Recibe de .250.",
+      "last_run": "14:20",
       "icon": "🪞",
       "subtasks": [
         {
-          "id": "st-241-1-1",
-          "name": "Conectar a .250",
+          "name": "Conectar .250",
           "desc": "IO thread",
           "status": "active",
           "icon": "🔌"
         },
         {
-          "id": "st-241-1-2",
-          "name": "Aplicar cambios",
+          "name": "Aplicar",
           "desc": "SQL thread",
           "status": "active",
           "icon": "⚙️"
         },
         {
-          "id": "st-241-1-3",
           "name": "Verificar lag",
           "desc": "Segundos",
           "status": "active",
@@ -450,40 +423,36 @@
     },
     {
       "id": "comp-241-2",
-      "name": "Detector de Drift",
+      "name": "Detector Drift",
       "type": "cron",
       "server": "srv-241",
       "status": "active",
       "schedule": "9:00 AM",
       "human_desc": "Compara .250 vs .241.",
-      "last_run": "2026-07-10T09:04",
+      "last_run": "09:04",
       "icon": "🔎",
       "subtasks": [
         {
-          "id": "st-241-2-1",
           "name": "Contar .250",
-          "desc": "SELECT COUNT",
+          "desc": "SELECT",
           "status": "done",
           "icon": "🔢"
         },
         {
-          "id": "st-241-2-2",
           "name": "Contar .241",
-          "desc": "SELECT COUNT",
+          "desc": "SELECT",
           "status": "done",
           "icon": "🔢"
         },
         {
-          "id": "st-241-2-3",
           "name": "Comparar",
           "desc": "Discrepancias",
           "status": "done",
           "icon": "⚖️"
         },
         {
-          "id": "st-241-2-4",
-          "name": "Generar SQL fix",
-          "desc": "Script",
+          "name": "Generar fix",
+          "desc": "Script SQL",
           "status": "pending",
           "icon": "📝"
         }
@@ -491,25 +460,23 @@
     },
     {
       "id": "comp-240-1",
-      "name": "MySQL 5.7 Legacy",
+      "name": "MySQL 5.7",
       "type": "service",
       "server": "srv-240",
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Legacy tests.",
-      "last_run": "2026-07-10T14:20",
+      "last_run": "14:20",
       "icon": "🧪",
       "subtasks": [
         {
-          "id": "st-240-1-1",
-          "name": "Iniciar mysqld",
+          "name": "Iniciar",
           "desc": "Servicio",
           "status": "done",
           "icon": "🚀"
         },
         {
-          "id": "st-240-1-2",
-          "name": "Esperar queries",
+          "name": "Escuchar",
           "desc": "Test",
           "status": "active",
           "icon": "👂"
@@ -524,33 +491,29 @@
       "status": "active",
       "schedule": "3:00 AM",
       "human_desc": "Restaura desde .50.",
-      "last_run": "2026-07-10T03:00",
+      "last_run": "03:00",
       "icon": "📥",
       "subtasks": [
         {
-          "id": "st-99-1-1",
-          "name": "Descargar ZIP",
+          "name": "Descargar",
           "desc": "scp .50",
           "status": "done",
           "icon": "📦"
         },
         {
-          "id": "st-99-1-2",
           "name": "Descomprimir",
-          "desc": "/tmp/restore",
+          "desc": "/tmp",
           "status": "done",
           "icon": "📂"
         },
         {
-          "id": "st-99-1-3",
-          "name": "Importar SQL",
+          "name": "Importar",
           "desc": "mysql",
           "status": "done",
           "icon": "💾"
         },
         {
-          "id": "st-99-1-4",
-          "name": "Verificar tablas",
+          "name": "Verificar",
           "desc": "SHOW TABLES",
           "status": "done",
           "icon": "✅"
@@ -565,26 +528,23 @@
       "status": "active",
       "schedule": "Continuo",
       "human_desc": "MySQL + disco.",
-      "last_run": "2026-07-10T14:20",
+      "last_run": "14:20",
       "icon": "💓",
       "subtasks": [
         {
-          "id": "st-99-2-1",
-          "name": "Ping MySQL",
+          "name": "Ping",
           "desc": "SELECT 1",
           "status": "active",
           "icon": "🔌"
         },
         {
-          "id": "st-99-2-2",
-          "name": "Verificar disco",
+          "name": "Disco",
           "desc": "df -h",
           "status": "active",
           "icon": "💿"
         },
         {
-          "id": "st-99-2-3",
-          "name": "Reportar a .95",
+          "name": "Reportar",
           "desc": "Metricas",
           "status": "active",
           "icon": "📡"
@@ -599,33 +559,29 @@
       "status": "active",
       "schedule": "2:00 AM",
       "human_desc": "Comprime DB.",
-      "last_run": "2026-07-10T02:00",
+      "last_run": "02:00",
       "icon": "💾",
       "subtasks": [
         {
-          "id": "st-50-1-1",
           "name": "mysqldump",
-          "desc": "Exporta .250",
+          "desc": "Exporta",
           "status": "done",
           "icon": "📤"
         },
         {
-          "id": "st-50-1-2",
           "name": "Comprimir",
           "desc": "zip",
           "status": "done",
           "icon": "🗜️"
         },
         {
-          "id": "st-50-1-3",
           "name": "Verificar",
           "desc": "unzip -t",
           "status": "done",
           "icon": "✅"
         },
         {
-          "id": "st-50-1-4",
-          "name": "Rotar viejos",
+          "name": "Rotar",
           "desc": "7 dias",
           "status": "pending",
           "icon": "🗑️"
@@ -640,25 +596,22 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Escritorio remoto.",
-      "last_run": "2026-07-10T14:20",
+      "last_run": "14:20",
       "icon": "🖥️",
       "subtasks": [
         {
-          "id": "st-43-1-1",
-          "name": "Terminal Services",
-          "desc": "RDP",
+          "name": "Iniciar",
+          "desc": "Terminal Services",
           "status": "done",
           "icon": "🚀"
         },
         {
-          "id": "st-43-1-2",
           "name": "Puerto 3389",
           "desc": "Escucha",
           "status": "active",
           "icon": "👂"
         },
         {
-          "id": "st-43-1-3",
           "name": "Licencias",
           "desc": "RDS CAL",
           "status": "active",
@@ -678,14 +631,12 @@
       "icon": "🔔",
       "subtasks": [
         {
-          "id": "st-43-2-1",
           "name": "Verificar",
           "desc": "Puerto 3389",
           "status": "pending",
           "icon": "🔌"
         },
         {
-          "id": "st-43-2-2",
           "name": "Enviar",
           "desc": "Telegram",
           "status": "pending",
