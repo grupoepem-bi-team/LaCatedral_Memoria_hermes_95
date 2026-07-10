@@ -59,14 +59,27 @@ html,body { width:100vw; height:100vh; overflow:hidden; background: linear-gradi
 .subtask .st-status.active { background: rgba(33,150,243,0.12); color: #2196f3; }
 .subtask .st-status.pending { background: rgba(255,152,0,0.12); color: #ff9800; }
 
-.tooltip { position:fixed; padding: 16px; background: rgba(16,14,10,0.98); border: 1px solid var(--oro); border-radius: 12px; max-width: 380px; z-index:200; pointer-events:none; opacity:0; transition: opacity 0.25s; box-shadow: 0 12px 40px rgba(0,0,0,0.7); }
+.tooltip { position:fixed; padding: 16px; background: rgba(16,14,10,0.98); border: 1px solid var(--oro); border-radius: 12px; max-width: 420px; z-index:200; pointer-events:none; opacity:0; transition: opacity 0.25s; box-shadow: 0 12px 40px rgba(0,0,0,0.7); }
 .tooltip .tt-title { font-size: 1rem; font-weight: bold; color: var(--oro); margin-bottom: 8px; }
 .tooltip .tt-desc { font-size: 0.82rem; color: #ccc; line-height: 1.5; margin-bottom: 8px; }
-.tooltip .tt-meta { font-size: 0.75rem; color: #888; }
+.tooltip .tt-meta { font-size: 0.75rem; color: #888; margin-bottom: 8px; }
+.tooltip .tt-subtasks { margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(212,175,55,0.2); }
+.tooltip .tt-subtask { display:flex; align-items:center; gap: 6px; padding: 3px 0; font-size: 0.75rem; }
+.tooltip .tt-subtask .st-name { color: #ccc; }
+.tooltip .tt-subtask .st-status { padding: 1px 6px; border-radius: 6px; font-size: 0.6rem; margin-left: auto; }
+.tooltip .tt-subtask .st-status.done { background: rgba(76,175,80,0.12); color: #4caf50; }
+.tooltip .tt-subtask .st-status.active { background: rgba(33,150,243,0.12); color: #2196f3; }
+.tooltip .tt-subtask .st-status.pending { background: rgba(255,152,0,0.12); color: #ff9800; }
 .tooltip .tt-services { display:flex; flex-wrap:wrap; gap: 4px; margin-top: 8px; }
 .tooltip .tt-services span { background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.2); padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; color: var(--pergamino); }
 
 .channel-label { font-size: 10px; fill: rgba(212,175,55,0.7); text-anchor: middle; pointer-events: none; }
+
+/* SUBTAREA NODOS EN GRAFO */
+.subtask-node-group { cursor: pointer; }
+.subtask-node-group .st-node-circle { fill: rgba(30,30,40,0.95); stroke-width: 1.5; }
+.subtask-node-group .st-node-text { fill: #ccc; font-size: 8px; text-anchor: middle; pointer-events: none; }
+.subtask-node-group .st-node-icon { font-size: 10px; text-anchor: middle; pointer-events: none; }
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -81,7 +94,7 @@ html,body { width:100vw; height:100vh; overflow:hidden; background: linear-gradi
     <div class="status">
         <div class="status-dot"></div>
         <span style="color:#4caf50;font-size:0.8rem;">Sistema operativo</span>
-        <span class="last-update">Actualizado: 14:24</span>
+        <span class="last-update">Actualizado: 14:29</span>
     </div>
 </div>
 
@@ -109,7 +122,7 @@ html,body { width:100vw; height:100vh; overflow:hidden; background: linear-gradi
 <div class="tooltip" id="tooltip"></div>
 
 <script>
-const DATA = {"meta": {"generated_at": "2026-07-10T14:24:06.177612", "version": "8.3"}, "servers": [{"id": "srv-95", "name": "HERMES .95", "ip": "localhost", "role": "Cerebro del sistema", "status": "online", "color": "#d4af37", "icon": "🧠", "desc": "Controlador central. Coordina todos los servidores y ejecuta el agente Hermes.", "services": ["Hermes Agent", "Dashboard", "Deep Memory", "Skills"]}, {"id": "srv-250", "name": "PROD .250", "ip": "192.168.0.250", "role": "Base de datos principal", "status": "online", "color": "#2e7d32", "icon": "🗄️", "desc": "MySQL 8.4 produccion. Datos en tiempo real del sistema EPEM.", "services": ["MySQL 8.4", "Replicacion master"]}, {"id": "srv-241", "name": "ESPEJO .241", "ip": "192.168.0.241", "role": "Copia de seguridad viva", "status": "online", "color": "#1565c0", "icon": "🪞", "desc": "Replica nativa de .250. Si .250 cae, .241 tiene los datos.", "services": ["MySQL Replica", "Detector de drift"]}, {"id": "srv-240", "name": "STAGING .240", "ip": "192.168.0.240", "role": "Ambiente de pruebas", "status": "online", "color": "#7b1fa2", "icon": "🧪", "desc": "Servidor legacy para pruebas. Ubuntu antiguo.", "services": ["MySQL 5.7", "Test-sistema"]}, {"id": "srv-99", "name": "STAGING .99", "ip": "192.168.0.99", "role": "Nuevo ambiente de pruebas", "status": "online", "color": "#00838f", "icon": "🔬", "desc": "Staging moderno con MySQL 8.4. Restaura backups cada noche.", "services": ["MySQL 8.4", "Restore pipeline"]}, {"id": "srv-50", "name": "BACKUP .50", "ip": "192.168.0.50", "role": "Almacen de backups", "status": "online", "color": "#c62828", "icon": "💾", "desc": "Guarda archivos ZIP con copias de la base de datos.", "services": ["ZIP backups", "Verificacion diaria"]}, {"id": "srv-43", "name": "RDP .43", "ip": "192.168.0.43", "role": "Escritorio remoto", "status": "online", "color": "#ef6c00", "icon": "🖥️", "desc": "Acceso remoto Windows para administracion visual.", "services": ["RDP", "Recordatorios"]}], "flows": [{"id": "flow-1", "from": "srv-250", "to": "srv-241", "type": "replica", "name": "Replica MySQL", "desc": "Datos se copian automaticamente cada segundo", "status": "active", "icon": "🔄"}, {"id": "flow-2", "from": "srv-250", "to": "srv-99", "type": "restore", "name": "Restore Pipeline", "desc": "Backup completo se restaura cada noche", "status": "active", "icon": "📥"}, {"id": "flow-3", "from": "srv-50", "to": "srv-99", "type": "backup", "name": "ZIP Backup", "desc": "Archivo comprimido viaja al staging", "status": "active", "icon": "📦"}, {"id": "flow-4", "from": "srv-95", "to": "srv-240", "type": "ssh", "name": "Diagnostico", "desc": "Comandos de monitoreo remoto", "status": "active", "icon": "🔍"}, {"id": "flow-5", "from": "srv-95", "to": "srv-241", "type": "ssh", "name": "Detector", "desc": "Verifica que .241 tenga datos actualizados", "status": "active", "icon": "📡"}, {"id": "flow-6", "from": "srv-95", "to": "srv-99", "type": "ssh", "name": "Monitor", "desc": "Observa el restore cada 10 minutos", "status": "active", "icon": "👁️"}, {"id": "flow-7", "from": "srv-95", "to": "all", "type": "telegram", "name": "Alertas Telegram", "desc": "Mensajes al grupo de monitoreo", "status": "active", "icon": "📨"}, {"id": "flow-8", "from": "srv-95", "to": "github", "type": "deploy", "name": "Deploy Web", "desc": "Dashboard se publica automaticamente", "status": "active", "icon": "🚀"}], "components": [{"id": "comp-95-1", "name": "Sync Nocturno", "type": "cron", "server": "srv-95", "status": "active", "schedule": "3:00 AM", "human_desc": "Limpia memorias viejas y recalcula VIP scores.", "last_run": "2026-07-10T03:00", "icon": "🌙", "subtasks": [{"id": "st-95-1-1", "name": "Cargar MEMORY.md", "desc": "Lee memorias del dia", "status": "done", "icon": "📂"}, {"id": "st-95-1-2", "name": "Parsear bloques por §", "desc": "Separa memorias individuales", "status": "done", "icon": "✂️"}, {"id": "st-95-1-3", "name": "Calcular hashes SHA256", "desc": "Deduplicacion de entradas", "status": "done", "icon": "#️⃣"}, {"id": "st-95-1-4", "name": "Insertar en SQLite", "desc": "Guarda en DB con WAL mode", "status": "done", "icon": "💾"}, {"id": "st-95-1-5", "name": "Recalcular VIP scores", "desc": "Actualiza pesos de memorias", "status": "done", "icon": "⚖️"}, {"id": "st-95-1-6", "name": "Registrar en sync_log", "desc": "Log de operacion completada", "status": "done", "icon": "📝"}]}, {"id": "comp-95-2", "name": "Rebuild Dashboard", "type": "cron", "server": "srv-95", "status": "active", "schedule": "3:05 AM", "human_desc": "Genera el mapa visual y lo publica en la web.", "last_run": "2026-07-10T03:05", "icon": "🏗️", "subtasks": [{"id": "st-95-2-1", "name": "Consultar SQLite", "desc": "Extrae datos de memorias", "status": "done", "icon": "🗃️"}, {"id": "st-95-2-2", "name": "Calcular posiciones D3", "desc": "Layout de nodos y aristas", "status": "done", "icon": "📐"}, {"id": "st-95-2-3", "name": "Generar HTML", "desc": "Renderiza template con datos", "status": "done", "icon": "🎨"}, {"id": "st-95-2-4", "name": "Copiar a repo", "desc": "Prepara repo local", "status": "done", "icon": "📋"}, {"id": "st-95-2-5", "name": "Git commit + push", "desc": "Sube a GitHub", "status": "done", "icon": "⬆️"}, {"id": "st-95-2-6", "name": "Verificar deploy", "desc": "Confirma que la web esta viva", "status": "done", "icon": "✅"}]}, {"id": "comp-95-3", "name": "Alertas Telegram", "type": "service", "server": "srv-95", "status": "active", "schedule": "Continuo", "human_desc": "Escucha eventos y envia alertas al grupo de monitoreo.", "last_run": "2026-07-10T14:15", "icon": "📨", "subtasks": [{"id": "st-95-3-1", "name": "Obtener token Bot", "desc": "Lee del proceso gateway", "status": "done", "icon": "🔑"}, {"id": "st-95-3-2", "name": "Formatear mensaje", "desc": "Crea rich_message markdown", "status": "done", "icon": "📝"}, {"id": "st-95-3-3", "name": "POST a Bot API", "desc": "sendRichMessage al grupo", "status": "active", "icon": "📤"}, {"id": "st-95-3-4", "name": "Verificar entrega", "desc": "Confirma HTTP 200", "status": "pending", "icon": "✓"}]}, {"id": "comp-250-1", "name": "MySQL 8.4 Master", "type": "service", "server": "srv-250", "status": "active", "schedule": "24/7", "human_desc": "Base de datos principal del sistema EPEM. Recibe escrituras y lecturas.", "last_run": "2026-07-10T14:20", "icon": "🗄️", "subtasks": [{"id": "st-250-1-1", "name": "Iniciar mysqld", "desc": "Servicio activo en puerto 3306", "status": "done", "icon": "🚀"}, {"id": "st-250-1-2", "name": "Esperar conexiones", "desc": "Acepta queries de aplicacion", "status": "active", "icon": "👂"}, {"id": "st-250-1-3", "name": "Escribir binlog", "desc": "Registra cambios para replica", "status": "active", "icon": "📝"}, {"id": "st-250-1-4", "name": "Mantenimiento", "desc": "OPTIMIZE TABLE semanal", "status": "pending", "icon": "🔧"}]}, {"id": "comp-250-2", "name": "Replicacion a .241", "type": "service", "server": "srv-250", "status": "active", "schedule": "Continuo", "human_desc": "Envia binlog a .241 para mantener copia sincronizada.", "last_run": "2026-07-10T14:20", "icon": "🔄", "subtasks": [{"id": "st-250-2-1", "name": "Leer binlog", "desc": "Captura eventos de cambio", "status": "active", "icon": "📄"}, {"id": "st-250-2-2", "name": "Enviar a .241", "desc": "Stream por red", "status": "active", "icon": "📡"}, {"id": "st-250-2-3", "name": "Confirmar ACK", "desc": "Espera confirmacion de .241", "status": "active", "icon": "✓"}]}, {"id": "comp-241-1", "name": "MySQL Replica", "type": "service", "server": "srv-241", "status": "active", "schedule": "24/7", "human_desc": "Recibe datos de .250 y aplica cambios en tiempo real.", "last_run": "2026-07-10T14:20", "icon": "🪞", "subtasks": [{"id": "st-241-1-1", "name": "Conectar a .250", "desc": "IO thread lee binlog", "status": "active", "icon": "🔌"}, {"id": "st-241-1-2", "name": "Aplicar cambios", "desc": "SQL thread ejecuta queries", "status": "active", "icon": "⚙️"}, {"id": "st-241-1-3", "name": "Verificar lag", "desc": "Segundos de retraso vs master", "status": "active", "icon": "⏱"}]}, {"id": "comp-241-2", "name": "Detector de Drift", "type": "cron", "server": "srv-241", "status": "active", "schedule": "9:00 AM", "human_desc": "Compara datos entre .250 y .241. Detecta diferencias.", "last_run": "2026-07-10T09:04", "icon": "🔎", "subtasks": [{"id": "st-241-2-1", "name": "Contar tablas en .250", "desc": "SSH + SELECT COUNT", "status": "done", "icon": "🔢"}, {"id": "st-241-2-2", "name": "Contar tablas en .241", "desc": "SSH + SELECT COUNT", "status": "done", "icon": "🔢"}, {"id": "st-241-2-3", "name": "Comparar resultados", "desc": "Detecta discrepancias", "status": "done", "icon": "⚖️"}, {"id": "st-241-2-4", "name": "Generar SQL de fix", "desc": "Crea script de sincronizacion", "status": "pending", "icon": "📝"}]}, {"id": "comp-240-1", "name": "MySQL 5.7 Legacy", "type": "service", "server": "srv-240", "status": "active", "schedule": "24/7", "human_desc": "Base de datos legacy para pruebas. Ubuntu antiguo.", "last_run": "2026-07-10T14:20", "icon": "🧪", "subtasks": [{"id": "st-240-1-1", "name": "Iniciar mysqld", "desc": "Servicio activo", "status": "done", "icon": "🚀"}, {"id": "st-240-1-2", "name": "Esperar queries", "desc": "Acepta conexiones de test", "status": "active", "icon": "👂"}]}, {"id": "comp-99-1", "name": "Restore Pipeline", "type": "cron", "server": "srv-99", "status": "active", "schedule": "3:00 AM", "human_desc": "Restaura backup completo desde .50 cada noche.", "last_run": "2026-07-10T03:00", "icon": "📥", "subtasks": [{"id": "st-99-1-1", "name": "Descargar ZIP", "desc": "scp desde .50", "status": "done", "icon": "📦"}, {"id": "st-99-1-2", "name": "Descomprimir", "desc": "unzip en /tmp/restore", "status": "done", "icon": "📂"}, {"id": "st-99-1-3", "name": "Importar SQL", "desc": "mysql < backup.sql", "status": "done", "icon": "💾"}, {"id": "st-99-1-4", "name": "Verificar tablas", "desc": "SHOW TABLES vs .250", "status": "done", "icon": "✅"}]}, {"id": "comp-99-2", "name": "Monitor de Health", "type": "service", "server": "srv-99", "status": "active", "schedule": "Continuo", "human_desc": "Verifica que MySQL responda y el disco tenga espacio.", "last_run": "2026-07-10T14:20", "icon": "💓", "subtasks": [{"id": "st-99-2-1", "name": "Ping MySQL", "desc": "SELECT 1", "status": "active", "icon": "🔌"}, {"id": "st-99-2-2", "name": "Verificar disco", "desc": "df -h /var/lib/mysql", "status": "active", "icon": "💿"}, {"id": "st-99-2-3", "name": "Reportar a .95", "desc": "Envia metricas", "status": "active", "icon": "📡"}]}, {"id": "comp-50-1", "name": "ZIP Backup", "type": "cron", "server": "srv-50", "status": "active", "schedule": "2:00 AM", "human_desc": "Comprime la base de datos y la guarda localmente.", "last_run": "2026-07-10T02:00", "icon": "💾", "subtasks": [{"id": "st-50-1-1", "name": "mysqldump", "desc": "Exporta desde .250", "status": "done", "icon": "📤"}, {"id": "st-50-1-2", "name": "Comprimir ZIP", "desc": "zip -r backup.zip", "status": "done", "icon": "🗜️"}, {"id": "st-50-1-3", "name": "Verificar integridad", "desc": "unzip -t", "status": "done", "icon": "✅"}, {"id": "st-50-1-4", "name": "Rotar backups viejos", "desc": "Elimina ZIPs mayores a 7 dias", "status": "pending", "icon": "🗑️"}]}, {"id": "comp-43-1", "name": "Servicio RDP", "type": "service", "server": "srv-43", "status": "active", "schedule": "24/7", "human_desc": "Escritorio remoto Windows para administracion visual.", "last_run": "2026-07-10T14:20", "icon": "🖥️", "subtasks": [{"id": "st-43-1-1", "name": "Iniciar Terminal Services", "desc": "Servicio RDP activo", "status": "done", "icon": "🚀"}, {"id": "st-43-1-2", "name": "Escuchar puerto 3389", "desc": "Acepta conexiones", "status": "active", "icon": "👂"}, {"id": "st-43-1-3", "name": "Verificar licencias", "desc": "RDS CAL disponibles", "status": "active", "icon": "🔑"}]}, {"id": "comp-43-2", "name": "Recordatorio Administrador", "type": "cron", "server": "srv-43", "status": "pending", "schedule": "Una vez", "human_desc": "Alerta cuando hay que revisar el escritorio remoto.", "last_run": "N/A", "icon": "🔔", "subtasks": [{"id": "st-43-2-1", "name": "Verificar conexion", "desc": "Test de puerto 3389", "status": "pending", "icon": "🔌"}, {"id": "st-43-2-2", "name": "Enviar recordatorio", "desc": "Telegram a admin", "status": "pending", "icon": "📨"}]}]};
+const DATA = {"meta": {"generated_at": "2026-07-10T14:29:14.595314", "version": "8.4"}, "servers": [{"id": "srv-95", "name": "HERMES .95", "ip": "localhost", "role": "Cerebro del sistema", "status": "online", "color": "#d4af37", "icon": "🧠", "desc": "Controlador central. Coordina todos los servidores.", "services": ["Hermes Agent", "Dashboard", "Deep Memory", "Skills"]}, {"id": "srv-250", "name": "PROD .250", "ip": "192.168.0.250", "role": "Base de datos principal", "status": "online", "color": "#2e7d32", "icon": "🗄️", "desc": "MySQL 8.4 produccion. Datos en tiempo real del sistema EPEM.", "services": ["MySQL 8.4", "Replicacion master"]}, {"id": "srv-241", "name": "ESPEJO .241", "ip": "192.168.0.241", "role": "Copia de seguridad viva", "status": "online", "color": "#1565c0", "icon": "🪞", "desc": "Replica nativa de .250. Si .250 cae, .241 tiene los datos.", "services": ["MySQL Replica", "Detector de drift"]}, {"id": "srv-240", "name": "STAGING .240", "ip": "192.168.0.240", "role": "Ambiente de pruebas", "status": "online", "color": "#7b1fa2", "icon": "🧪", "desc": "Servidor legacy para pruebas. Ubuntu antiguo.", "services": ["MySQL 5.7", "Test-sistema"]}, {"id": "srv-99", "name": "STAGING .99", "ip": "192.168.0.99", "role": "Nuevo ambiente de pruebas", "status": "online", "color": "#00838f", "icon": "🔬", "desc": "Staging moderno con MySQL 8.4. Restaura backups cada noche.", "services": ["MySQL 8.4", "Restore pipeline"]}, {"id": "srv-50", "name": "BACKUP .50", "ip": "192.168.0.50", "role": "Almacen de backups", "status": "online", "color": "#c62828", "icon": "💾", "desc": "Guarda archivos ZIP con copias de la base de datos.", "services": ["ZIP backups", "Verificacion diaria"]}, {"id": "srv-43", "name": "RDP .43", "ip": "192.168.0.43", "role": "Escritorio remoto", "status": "online", "color": "#ef6c00", "icon": "🖥️", "desc": "Acceso remoto Windows para administracion visual.", "services": ["RDP", "Recordatorios"]}], "flows": [{"id": "flow-1", "from": "srv-250", "to": "srv-241", "type": "replica", "name": "Replica MySQL", "desc": "Datos se copian automaticamente cada segundo", "status": "active", "icon": "🔄"}, {"id": "flow-2", "from": "srv-250", "to": "srv-99", "type": "restore", "name": "Restore Pipeline", "desc": "Backup completo se restaura cada noche", "status": "active", "icon": "📥"}, {"id": "flow-3", "from": "srv-50", "to": "srv-99", "type": "backup", "name": "ZIP Backup", "desc": "Archivo comprimido viaja al staging", "status": "active", "icon": "📦"}, {"id": "flow-4", "from": "srv-95", "to": "srv-240", "type": "ssh", "name": "Diagnostico", "desc": "Comandos de monitoreo remoto", "status": "active", "icon": "🔍"}, {"id": "flow-5", "from": "srv-95", "to": "srv-241", "type": "ssh", "name": "Detector", "desc": "Verifica que .241 tenga datos actualizados", "status": "active", "icon": "📡"}, {"id": "flow-6", "from": "srv-95", "to": "srv-99", "type": "ssh", "name": "Monitor", "desc": "Observa el restore cada 10 minutos", "status": "active", "icon": "👁️"}, {"id": "flow-7", "from": "srv-95", "to": "all", "type": "telegram", "name": "Alertas Telegram", "desc": "Mensajes al grupo de monitoreo", "status": "active", "icon": "📨"}, {"id": "flow-8", "from": "srv-95", "to": "github", "type": "deploy", "name": "Deploy Web", "desc": "Dashboard se publica automaticamente", "status": "active", "icon": "🚀"}], "components": [{"id": "comp-95-1", "name": "Sync Nocturno", "type": "cron", "server": "srv-95", "status": "active", "schedule": "3:00 AM", "human_desc": "Limpia memorias viejas y recalcula VIP scores.", "last_run": "2026-07-10T03:00", "icon": "🌙", "subtasks": [{"id": "st-95-1-1", "name": "Cargar MEMORY.md", "desc": "Lee memorias del dia", "status": "done", "icon": "📂"}, {"id": "st-95-1-2", "name": "Parsear bloques", "desc": "Separa por §", "status": "done", "icon": "✂️"}, {"id": "st-95-1-3", "name": "Calcular hashes", "desc": "SHA256 deduplicacion", "status": "done", "icon": "#️⃣"}, {"id": "st-95-1-4", "name": "Insertar en SQLite", "desc": "WAL mode", "status": "done", "icon": "💾"}, {"id": "st-95-1-5", "name": "Recalcular VIP", "desc": "Actualiza pesos", "status": "done", "icon": "⚖️"}, {"id": "st-95-1-6", "name": "Registrar log", "desc": "sync_log", "status": "done", "icon": "📝"}]}, {"id": "comp-95-2", "name": "Rebuild Dashboard", "type": "cron", "server": "srv-95", "status": "active", "schedule": "3:05 AM", "human_desc": "Genera el mapa visual y lo publica.", "last_run": "2026-07-10T03:05", "icon": "🏗️", "subtasks": [{"id": "st-95-2-1", "name": "Consultar SQLite", "desc": "Extrae datos", "status": "done", "icon": "🗃️"}, {"id": "st-95-2-2", "name": "Layout D3", "desc": "Posiciones", "status": "done", "icon": "📐"}, {"id": "st-95-2-3", "name": "Generar HTML", "desc": "Template", "status": "done", "icon": "🎨"}, {"id": "st-95-2-4", "name": "Copiar repo", "desc": "/tmp/LaCatedral", "status": "done", "icon": "📋"}, {"id": "st-95-2-5", "name": "Git push", "desc": "Sube a GitHub", "status": "done", "icon": "⬆️"}, {"id": "st-95-2-6", "name": "Verificar deploy", "desc": "Vercel", "status": "done", "icon": "✅"}]}, {"id": "comp-95-3", "name": "Alertas Telegram", "type": "service", "server": "srv-95", "status": "active", "schedule": "Continuo", "human_desc": "Envia alertas al grupo.", "last_run": "2026-07-10T14:15", "icon": "📨", "subtasks": [{"id": "st-95-3-1", "name": "Obtener token", "desc": "Gateway proceso", "status": "done", "icon": "🔑"}, {"id": "st-95-3-2", "name": "Formatear mensaje", "desc": "rich_message", "status": "done", "icon": "📝"}, {"id": "st-95-3-3", "name": "POST Bot API", "desc": "sendRichMessage", "status": "active", "icon": "📤"}, {"id": "st-95-3-4", "name": "Verificar", "desc": "HTTP 200", "status": "pending", "icon": "✓"}]}, {"id": "comp-250-1", "name": "MySQL 8.4 Master", "type": "service", "server": "srv-250", "status": "active", "schedule": "24/7", "human_desc": "Base de datos principal EPEM.", "last_run": "2026-07-10T14:20", "icon": "🗄️", "subtasks": [{"id": "st-250-1-1", "name": "Iniciar mysqld", "desc": "Puerto 3306", "status": "done", "icon": "🚀"}, {"id": "st-250-1-2", "name": "Esperar conexiones", "desc": "Queries", "status": "active", "icon": "👂"}, {"id": "st-250-1-3", "name": "Escribir binlog", "desc": "Replica", "status": "active", "icon": "📝"}, {"id": "st-250-1-4", "name": "Mantenimiento", "desc": "OPTIMIZE", "status": "pending", "icon": "🔧"}]}, {"id": "comp-250-2", "name": "Replicacion a .241", "type": "service", "server": "srv-250", "status": "active", "schedule": "Continuo", "human_desc": "Envia binlog a .241.", "last_run": "2026-07-10T14:20", "icon": "🔄", "subtasks": [{"id": "st-250-2-1", "name": "Leer binlog", "desc": "Cambios", "status": "active", "icon": "📄"}, {"id": "st-250-2-2", "name": "Enviar a .241", "desc": "Stream", "status": "active", "icon": "📡"}, {"id": "st-250-2-3", "name": "Confirmar ACK", "desc": "Espera", "status": "active", "icon": "✓"}]}, {"id": "comp-241-1", "name": "MySQL Replica", "type": "service", "server": "srv-241", "status": "active", "schedule": "24/7", "human_desc": "Recibe datos de .250.", "last_run": "2026-07-10T14:20", "icon": "🪞", "subtasks": [{"id": "st-241-1-1", "name": "Conectar a .250", "desc": "IO thread", "status": "active", "icon": "🔌"}, {"id": "st-241-1-2", "name": "Aplicar cambios", "desc": "SQL thread", "status": "active", "icon": "⚙️"}, {"id": "st-241-1-3", "name": "Verificar lag", "desc": "Segundos", "status": "active", "icon": "⏱"}]}, {"id": "comp-241-2", "name": "Detector de Drift", "type": "cron", "server": "srv-241", "status": "active", "schedule": "9:00 AM", "human_desc": "Compara .250 vs .241.", "last_run": "2026-07-10T09:04", "icon": "🔎", "subtasks": [{"id": "st-241-2-1", "name": "Contar .250", "desc": "SELECT COUNT", "status": "done", "icon": "🔢"}, {"id": "st-241-2-2", "name": "Contar .241", "desc": "SELECT COUNT", "status": "done", "icon": "🔢"}, {"id": "st-241-2-3", "name": "Comparar", "desc": "Discrepancias", "status": "done", "icon": "⚖️"}, {"id": "st-241-2-4", "name": "Generar SQL fix", "desc": "Script", "status": "pending", "icon": "📝"}]}, {"id": "comp-240-1", "name": "MySQL 5.7 Legacy", "type": "service", "server": "srv-240", "status": "active", "schedule": "24/7", "human_desc": "Legacy tests.", "last_run": "2026-07-10T14:20", "icon": "🧪", "subtasks": [{"id": "st-240-1-1", "name": "Iniciar mysqld", "desc": "Servicio", "status": "done", "icon": "🚀"}, {"id": "st-240-1-2", "name": "Esperar queries", "desc": "Test", "status": "active", "icon": "👂"}]}, {"id": "comp-99-1", "name": "Restore Pipeline", "type": "cron", "server": "srv-99", "status": "active", "schedule": "3:00 AM", "human_desc": "Restaura desde .50.", "last_run": "2026-07-10T03:00", "icon": "📥", "subtasks": [{"id": "st-99-1-1", "name": "Descargar ZIP", "desc": "scp .50", "status": "done", "icon": "📦"}, {"id": "st-99-1-2", "name": "Descomprimir", "desc": "/tmp/restore", "status": "done", "icon": "📂"}, {"id": "st-99-1-3", "name": "Importar SQL", "desc": "mysql", "status": "done", "icon": "💾"}, {"id": "st-99-1-4", "name": "Verificar tablas", "desc": "SHOW TABLES", "status": "done", "icon": "✅"}]}, {"id": "comp-99-2", "name": "Monitor Health", "type": "service", "server": "srv-99", "status": "active", "schedule": "Continuo", "human_desc": "MySQL + disco.", "last_run": "2026-07-10T14:20", "icon": "💓", "subtasks": [{"id": "st-99-2-1", "name": "Ping MySQL", "desc": "SELECT 1", "status": "active", "icon": "🔌"}, {"id": "st-99-2-2", "name": "Verificar disco", "desc": "df -h", "status": "active", "icon": "💿"}, {"id": "st-99-2-3", "name": "Reportar a .95", "desc": "Metricas", "status": "active", "icon": "📡"}]}, {"id": "comp-50-1", "name": "ZIP Backup", "type": "cron", "server": "srv-50", "status": "active", "schedule": "2:00 AM", "human_desc": "Comprime DB.", "last_run": "2026-07-10T02:00", "icon": "💾", "subtasks": [{"id": "st-50-1-1", "name": "mysqldump", "desc": "Exporta .250", "status": "done", "icon": "📤"}, {"id": "st-50-1-2", "name": "Comprimir", "desc": "zip", "status": "done", "icon": "🗜️"}, {"id": "st-50-1-3", "name": "Verificar", "desc": "unzip -t", "status": "done", "icon": "✅"}, {"id": "st-50-1-4", "name": "Rotar viejos", "desc": "7 dias", "status": "pending", "icon": "🗑️"}]}, {"id": "comp-43-1", "name": "Servicio RDP", "type": "service", "server": "srv-43", "status": "active", "schedule": "24/7", "human_desc": "Escritorio remoto.", "last_run": "2026-07-10T14:20", "icon": "🖥️", "subtasks": [{"id": "st-43-1-1", "name": "Terminal Services", "desc": "RDP", "status": "done", "icon": "🚀"}, {"id": "st-43-1-2", "name": "Puerto 3389", "desc": "Escucha", "status": "active", "icon": "👂"}, {"id": "st-43-1-3", "name": "Licencias", "desc": "RDS CAL", "status": "active", "icon": "🔑"}]}, {"id": "comp-43-2", "name": "Recordatorio", "type": "cron", "server": "srv-43", "status": "pending", "schedule": "Una vez", "human_desc": "Alerta admin.", "last_run": "N/A", "icon": "🔔", "subtasks": [{"id": "st-43-2-1", "name": "Verificar", "desc": "Puerto 3389", "status": "pending", "icon": "🔌"}, {"id": "st-43-2-2", "name": "Enviar", "desc": "Telegram", "status": "pending", "icon": "📨"}]}]};
 const width = document.getElementById('main').clientWidth;
 const height = document.getElementById('main').clientHeight;
 
@@ -119,6 +132,7 @@ const zoom = d3.zoom().scaleExtent([0.3, 3]).on('zoom', (e) => g.attr('transform
 svg.call(zoom);
 
 const tooltip = d3.select("#tooltip");
+const expandedComps = new Set();
 
 // === POSICIONES SERVIDORES ===
 const servers = DATA.servers.map((d, i) => {
@@ -131,7 +145,7 @@ const servers = DATA.servers.map((d, i) => {
     return d;
 });
 
-// === POSICIONES COMPONENTES (orbitando su servidor) ===
+// === POSICIONES COMPONENTES ===
 const components = DATA.components.map((c, i) => {
     const srv = servers.find(s => s.id === c.server);
     if (srv) {
@@ -147,7 +161,7 @@ const components = DATA.components.map((c, i) => {
     return c;
 });
 
-// === CANALES ENTRE SERVIDORES ===
+// === CANALES ===
 const flows = DATA.flows.map(f => {
     const from = servers.find(s => s.id === f.from);
     const to = servers.find(s => s.id === f.to);
@@ -197,7 +211,7 @@ flows.forEach((f, i) => {
         .text(f.icon + ' ' + f.name);
 });
 
-// === RENDER CONEXIONES SERVIDOR -> COMPONENTE ===
+// === CONEXIONES SERVIDOR -> COMPONENTE ===
 components.forEach(c => {
     if (!c.parentServer) return;
     g.append('line')
@@ -215,23 +229,38 @@ const compGroup = g.selectAll('.comp-node').data(components).join('g')
     .style('cursor', 'pointer');
 
 compGroup.append('circle')
-    .attr('r', 22)
+    .attr('r', 24)
     .attr('fill', 'rgba(30,30,40,0.9)')
     .attr('stroke', d => d.parentServer ? d.parentServer.color : '#666')
     .attr('stroke-width', 1.5)
     .attr('stroke-opacity', 0.5);
 
 compGroup.append('text')
-    .attr('text-anchor', 'middle').attr('dy', 4)
-    .attr('font-size', '14px')
+    .attr('text-anchor', 'middle').attr('dy', 5)
+    .attr('font-size', '16px')
     .text(d => d.icon);
 
-compGroup.append('text')
-    .attr('text-anchor', 'middle').attr('dy', -28)
-    .attr('fill', '#aaa').attr('font-size', '8px')
-    .text(d => d.name.length > 18 ? d.name.slice(0,18)+'...' : d.name);
+// Badge con numero de subtareas
+compGroup.append('circle')
+    .attr('cx', 18).attr('cy', -18)
+    .attr('r', 9)
+    .attr('fill', '#d4af37')
+    .attr('opacity', 0.9);
 
-// === RENDER SERVIDORES (encima) ===
+compGroup.append('text')
+    .attr('x', 18).attr('y', -15)
+    .attr('text-anchor', 'middle')
+    .attr('font-size', '9px')
+    .attr('font-weight', 'bold')
+    .attr('fill', '#000')
+    .text(d => d.subtasks ? d.subtasks.length : 0);
+
+compGroup.append('text')
+    .attr('text-anchor', 'middle').attr('dy', -32)
+    .attr('fill', '#aaa').attr('font-size', '8px')
+    .text(d => d.name.length > 16 ? d.name.slice(0,16)+'...' : d.name);
+
+// === RENDER SERVIDORES ===
 const serverGroup = g.selectAll('.server-node').data(servers).join('g')
     .attr('class', 'server-node')
     .attr('transform', d => `translate(${d.x},${d.y})`)
@@ -269,6 +298,89 @@ serverGroup.append('text')
     .attr('font-size', '9px')
     .text(d => d.status);
 
+// === FUNCION PARA MOSTRAR SUBTAREAS EN GRAFO ===
+function showSubtasksInGraph(compId) {
+    const comp = components.find(c => c.id === compId);
+    if (!comp || !comp.subtasks) return;
+    
+    // Remover subtareas previas de este componente
+    g.selectAll(`.subtask-group-${compId}`).remove();
+    
+    if (expandedComps.has(compId)) {
+        // Colapsar
+        expandedComps.delete(compId);
+        return;
+    }
+    
+    expandedComps.add(compId);
+    
+    // Calcular posiciones radiales para subtareas
+    const count = comp.subtasks.length;
+    const radius = 55;
+    
+    comp.subtasks.forEach((st, i) => {
+        const angle = (2 * Math.PI / count) * i - Math.PI / 2;
+        const stX = comp.x + Math.cos(angle) * radius;
+        const stY = comp.y + Math.sin(angle) * radius;
+        
+        const stGroup = g.append('g')
+            .attr('class', `subtask-group-${compId} subtask-node-group`)
+            .attr('transform', `translate(${stX},${stY})`)
+            .style('opacity', 0);
+        
+        // Color segun estado
+        const color = st.status === 'done' ? '#4caf50' : st.status === 'active' ? '#2196f3' : '#ff9800';
+        
+        stGroup.append('circle')
+            .attr('class', 'st-node-circle')
+            .attr('r', 14)
+            .attr('stroke', color);
+        
+        stGroup.append('text')
+            .attr('class', 'st-node-icon')
+            .attr('dy', 4)
+            .text(st.icon);
+        
+        stGroup.append('text')
+            .attr('class', 'st-node-text')
+            .attr('dy', -18)
+            .text(st.name.length > 12 ? st.name.slice(0,12)+'...' : st.name);
+        
+        // Hover para subtarea
+        stGroup.on('mouseover', function(event) {
+            tooltip.html(`
+                <div class="tt-title">${st.icon} ${st.name}</div>
+                <div class="tt-desc">${st.desc}</div>
+                <div class="tt-meta">Estado: ${st.status} | Componente: ${comp.name}</div>
+            `).style('opacity', 1)
+            .style('left', Math.min(event.pageX + 16, window.innerWidth - 440) + 'px')
+            .style('top', Math.min(event.pageY + 16, window.innerHeight - 150) + 'px');
+        }).on('mouseout', function() {
+            tooltip.style('opacity', 0);
+        });
+        
+        // Animacion entrada
+        stGroup.transition().duration(300).delay(i * 50).style('opacity', 1);
+    });
+    
+    // Lineas desde componente a subtareas
+    comp.subtasks.forEach((st, i) => {
+        const angle = (2 * Math.PI / count) * i - Math.PI / 2;
+        const stX = comp.x + Math.cos(angle) * radius;
+        const stY = comp.y + Math.sin(angle) * radius;
+        const color = st.status === 'done' ? '#4caf50' : st.status === 'active' ? '#2196f3' : '#ff9800';
+        
+        g.insert('line', `.subtask-group-${compId}`)
+            .attr('class', `subtask-group-${compId}`)
+            .attr('x1', comp.x).attr('y1', comp.y)
+            .attr('x2', stX).attr('y2', stY)
+            .attr('stroke', color)
+            .attr('stroke-width', 1)
+            .attr('stroke-opacity', 0.3)
+            .attr('stroke-dasharray', '3,3');
+    });
+}
+
 // === INTERACCIONES SERVIDOR ===
 serverGroup.on('mouseover', function(event, d) {
     d3.select(this).select('circle').attr('stroke-width', 4).attr('stroke-opacity', 1);
@@ -279,7 +391,7 @@ serverGroup.on('mouseover', function(event, d) {
         <div class="tt-meta">IP: ${d.ip} | Estado: ${d.status}</div>
         <div class="tt-services">${servicesHtml}</div>
     `).style('opacity', 1)
-    .style('left', Math.min(event.pageX + 16, window.innerWidth - 420) + 'px')
+    .style('left', Math.min(event.pageX + 16, window.innerWidth - 440) + 'px')
     .style('top', Math.min(event.pageY + 16, window.innerHeight - 200) + 'px');
 })
 .on('mouseout', function() {
@@ -296,23 +408,38 @@ serverGroup.on('mouseover', function(event, d) {
 // === INTERACCIONES COMPONENTE ===
 compGroup.on('mouseover', function(event, d) {
     d3.select(this).select('circle').attr('stroke-width', 3).attr('stroke-opacity', 0.8);
+    
+    // Tooltip con subtareas
+    const subtasksHtml = d.subtasks.map(st => {
+        const statusClass = st.status;
+        return `
+            <div class="tt-subtask">
+                <span>${st.icon}</span>
+                <span class="st-name">${st.name}</span>
+                <span class="st-status ${statusClass}">${st.status}</span>
+            </div>
+        `;
+    }).join('');
+    
     tooltip.html(`
         <div class="tt-title">${d.icon} ${d.name}</div>
         <div class="tt-desc">${d.human_desc}</div>
-        <div class="tt-meta">Servidor: ${d.parentServer.name} | Schedule: ${d.schedule}</div>
+        <div class="tt-meta">Servidor: ${d.parentServer.name} | Schedule: ${d.schedule} | ${d.subtasks.length} subtareas</div>
+        <div class="tt-subtasks">${subtasksHtml}</div>
     `).style('opacity', 1)
-    .style('left', Math.min(event.pageX + 16, window.innerWidth - 420) + 'px')
-    .style('top', Math.min(event.pageY + 16, window.innerHeight - 200) + 'px');
+    .style('left', Math.min(event.pageX + 16, window.innerWidth - 440) + 'px')
+    .style('top', Math.min(event.pageY + 16, window.innerHeight - 300) + 'px');
 })
 .on('mouseout', function() {
     d3.select(this).select('circle').attr('stroke-width', 1.5).attr('stroke-opacity', 0.5);
     tooltip.style('opacity', 0);
 })
 .on('click', function(event, d) {
-    toggleSubtasks(d.id);
+    showSubtasksInGraph(d.id);
+    toggleSubtasks(d.id); // Tambien expande en panel
 });
 
-// === PANEL LATERAL POR SERVIDOR ===
+// === PANEL LATERAL ===
 function renderPanel() {
     const container = document.getElementById('server-sections');
     container.innerHTML = DATA.servers.map(srv => {
@@ -385,6 +512,7 @@ function highlightServer(srvId) {
 window.toggleSection = toggleSection;
 window.toggleSubtasks = toggleSubtasks;
 window.highlightServer = highlightServer;
+window.showSubtasksInGraph = showSubtasksInGraph;
 
 renderPanel();
 
