@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-11T09:00:03.823618",
+    "generated_at": "2026-07-11T09:12:21.761333",
     "version": "15.0-dynamic"
   },
   "servers": [
@@ -203,760 +203,138 @@
   "components": [
     {
       "id": "comp-95-1",
-      "name": "Skills: Apple",
+      "name": "Skills Hub",
       "type": "skill",
       "server": "srv-95",
       "status": "active",
-      "schedule": "4 skills",
-      "human_desc": "Conjunto de skills de Apple.",
-      "last_run": "09:00",
-      "icon": "📦",
+      "schedule": "97 skills",
+      "human_desc": "Centro de skills organizadas por categoria.",
+      "last_run": "09:12",
+      "icon": "🎓",
       "subtasks": [
         {
-          "name": "findmy",
-          "desc": "Skill",
+          "name": "📦 Apple",
+          "desc": "4 skills",
           "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: apple/findmy"
+          "icon": "📦",
+          "human_summary": "4 skills de Apple listas para usar."
         },
         {
-          "name": "apple-notes",
-          "desc": "Skill",
+          "name": "🤖 Autonomous Ai Agents",
+          "desc": "4 skills",
           "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: apple/apple-notes"
+          "icon": "🤖",
+          "human_summary": "4 skills de Autonomous Ai Agents listas para usar."
         },
         {
-          "name": "imessage",
-          "desc": "Skill",
+          "name": "🎨 Creative",
+          "desc": "17 skills",
           "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: apple/imessage"
+          "icon": "🎨",
+          "human_summary": "17 skills de Creative listas para usar."
         },
         {
-          "name": "apple-reminders",
-          "desc": "Skill",
+          "name": "📊 Data Science",
+          "desc": "1 skills",
           "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: apple/apple-reminders"
+          "icon": "📊",
+          "human_summary": "1 skills de Data Science listas para usar."
+        },
+        {
+          "name": "🔧 Devops",
+          "desc": "20 skills",
+          "status": "done",
+          "icon": "🔧",
+          "human_summary": "20 skills de Devops listas para usar."
+        },
+        {
+          "name": "📧 Email",
+          "desc": "1 skills",
+          "status": "done",
+          "icon": "📧",
+          "human_summary": "1 skills de Email listas para usar."
+        },
+        {
+          "name": "📦 General",
+          "desc": "6 skills",
+          "status": "done",
+          "icon": "📦",
+          "human_summary": "6 skills de General listas para usar."
+        },
+        {
+          "name": "🐙 Github",
+          "desc": "6 skills",
+          "status": "done",
+          "icon": "🐙",
+          "human_summary": "6 skills de Github listas para usar."
+        },
+        {
+          "name": "🎬 Media",
+          "desc": "4 skills",
+          "status": "done",
+          "icon": "🎬",
+          "human_summary": "4 skills de Media listas para usar."
+        },
+        {
+          "name": "🤖 Mlops",
+          "desc": "7 skills",
+          "status": "done",
+          "icon": "🤖",
+          "human_summary": "7 skills de Mlops listas para usar."
+        },
+        {
+          "name": "📝 Note Taking",
+          "desc": "1 skills",
+          "status": "done",
+          "icon": "📝",
+          "human_summary": "1 skills de Note Taking listas para usar."
+        },
+        {
+          "name": "📂 Productivity",
+          "desc": "10 skills",
+          "status": "done",
+          "icon": "📂",
+          "human_summary": "10 skills de Productivity listas para usar."
+        },
+        {
+          "name": "🔬 Research",
+          "desc": "5 skills",
+          "status": "done",
+          "icon": "🔬",
+          "human_summary": "5 skills de Research listas para usar."
+        },
+        {
+          "name": "🏠 Smart Home",
+          "desc": "1 skills",
+          "status": "done",
+          "icon": "🏠",
+          "human_summary": "1 skills de Smart Home listas para usar."
+        },
+        {
+          "name": "📱 Social Media",
+          "desc": "1 skills",
+          "status": "done",
+          "icon": "📱",
+          "human_summary": "1 skills de Social Media listas para usar."
+        },
+        {
+          "name": "💻 Software Development",
+          "desc": "9 skills",
+          "status": "done",
+          "icon": "💻",
+          "human_summary": "9 skills de Software Development listas para usar."
         }
       ]
     },
     {
       "id": "comp-95-2",
-      "name": "Skills: Autonomous Ai Agents",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "4 skills",
-      "human_desc": "Conjunto de skills de Autonomous Ai Agents.",
-      "last_run": "09:00",
-      "icon": "🤖",
-      "subtasks": [
-        {
-          "name": "opencode",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: autonomous-ai-agents/opencode"
-        },
-        {
-          "name": "hermes-agent",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: autonomous-ai-agents/hermes-agent"
-        },
-        {
-          "name": "codex",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: autonomous-ai-agents/codex"
-        },
-        {
-          "name": "claude-code",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: autonomous-ai-agents/claude-code"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-3",
-      "name": "Skills: Creative",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "17 skills",
-      "human_desc": "Conjunto de skills de Creative.",
-      "last_run": "09:00",
-      "icon": "🎨",
-      "subtasks": [
-        {
-          "name": "humanizer",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: creative/humanizer"
-        },
-        {
-          "name": "songwriting-and-ai-music",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: creative/songwriting-and-ai-music"
-        },
-        {
-          "name": "design-md",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: creative/design-md"
-        },
-        {
-          "name": "architecture-diagram",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: creative/architecture-diagram"
-        },
-        {
-          "name": "pretext",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: creative/pretext"
-        },
-        {
-          "name": "popular-web-designs",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: creative/popular-web-designs"
-        },
-        {
-          "name": "ascii-art",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: creative/ascii-art"
-        },
-        {
-          "name": "baoyu-infographic",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: creative/baoyu-infographic"
-        },
-        {
-          "name": "... y 9 mas",
-          "desc": "Skills",
-          "status": "pending",
-          "icon": "➕",
-          "human_summary": "Total de skills en Creative: 17"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-4",
-      "name": "Skills: Data Science",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "1 skills",
-      "human_desc": "Conjunto de skills de Data Science.",
-      "last_run": "09:00",
-      "icon": "📊",
-      "subtasks": [
-        {
-          "name": "jupyter-live-kernel",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: data-science/jupyter-live-kernel"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-5",
-      "name": "Skills: Devops",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "20 skills",
-      "human_desc": "Conjunto de skills de Devops.",
-      "last_run": "09:00",
-      "icon": "🔧",
-      "subtasks": [
-        {
-          "name": "espejo-241-ops-log",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: devops/espejo-241-ops-log"
-        },
-        {
-          "name": "mysql-slave-restore-from-dump",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: devops/mysql-slave-restore-from-dump"
-        },
-        {
-          "name": "bitacora-240",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: devops/bitacora-240"
-        },
-        {
-          "name": "server-diagnostics-hub",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: devops/server-diagnostics-hub"
-        },
-        {
-          "name": "actualizacion-staging-240",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: devops/actualizacion-staging-240"
-        },
-        {
-          "name": "mysql-restore-pipelines",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: devops/mysql-restore-pipelines"
-        },
-        {
-          "name": "staging-99-restore-guide",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: devops/staging-99-restore-guide"
-        },
-        {
-          "name": "mysql-cross-server-comparison",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: devops/mysql-cross-server-comparison"
-        },
-        {
-          "name": "... y 12 mas",
-          "desc": "Skills",
-          "status": "pending",
-          "icon": "➕",
-          "human_summary": "Total de skills en Devops: 20"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-6",
-      "name": "Skills: Email",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "1 skills",
-      "human_desc": "Conjunto de skills de Email.",
-      "last_run": "09:00",
-      "icon": "📧",
-      "subtasks": [
-        {
-          "name": "himalaya",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: email/himalaya"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-7",
-      "name": "Skills: General",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "6 skills",
-      "human_desc": "Conjunto de skills de General.",
-      "last_run": "09:00",
-      "icon": "📦",
-      "subtasks": [
-        {
-          "name": "computer-use",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: computer-use"
-        },
-        {
-          "name": "yuanbao",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: yuanbao"
-        },
-        {
-          "name": "dogfood",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: dogfood"
-        },
-        {
-          "name": "vault",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: vault"
-        },
-        {
-          "name": "logs-central-nav",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: logs-central-nav"
-        },
-        {
-          "name": "centralized-log-archive",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: centralized-log-archive"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-8",
-      "name": "Skills: Github",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "6 skills",
-      "human_desc": "Conjunto de skills de Github.",
-      "last_run": "09:00",
-      "icon": "🐙",
-      "subtasks": [
-        {
-          "name": "codebase-inspection",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: github/codebase-inspection"
-        },
-        {
-          "name": "github-auth",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: github/github-auth"
-        },
-        {
-          "name": "github-code-review",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: github/github-code-review"
-        },
-        {
-          "name": "github-issues",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: github/github-issues"
-        },
-        {
-          "name": "github-repo-management",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: github/github-repo-management"
-        },
-        {
-          "name": "github-pr-workflow",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: github/github-pr-workflow"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-9",
-      "name": "Skills: Media",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "4 skills",
-      "human_desc": "Conjunto de skills de Media.",
-      "last_run": "09:00",
-      "icon": "🎬",
-      "subtasks": [
-        {
-          "name": "songsee",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: media/songsee"
-        },
-        {
-          "name": "heartmula",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: media/heartmula"
-        },
-        {
-          "name": "gif-search",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: media/gif-search"
-        },
-        {
-          "name": "youtube-content",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: media/youtube-content"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-10",
-      "name": "Skills: Mlops",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "7 skills",
-      "human_desc": "Conjunto de skills de Mlops.",
-      "last_run": "09:00",
-      "icon": "🤖",
-      "subtasks": [
-        {
-          "name": "huggingface-hub",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: mlops/huggingface-hub"
-        },
-        {
-          "name": "segment-anything",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: mlops/models/segment-anything"
-        },
-        {
-          "name": "audiocraft",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: mlops/models/audiocraft"
-        },
-        {
-          "name": "llama-cpp",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: mlops/inference/llama-cpp"
-        },
-        {
-          "name": "vllm",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: mlops/inference/vllm"
-        },
-        {
-          "name": "weights-and-biases",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: mlops/evaluation/weights-and-biases"
-        },
-        {
-          "name": "lm-evaluation-harness",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: mlops/evaluation/lm-evaluation-harness"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-11",
-      "name": "Skills: Note Taking",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "1 skills",
-      "human_desc": "Conjunto de skills de Note Taking.",
-      "last_run": "09:00",
-      "icon": "📝",
-      "subtasks": [
-        {
-          "name": "obsidian",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: note-taking/obsidian"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-12",
-      "name": "Skills: Productivity",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "10 skills",
-      "human_desc": "Conjunto de skills de Productivity.",
-      "last_run": "09:00",
-      "icon": "📂",
-      "subtasks": [
-        {
-          "name": "teams-meeting-pipeline",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: productivity/teams-meeting-pipeline"
-        },
-        {
-          "name": "petdex",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: productivity/petdex"
-        },
-        {
-          "name": "ocr-and-documents",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: productivity/ocr-and-documents"
-        },
-        {
-          "name": "airtable",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: productivity/airtable"
-        },
-        {
-          "name": "index-system",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: productivity/index-system"
-        },
-        {
-          "name": "powerpoint",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: productivity/powerpoint"
-        },
-        {
-          "name": "google-workspace",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: productivity/google-workspace"
-        },
-        {
-          "name": "notion",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: productivity/notion"
-        },
-        {
-          "name": "... y 2 mas",
-          "desc": "Skills",
-          "status": "pending",
-          "icon": "➕",
-          "human_summary": "Total de skills en Productivity: 10"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-13",
-      "name": "Skills: Research",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "5 skills",
-      "human_desc": "Conjunto de skills de Research.",
-      "last_run": "09:00",
-      "icon": "🔬",
-      "subtasks": [
-        {
-          "name": "blogwatcher",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: research/blogwatcher"
-        },
-        {
-          "name": "arxiv",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: research/arxiv"
-        },
-        {
-          "name": "polymarket",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: research/polymarket"
-        },
-        {
-          "name": "llm-wiki",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: research/llm-wiki"
-        },
-        {
-          "name": "research-paper-writing",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: research/research-paper-writing"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-14",
-      "name": "Skills: Smart Home",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "1 skills",
-      "human_desc": "Conjunto de skills de Smart Home.",
-      "last_run": "09:00",
-      "icon": "🏠",
-      "subtasks": [
-        {
-          "name": "openhue",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: smart-home/openhue"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-15",
-      "name": "Skills: Social Media",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "1 skills",
-      "human_desc": "Conjunto de skills de Social Media.",
-      "last_run": "09:00",
-      "icon": "📱",
-      "subtasks": [
-        {
-          "name": "xurl",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: social-media/xurl"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-16",
-      "name": "Skills: Software Development",
-      "type": "skill",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "9 skills",
-      "human_desc": "Conjunto de skills de Software Development.",
-      "last_run": "09:00",
-      "icon": "💻",
-      "subtasks": [
-        {
-          "name": "requesting-code-review",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: software-development/requesting-code-review"
-        },
-        {
-          "name": "test-driven-development",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: software-development/test-driven-development"
-        },
-        {
-          "name": "python-debugpy",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: software-development/python-debugpy"
-        },
-        {
-          "name": "spike",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: software-development/spike"
-        },
-        {
-          "name": "systematic-debugging",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: software-development/systematic-debugging"
-        },
-        {
-          "name": "node-inspect-debugger",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: software-development/node-inspect-debugger"
-        },
-        {
-          "name": "plan",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: software-development/plan"
-        },
-        {
-          "name": "simplify-code",
-          "desc": "Skill",
-          "status": "done",
-          "icon": "📄",
-          "human_summary": "Skill disponible para usar: software-development/simplify-code"
-        },
-        {
-          "name": "... y 1 mas",
-          "desc": "Skills",
-          "status": "pending",
-          "icon": "➕",
-          "human_summary": "Total de skills en Software Development: 9"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-17",
-      "name": "Scripts del Sistema",
+      "name": "Scripts Hub",
       "type": "script",
       "server": "srv-95",
       "status": "active",
       "schedule": "16 scripts",
       "human_desc": "Scripts de automatizacion y monitoreo.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "📜",
       "subtasks": [
         {
@@ -1039,187 +417,43 @@
       ]
     },
     {
-      "id": "comp-95-18",
-      "name": "Logs Centralizado",
-      "type": "service",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "Cada 5 min",
-      "human_desc": "Recoleccion centralizada de logs de 5 servidores via SSH, WinRM, SMB.",
-      "last_run": "09:00",
-      "icon": "📋",
-      "subtasks": [
-        {
-          "name": "SSH (.250 .241 .240)",
-          "desc": "Linux",
-          "status": "active",
-          "icon": "🐧",
-          "human_summary": "Conecta a servidores Linux para traer logs."
-        },
-        {
-          "name": "WinRM (.43)",
-          "desc": "Windows",
-          "status": "active",
-          "icon": "🪟",
-          "human_summary": "Conecta a servidor Windows para eventos."
-        },
-        {
-          "name": "SMB (.50)",
-          "desc": "Share",
-          "status": "active",
-          "icon": "📂",
-          "human_summary": "Lee carpetas compartidas de backups."
-        },
-        {
-          "name": "JSON Unificado",
-          "desc": "Parse",
-          "status": "active",
-          "icon": "🔄",
-          "human_summary": "Convierte todos los formatos a uno solo."
-        },
-        {
-          "name": "SQLite FTS5",
-          "desc": "Index",
-          "status": "active",
-          "icon": "🔍",
-          "human_summary": "Crea buscador rapido de logs."
-        },
-        {
-          "name": "Verificacion diaria",
-          "desc": "Check",
-          "status": "pending",
-          "icon": "✅",
-          "human_summary": "Revisa que todo funcione cada manana."
-        }
-      ]
-    },
-    {
-      "id": "comp-95-19",
-      "name": "Vault de Credenciales",
-      "type": "service",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "15 vaults",
-      "human_desc": "Almacenamiento seguro de credenciales.",
-      "last_run": "09:00",
-      "icon": "🔐",
-      "subtasks": [
-        {
-          "name": "windows_43",
-          "desc": "Vault",
-          "status": "done",
-          "icon": "🔐",
-          "human_summary": "Credenciales seguras para: windows_43.json"
-        },
-        {
-          "name": "smb_backup_db",
-          "desc": "Vault",
-          "status": "done",
-          "icon": "🔐",
-          "human_summary": "Credenciales seguras para: smb_backup_db.json"
-        },
-        {
-          "name": "ssh_192.168.0.240",
-          "desc": "Vault",
-          "status": "done",
-          "icon": "🔐",
-          "human_summary": "Credenciales seguras para: ssh_192.168.0.240.json"
-        },
-        {
-          "name": "sudo_192.168.0.240",
-          "desc": "Vault",
-          "status": "done",
-          "icon": "🔐",
-          "human_summary": "Credenciales seguras para: sudo_192.168.0.240.json"
-        },
-        {
-          "name": "mysql_espejo",
-          "desc": "Vault",
-          "status": "done",
-          "icon": "🔐",
-          "human_summary": "Credenciales seguras para: mysql_espejo.json"
-        },
-        {
-          "name": "telegram_staging99",
-          "desc": "Vault",
-          "status": "done",
-          "icon": "🔐",
-          "human_summary": "Credenciales seguras para: telegram_staging99.json"
-        },
-        {
-          "name": "... y 9 mas",
-          "desc": "Vaults",
-          "status": "pending",
-          "icon": "➕",
-          "human_summary": "Total vaults: 15"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-20",
-      "name": "Cron Jobs",
-      "type": "cron",
-      "server": "srv-95",
-      "status": "active",
-      "schedule": "2 jobs",
-      "human_desc": "Tareas programadas automaticas.",
-      "last_run": "09:00",
-      "icon": "⏰",
-      "subtasks": [
-        {
-          "name": "2>&1",
-          "desc": "*/2 * * * *",
-          "status": "active",
-          "icon": "⏰",
-          "human_summary": "Tarea programada: 2>&1 cada */2 * * * *"
-        },
-        {
-          "name": "monitorear-99-cron.log",
-          "desc": "0 0 * * 0",
-          "status": "active",
-          "icon": "⏰",
-          "human_summary": "Tarea programada: monitorear-99-cron.log cada 0 0 * * 0"
-        }
-      ]
-    },
-    {
-      "id": "comp-95-21",
-      "name": "Deep Memory System",
-      "type": "service",
+      "id": "comp-95-3",
+      "name": "Data Hub",
+      "type": "hub",
       "server": "srv-95",
       "status": "active",
       "schedule": "Continuo",
-      "human_desc": "Base de datos SQLite con FTS5 para busqueda.",
-      "last_run": "09:00",
-      "icon": "🧠",
+      "human_desc": "Centro de datos: logs, credenciales, cron, memorias e indices.",
+      "last_run": "09:12",
+      "icon": "🗄️",
       "subtasks": [
         {
-          "name": "auto_tag.py",
-          "desc": "Tagger",
-          "status": "done",
-          "icon": "🏷️",
-          "human_summary": "Etiqueta automatica de memorias."
-        },
-        {
-          "name": "persist_memory.py",
-          "desc": "Persist",
-          "status": "done",
-          "icon": "💾",
-          "human_summary": "Guarda conversaciones en base de datos."
-        },
-        {
-          "name": "search_deep.py",
-          "desc": "Search",
-          "status": "done",
-          "icon": "🔍",
-          "human_summary": "Buscador con texto completo."
-        },
-        {
-          "name": "manage_procedure.py",
-          "desc": "Procedures",
-          "status": "done",
+          "name": "📋 Logs Centralizado",
+          "desc": "5 srv, 3 protocolos",
+          "status": "active",
           "icon": "📋",
-          "human_summary": "Gestiona procedimientos operativos."
+          "human_summary": "Recoleccion de logs via SSH, WinRM, SMB cada 5 min."
+        },
+        {
+          "name": "🔐 Vault (15 creds)",
+          "desc": "Seguro",
+          "status": "done",
+          "icon": "🔐",
+          "human_summary": "15 vaults de credenciales protegidas."
+        },
+        {
+          "name": "⏰ Cron Jobs (2 jobs)",
+          "desc": "Programadas",
+          "status": "active",
+          "icon": "⏰",
+          "human_summary": "2 tareas programadas automaticas."
+        },
+        {
+          "name": "🧠 Deep Memory System",
+          "desc": "SQLite + FTS5",
+          "status": "done",
+          "icon": "🧠",
+          "human_summary": "Base de datos de memorias con busqueda de texto completo."
         }
       ]
     },
@@ -1231,7 +465,7 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Base datos principal EPEM.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "🗄️",
       "subtasks": [
         {
@@ -1272,7 +506,7 @@
       "status": "active",
       "schedule": "Continuo",
       "human_desc": "Envia binlog a .241.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "🔄",
       "subtasks": [
         {
@@ -1306,7 +540,7 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Recibe de .250.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "🪞",
       "subtasks": [
         {
@@ -1340,7 +574,7 @@
       "status": "active",
       "schedule": "9:00 AM",
       "human_desc": "Compara .250 vs .241.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "🔎",
       "subtasks": [
         {
@@ -1381,7 +615,7 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Legacy tests.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "🧪",
       "subtasks": [
         {
@@ -1408,7 +642,7 @@
       "status": "active",
       "schedule": "3:00 AM",
       "human_desc": "Restaura desde .50.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "📥",
       "subtasks": [
         {
@@ -1449,7 +683,7 @@
       "status": "active",
       "schedule": "Continuo",
       "human_desc": "MySQL + disco.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "💓",
       "subtasks": [
         {
@@ -1483,7 +717,7 @@
       "status": "active",
       "schedule": "2:00 AM",
       "human_desc": "Comprime DB.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "💾",
       "subtasks": [
         {
@@ -1524,7 +758,7 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Escritorio remoto.",
-      "last_run": "09:00",
+      "last_run": "09:12",
       "icon": "🖥️",
       "subtasks": [
         {
