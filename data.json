@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-17T10:30:08.802556",
+    "generated_at": "2026-07-17T10:30:36.340029",
     "version": "15.2",
     "health": {
       "srv-250": "online",
@@ -817,6 +817,54 @@
           "status": "pending",
           "icon": "📨",
           "human_summary": "Manda mensaje al administrador."
+        }
+      ]
+    },
+    {
+      "id": "comp-95-4",
+      "name": "📊 MonitorTableros",
+      "type": "service",
+      "server": "srv-95",
+      "status": "active",
+      "schedule": "Docker 8070",
+      "human_desc": "Dashboard Power BI: 23 tableros monitoreados via Docker en .95. GitHub sync activo.",
+      "last_run": "10:30",
+      "icon": "📊",
+      "subtasks": [
+        {
+          "name": "🐳 Frontend",
+          "desc": "8070",
+          "status": "active",
+          "icon": "🐳",
+          "human_summary": "Contenedor dashboardcontrol-frontend en puerto 8070, healthy."
+        },
+        {
+          "name": "⏰ Scheduler",
+          "desc": "30min",
+          "status": "active",
+          "icon": "⏰",
+          "human_summary": "Contenedor dashboardcontrol-scheduler, corrida cada 30 min, healthy."
+        },
+        {
+          "name": "🐙 GitHub",
+          "desc": "sync",
+          "status": "active",
+          "icon": "🐙",
+          "human_summary": "Repo grupoepem-bi-team/MonitorTablero en rama main. Push/pull activo."
+        },
+        {
+          "name": "🔐 Vault Token",
+          "desc": "ghp",
+          "status": "done",
+          "icon": "🔐",
+          "human_summary": "Token GitHub en ~/.hermes/vault/github_token.json, helper git-credential-vault configurado."
+        },
+        {
+          "name": "📊 PowerBI API",
+          "desc": "23",
+          "status": "active",
+          "icon": "📊",
+          "human_summary": "Monitorea 23 tableros via Azure AD + MSAL. Token refresca silenciosamente."
         }
       ]
     },
