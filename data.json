@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-23T09:01:03.495828",
+    "generated_at": "2026-07-23T12:00:06.047765",
     "version": "15.2",
     "health": {
       "srv-250": "online",
@@ -218,7 +218,7 @@
       "status": "active",
       "schedule": "115 skills",
       "human_desc": "Centro de skills organizadas por categoria.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "🎓",
       "subtasks": [
         {
@@ -343,7 +343,7 @@
       "status": "active",
       "schedule": "22 scripts",
       "human_desc": "Scripts de automatizacion y monitoreo.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "📜",
       "subtasks": [
         {
@@ -433,7 +433,7 @@
       "status": "active",
       "schedule": "Continuo",
       "human_desc": "Centro de datos: logs, credenciales, cron, memorias e indices.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "🗄️",
       "subtasks": [
         {
@@ -474,7 +474,7 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Base datos principal EPEM.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "🗄️",
       "subtasks": [
         {
@@ -515,7 +515,7 @@
       "status": "active",
       "schedule": "Continuo",
       "human_desc": "Envia binlog a .241.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "🔄",
       "subtasks": [
         {
@@ -549,7 +549,7 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Recibe de .250.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "🪞",
       "subtasks": [
         {
@@ -583,7 +583,7 @@
       "status": "active",
       "schedule": "9:00 AM",
       "human_desc": "Compara .250 vs .241.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "🔎",
       "subtasks": [
         {
@@ -624,7 +624,7 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Legacy tests.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "🧪",
       "subtasks": [
         {
@@ -651,7 +651,7 @@
       "status": "active",
       "schedule": "3:00 AM",
       "human_desc": "Restaura desde .50.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "📥",
       "subtasks": [
         {
@@ -692,7 +692,7 @@
       "status": "active",
       "schedule": "Continuo",
       "human_desc": "MySQL + disco.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "💓",
       "subtasks": [
         {
@@ -726,7 +726,7 @@
       "status": "active",
       "schedule": "2:00 AM",
       "human_desc": "Comprime DB.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "💾",
       "subtasks": [
         {
@@ -767,7 +767,7 @@
       "status": "active",
       "schedule": "24/7",
       "human_desc": "Escritorio remoto.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "🖥️",
       "subtasks": [
         {
@@ -828,7 +828,7 @@
       "status": "active",
       "schedule": "Docker 8070",
       "human_desc": "Dashboard Power BI: 23 tableros monitoreados via Docker en .95. GitHub sync activo.",
-      "last_run": "09:01",
+      "last_run": "12:00",
       "icon": "📊",
       "subtasks": [
         {
@@ -998,24 +998,24 @@
       "type": "forensic",
       "server": "srv-99",
       "status": "active",
-      "schedule": "Load: 3.4 | Disco: 79% | RAM: 0%",
-      "human_desc": "Diagnóstico operativo del servidor. Carga: 3.4, Disco máx: 79%, RAM: 0%",
-      "last_run": "2026-07-23 08:00:44",
+      "schedule": "Load: 74.1 | Disco: 96% | RAM: 0%",
+      "human_desc": "Diagnóstico operativo del servidor. Carga: 74.1, Disco máx: 96%, RAM: 0%",
+      "last_run": "2026-07-23 11:06:28",
       "icon": "📊",
       "subtasks": [
         {
-          "name": "Load 3.4",
+          "name": "Load 74.1",
           "desc": "CPU",
-          "status": "active",
+          "status": "pending",
           "icon": "⚡",
-          "human_summary": "Promedio de procesos esperando: 3.4"
+          "human_summary": "Promedio de procesos esperando: 74.1"
         },
         {
-          "name": "Disco 79%",
+          "name": "Disco 96%",
           "desc": "DISK",
-          "status": "active",
+          "status": "pending",
           "icon": "💾",
-          "human_summary": "Espacio ocupado en disco más lleno: 79%"
+          "human_summary": "Espacio ocupado en disco más lleno: 96%"
         },
         {
           "name": "RAM 0%",
@@ -1107,24 +1107,24 @@
       "type": "forensic",
       "server": "srv-241",
       "status": "active",
-      "schedule": "Load: 1.7 | Disco: 81% | RAM: 0%",
-      "human_desc": "Diagnóstico operativo del servidor. Carga: 1.7, Disco máx: 81%, RAM: 0%",
-      "last_run": "2026-07-23 08:01:18",
+      "schedule": "Load: 2.5 | Disco: 82% | RAM: 0%",
+      "human_desc": "Diagnóstico operativo del servidor. Carga: 2.5, Disco máx: 82%, RAM: 0%",
+      "last_run": "2026-07-23 11:07:02",
       "icon": "📊",
       "subtasks": [
         {
-          "name": "Load 1.7",
+          "name": "Load 2.5",
           "desc": "CPU",
-          "status": "done",
+          "status": "active",
           "icon": "⚡",
-          "human_summary": "Promedio de procesos esperando: 1.7"
+          "human_summary": "Promedio de procesos esperando: 2.5"
         },
         {
-          "name": "Disco 81%",
+          "name": "Disco 82%",
           "desc": "DISK",
           "status": "active",
           "icon": "💾",
-          "human_summary": "Espacio ocupado en disco más lleno: 81%"
+          "human_summary": "Espacio ocupado en disco más lleno: 82%"
         },
         {
           "name": "RAM 0%",
@@ -1140,18 +1140,18 @@
       "name": "🔍 Estado Forense",
       "type": "forensic",
       "server": "srv-240",
-      "status": "unknown",
-      "schedule": "Load: 0.0 | Disco: 100% | RAM: 0%",
-      "human_desc": "Diagnóstico operativo del servidor. Carga: 0.0, Disco máx: 100%, RAM: 0%",
-      "last_run": "2026-07-23 08:00:55",
+      "status": "active",
+      "schedule": "Load: 0.1 | Disco: 100% | RAM: 0%",
+      "human_desc": "Diagnóstico operativo del servidor. Carga: 0.1, Disco máx: 100%, RAM: 0%",
+      "last_run": "2026-07-23 11:06:38",
       "icon": "📊",
       "subtasks": [
         {
-          "name": "Load 0.0",
+          "name": "Load 0.1",
           "desc": "CPU",
           "status": "done",
           "icon": "⚡",
-          "human_summary": "Promedio de procesos esperando: 0.0"
+          "human_summary": "Promedio de procesos esperando: 0.1"
         },
         {
           "name": "Disco 100%",
@@ -1177,7 +1177,7 @@
       "status": "unknown",
       "schedule": "Load: 0.0 | Disco: 0% | RAM: 0%",
       "human_desc": "Diagnóstico operativo del servidor. Carga: 0.0, Disco máx: 0%, RAM: 0%",
-      "last_run": "2026-07-23 08:01:25",
+      "last_run": "2026-07-23 11:07:03",
       "icon": "📊",
       "subtasks": [
         {
@@ -1258,6 +1258,33 @@
       ]
     },
     {
+      "id": "comp-43-6",
+      "name": "⚠️ Datos Desactualizados",
+      "type": "alert",
+      "server": "srv-43",
+      "status": "pending",
+      "schedule": "Esperando liberación",
+      "human_desc": "Recolección de logs saltada porque un usuario tiene sesión RDP activa. Los datos mostrados son de una recolección anterior.",
+      "last_run": "2026-07-23 11:07:03",
+      "icon": "⚠️",
+      "subtasks": [
+        {
+          "name": "Esperando liberación",
+          "desc": "WAIT",
+          "status": "pending",
+          "icon": "⏳",
+          "human_summary": "Esperando que el usuario cierre su sesión para recolectar datos frescos."
+        },
+        {
+          "name": "Datos anteriores",
+          "desc": "CACHE",
+          "status": "done",
+          "icon": "📋",
+          "human_summary": "Mostrando datos de la última recolección exitosa."
+        }
+      ]
+    },
+    {
       "id": "comp-50-2",
       "name": "🔍 Estado Forense",
       "type": "forensic",
@@ -1265,7 +1292,7 @@
       "status": "unknown",
       "schedule": "Load: 0.0 | Disco: 0% | RAM: 0%",
       "human_desc": "Diagnóstico operativo del servidor. Carga: 0.0, Disco máx: 0%, RAM: 0%",
-      "last_run": "2026-07-23 08:01:27",
+      "last_run": "2026-07-23 11:07:04",
       "icon": "📊",
       "subtasks": [
         {
